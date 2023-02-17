@@ -1,0 +1,318 @@
+{
+    "header": {
+        "elizaasesoresservice": "RÁPIDO. SENCILLO. SEGURO."
+    },
+    "toasts": {
+        "close": "Cerrar"
+    },
+    "homepage": {
+        "navbar": "Inicio",
+        "title": "ERRENTA.EUS",
+        "subtitle": "Declaración de la renta en Vitoria Gasteiz"
+    },
+    "time": {
+        "days": "días"
+    },
+    "organizations": {
+      "title": "Asesorías",
+      "badges": {
+          "new": "NUEVO",
+          "reviewVerified": "VERIFICADO",
+          "featured": "DESTACADO",
+          "not_subscribed": "NO AFILIADO"
+      },
+      "subscriptions": {
+          "featured_city": "Destacado en ciudad",
+          "featured_province": "Destacado en provincia",
+          "featured_country": "Destacado en país"
+      },
+      "manage": {
+          "subtitle": "Administrar asesoría"
+      },
+      "actions": {
+          "start": "Empezar declaración",
+          "appointment": "Pedir cita",
+          "estimation": "Calcular presupuesto online."
+      },
+      "description": "Nuestras asesorías afiliadas.",
+      "show": {
+          "description": "Asesoría en {{city}}."
+        },
+      "index": {
+      "empty": "No hemos podido encontrar asesorías.",
+      "emptyDescription": "Puedes probar a quitar algún filtro o buscar en otra ciudad.",
+      "filters": {
+          "city": "Ciudad",
+          "name": "Nombre",
+          "price_range": "Rango de precio",
+          "location": "Cerca de {{location}}"
+      }
+      }
+    },
+    "payouts": {
+      "title": "Payouts",
+      "statuses": {
+        "pending": "Pendiente",
+        "paid": "Pagado",
+        "failed": "Error"
+      }
+    },
+    "transactions": {
+      "title": "Transacciones",
+      "statuses": {
+        "succeeded": "Pagado",
+        "refunded": "Devuelto",
+        "requires_capture": "Captura pendiente"
+      }
+    },
+    "estimation": {
+        "title": "Estimation",
+        "subtitle": "Gracias por llegar hasta aqui. Esta información es solo visible para ti.",
+        "share": "Esta es mi estimación de ERRENTA.EUS. Échale un vistazo.",
+        "shareHeading": "Compartir estimación",
+        "estimationSignature": "Firma de la estimación",
+        "estimationValidDuring": "Válida durante",
+        "continueWithEstimation": "¡Todo listo! Continuar" 
+    },
+    "taxincome": {
+        "title": "Mi declaración",
+        "empty": "No hay declaraciones",
+        "product": {
+            "name": "Tax Income",
+            "description": "Year {{year}}"
+        },
+        "emptyDescription": "Empieza por crear tu primera declaración.",
+        "statuses": {
+            "pending_assignation": "Asignando abogado",
+            "meeting": "Cita",
+            "payment": "Pago",
+            "rejected": "Rechazado",
+            "documentation": "Documentación",
+            "in_progress": "En curso",
+            "finished": "Terminado"
+        },
+        "actions": {
+            "delete": {
+                "button": "Eliminar",
+                "confirmButton": "Eliminar permanentemente",
+                "modalTitle": "Eliminar esta declaración",
+                "disclaimer": "Esta acción no es reversible",
+                "cancel": "Cancelar"
+            },
+            "create": {
+                "button": "Crear"
+            }
+        },
+        "payment": {
+            "pending": {
+                "title": "Pago - Preautorización",
+                "description": "No te preocupes, no se te cobrará nada hasta que se presente tu declaración."
+            },
+            "price": "Precio"
+        },
+        "toasts": {
+          "title": "Declaración",
+          "actions": {
+            "deleteSuccess": "Eliminada correctamente"
+          }
+        }
+    },
+    "calculator": {
+        "title": "Calculadora",
+        "home": {
+            "importantInformation": "Información importante",
+            "welcome": "Bienvenido al apartado de estimación.",
+            "header": "Aquí podrás obtener un precio estimado para la realización de la declaración de la renta. Una vez obtenida la estimación podrás decidir si sigues adelante o no. "
+        },
+        "fields": {
+            "name": "Nombre"
+        },
+        "privacy": {
+            "header": "Acerca de tu privacidad",
+            "content": "La privacidad es importante para nosotros, por lo que no guardamos <b>nada de información</b> sobre tu estimación. Únicamente guardaremos tus datos si decides realizar la declaración con nosotros."
+        },
+        "actions": {
+            "next": "Siguiente",
+            "finish": "Finalizar",
+            "back": "Atrás"
+        }
+    },
+    "product": {
+        "name": "Nombre",
+        "price": "Precio",
+        "description": "Descripción"
+    },
+    "documentation": {
+        "title": "Documentación"
+    },
+    "authentication": {
+        "mfa": {
+            "close": "Logout",
+            "required": "Autenticación de dos factores",
+            "description": "Es necesario que realices la autenticación de dos factores para continuar.",
+            "otp": "Código de autenticación",
+            "recovery-codes": "Clave de recuperación",
+            "webauthn": "Clave de seguridad"
+        },
+        "otp": {
+            "setup": {
+              "title": "OTP",
+              "description": "Escanea el código QR con tu aplicación preferida. También puedes hacer click en el QR para hacer la instalación en este dispositivo.",
+              "code": "Code",
+              "button": "Habilitar OTP"
+            },
+            "completed": {
+              "title": "OTP Habilitado",
+              "description": "Ahora puedes usar tu OTP para iniciar sesión."
+            },
+            "disable": {
+              "button": "Deshabilitar OTP"
+            }
+        },
+        "webauthn": {
+          "login": {
+              "title": "Authenticate with WebAuthn"
+          },
+          "authenticate": {
+              "title": "Authenticate with WebAuthn",
+              "description": "Please insert your security key (if needed)."
+            },
+            "setup": {
+              "title": "WebAuthn",
+              "description": "Se generará un nuevo par de claves para tu cuenta. Si quieres, puedes instalarlo en un dispositivo externo como un USB.",
+              "button": "Añadir clave"
+            }
+          },
+        "email-link": {
+            "title": "Entrar con enlance de email",
+            "sent": "¡Enviado!"
+        },
+        "register": {
+            "register_button": "Registrarme",
+            "success": "¡Registrado correctamente!",
+            "subtitle": "Te hemos enviado un correo de confirmación a {{email}}"
+        },
+        "modalTitle": "Entrar en Errenta",
+        "password": "Contraseña",
+        "mfaDisableDisclaimer": "Por favor piensalo dos veces antes de deshabilitar la autenticación de dos factores.",
+        "signIn": "Iniciar sesión",
+        "loggedIn": "Has iniciado sesión",
+        "loggedOut": "¡Hasta luego!",
+        "loggingOut": "Cerrando sesión...",
+        "loggingIn": "Iniciando sesión..."
+    },
+    "lawyers": {
+        "fromOrganization": "de {{organization}}",
+        "assignedLawyer": "Tu abogado",
+        "email": "Email",
+        "phone": "Teléfono"
+    },
+    "documents": {
+        "history": {
+            "action": "ACCIÓN",
+            "user": "USUARIO",
+            "date": "FECHA",
+            "description": "DESCRIPCIÓN"
+        },
+        "empty": {
+            "title": "No hay documentos requeridos.",
+            "description": "Por favor contacta con tu abogado si piensas que es un error."
+        },
+        "actions": {
+            "export": "Exportar documento",
+            "viewDocument": "Ver documento",
+            "delete": "Eliminar"
+        },
+        "info": {
+            "history": "Historial",
+            "askedBy": "Solicitado por",
+            "lastUpdate": "Ultima actualización"
+        },
+        "status": {
+            "completed": "Completado",
+            "pending": "Pediente"
+        }
+    },
+    "errors": {
+        "unexpected": "Error inesperado"
+    },
+    "appointments": {
+        "myAppointment": "Mi cita",
+        "subtitle": "Información sobre su cita.",
+        "actions": {
+            "edit": "Editar"
+        },
+        "appointmentEdit": {
+            "modalTitle": "Editar mi cita"
+        },
+        "appointmentMethod": {
+            "phone": "Te llamaremos al teléfono indicado.",
+            "office": "Te esperamos en nuestras oficinas."
+        },
+        "officeAppointment": {
+            "directions" : "Dirección",
+            "directionLink": "https://g.page/eliza-asesores?share"
+        },
+        "form": {
+            "scheduleAppointment": "Concertar tu cita",
+            "fields": {
+              "time": {
+                "label": "Hora",
+                "error": "Hora inválida"
+              },
+              "method": {
+                "label": "¿Cómo quedamos?",
+                "types": {
+                  "phone": {
+                    "label": "Tu abogado te llamará",
+                    "text": "Cita telefónica",
+                    "phoneNumber": "Número de teléfono"
+                  }, 
+                  "office": {
+                    "label": "Te esperaremos en nuestra oficina.",
+                    "text": "Cita presencial"
+                  }
+                }
+              }
+            },
+            "submit": "Concerta cita"
+        }
+    },
+    "reviews": {
+      "rating": "{{rating}} de 5",
+      "totalReviews": "{{total}} reseñas",
+      "five_star_count": "5 estrellas",
+      "four_star_count": "4 estrellas",
+      "three_star_count": "3 estrellas",
+      "two_star_count": "2 estrellas",
+      "one_star_count": "1 estrellas"
+    },
+    "filters": {
+      "searchBy": "Buscar por {{filter}}",
+      "add": "Añadir filtro"
+    },
+    "global": {
+        "loading": "Cargando...",
+        "loading2": "No debería tardar...",
+        "ok": "¡Listo!",
+        "cancel": "Cancelar",
+        "retry": "Reintentar",
+        "disable": "Deshabilitar",
+        "remove": "Eliminar",
+        "yes": "Si",
+        "continue": "Continuar",
+        "no": "No",
+        "back": "Volver"
+    },
+    "navbar": {
+        "myProfile": "Mi cuenta"
+    },
+    "profile": {
+        "title": "Mi cuenta"
+    },
+    "accounts": {
+        "lawyer": "Lawyer",
+        "client": "Client",
+        "root": "Root"
+    }
+  }

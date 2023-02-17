@@ -1,0 +1,158 @@
+
+h1 {
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .heading-line {
+    line-height: 1;
+    display: block;
+    position: relative;
+  }
+
+  .heading-line::before {
+    line-height: 1;
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  .heading-line-gradient {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* 1st heading gradient */
+  @keyframes first_heading_gradient {
+    0%,
+    16.667% {
+      opacity: 1;
+    }
+
+    33.333%,
+    83.333% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* 1st heading white text */
+  @keyframes first_heading_white_text {
+    0%,
+    16.667% {
+      opacity: 0;
+    }
+
+    25%,
+    91.667% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes second_heading_gradient {
+    0%,
+    16.667% {
+      opacity: 0;
+    }
+
+    33.333%,
+    50% {
+      opacity: 1;
+    }
+
+    66.667%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes second_heading_white_text {
+    0%,
+    25% {
+      opacity: 1;
+    }
+
+    33.333%,
+    50% {
+      opacity: 0;
+    }
+
+    58.333%,
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes third_heading_gradient {
+    0%,
+    50% {
+      opacity: 0;
+    }
+
+    66.667%,
+    83.333% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes third_heading_white_text {
+    0%,
+    58.333% {
+      opacity: 1;
+    }
+
+    66.667%,
+    83.333% {
+      opacity: 0;
+    }
+
+    91.667%,
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .heading-line-first > .heading-line-gradient {
+    background-image: linear-gradient(to left, #ed8936, #ed64a6);
+    animation: first_heading_gradient 8s infinite;
+  }
+
+  .heading-line-first::before {
+    content: "Declaración.";
+    animation: first_heading_white_text 8s infinite;
+  }
+
+  .heading-line-second > .heading-line-gradient {
+    background-image: linear-gradient(to left, #38b2ac, #0bc5ea);
+    animation: second_heading_gradient 8s infinite;
+  }
+
+  .heading-line-second::before {
+    content: "Rápida.";
+    animation: second_heading_white_text 8s infinite;
+  }
+
+  .heading-line-third > .heading-line-gradient {
+    background-image: linear-gradient(to left, #ecc94b, #48bb78);
+    animation: third_heading_gradient 8s infinite;
+  }
+
+  .heading-line-third::before {
+    content: "Sencilla.";
+    animation: third_heading_white_text 8s infinite;
+  }

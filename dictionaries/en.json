@@ -1,0 +1,317 @@
+{
+    "header": {
+      "elizaasesoresservice": "SAFE. FAST. EASY."
+    },
+    "toasts": {
+      "close": "Close"
+    },
+    "homepage": {
+      "navbar": "Home",
+      "title": "ERRENTA.EUS",
+      "subtitle": "Tax Income in Vitoria Gasteiz"
+    },
+    "time": {
+      "days": "days"
+    },
+    "organizations": {
+      "title": "Organizations",
+      "description": "All our afiliates",
+      "show": {
+        "description": "Organization based in {{city}}"
+      },
+      "manage": {
+        "subtitle": "Administration page"
+      },
+      "actions": {
+        "start": "Initiate income tax",
+        "appointment": "Make an appointment",
+        "calculate": "Estimate budget"
+      },
+      "subscriptions": {
+        "featured_city": "Destacado en ciudad",
+        "featured_province": "Destacado en provincia",
+        "featured_country": "Destacado en país"
+      },
+      "badges": {
+          "new": "NEW",
+          "reviewVerified": "VERIFIED",
+          "featured": "FEATURED",
+          "not_subscribed": "NOT SUBSCRIBED"
+      },
+      "index": {
+        "empty": "No organizations found.",
+        "emptyDescription": "Maybe you can start by removing some filters.",
+        "filters": {
+          "city": "City",
+          "name": "Name",
+          "price_range": "Price range",
+          "location": "Near {{location}}"
+        }
+      }
+    },
+    "estimation": {
+      "title": "Estimation",
+      "subtitle": "Thank you for reaching this step.",
+      "share": "This is my estimation at ERRENTA.EUS, check it out!",
+      "shareHeading": "Share this estimation",
+      "estimationSignature": "Estimation signature",
+      "estimationValidDuring": "Expires in",
+      "continueWithEstimation": "Everything is ready! Go on."
+    },
+    "payouts": {
+      "title": "Payouts",
+      "statuses": {
+        "pending": "Pending",
+        "paid": "Paid",
+        "failed": "Failed"
+      }
+    },
+    "transactions": {
+      "title": "Transactions",
+      "statuses": {
+        "succeeded": "Succeeded",
+        "refunded": "Refunded",
+        "requires_capture": "Requires capture"
+      }
+    },
+    "taxincome": {
+      "title": "My Tax Income",
+      "empty": "No tax incomes found",
+      "product": {
+        "name": "Declaración",
+        "description": "Año {{year}}"
+      },
+      "emptyDescription": "Start by creating your first tax income",
+      "statuses": {
+        "pending_assignation": "Pending assignation",
+        "meeting": "Meeting",
+        "payment": "Payment",
+        "rejected": "Rejected",
+        "documentation": "Documentation",
+        "in_progress": "In progress",
+        "finished": "Finished"
+      },
+      "actions": {
+        "delete": {
+            "button": "Delete",
+            "confirmButton": "Delete permanently",
+            "modalTitle": "Delete this tax income",
+            "disclaimer": "This action can't be undone",
+            "cancel": "Cancel"
+        },
+        "create": {
+          "button": "Create"
+        }
+      },
+      "payment": {
+        "pending": {
+          "title": "Payment",
+          "description": "This is an authorization to charge your card for the amount of {{amount}}€. This amount will be charged when the tax income is finished."
+        },
+        "price": "Price"
+      },
+      "toasts": {
+        "title": "Tax Income",
+        "actions": {
+          "deleteSuccess": "Deleted successfully"
+        }
+      }
+    },
+    "calculator": {
+      "title": "Calculator",
+      "home": {
+          "importantInformation": "Important information",
+          "welcome": "Welcome to the calculator.",
+          "header": "Aquí podrás obtener un precio estimado para la realización de la declaración de la renta. Una vez obtenida la estimación podrás decidir si sigues adelante o no. "
+      },
+      "fields": {
+          "name": "Name"
+      },
+      "privacy": {
+          "header": "Acerca de tu privacidad",
+          "content": "La privacidad es importante para nosotros, por lo que no guardamos <b>nada de información</b> sobre tu estimación. Únicamente guardaremos tus datos si decides realizar la declaración con nosotros."
+      },
+      "actions": {
+          "next": "Next",
+          "finish": "Finish",
+          "back": "Back"
+      }
+    },
+    "product": {
+      "name": "Name",
+      "price": "Price",
+      "description": "Description"
+    },
+    "documentation": {
+      "title": "Documentation"
+    },
+    "authentication": {
+      "mfa": {
+        "close": "Logout",
+        "required": "MFA required",
+        "description": "For security reasons, you need to authenticate with a second factor.",
+        "otp": "Code from your authenticator app",
+        "recovery-codes": "Recovery Code",
+        "webauthn": "Security key"
+      },
+      "webauthn": {
+        "login": {
+          "title": "WebAuthn"
+        },
+        "authenticate": {
+          "title": "Authenticate with WebAuthn",
+          "description": "Please insert your security key (if needed)."
+        },
+        "setup": {
+          "title": "Setup WebAuthn",
+          "description": "A certificate will be generated for your security key. Please insert your security key (if needed) and press the button.",
+          "button": "Add key"
+        }
+      },
+      "otp": {
+        "setup": {
+          "title": "Setup OTP",
+          "description": "Scan the QR code with your authenticator app and enter the code below.",
+          "code": "Code",
+          "button": "Setup OTP"
+        },
+        "completed": {
+          "title": "OTP setup completed",
+          "description": "You can now use OTP to login to your account."
+        },
+        "disable": {
+          "button": "Disable OTP"
+        }
+      },
+      "email-link": {
+        "title": "Email Link",
+        "sent": "Sent!"
+      },
+      "register": {
+        "register_button": "Register",
+        "success": "Registered successfully",
+        "subtitle": "We have sent you an email to {{email}} for confirmation. Please check your inbox."
+      },
+      "modalTitle": "Authenticate - Errenta",
+      "mfaDisableDisclaimer": "Please reconsider disabling 2FA",
+      "signIn": "Sign In",
+      "loggedIn": "Logged In!",
+      "loggedOut": "See you soon",
+      "loggingOut": "Logging out...",
+      "loggingIn": "Logging in...",
+      "password": "Password"
+    },
+    "errors": {
+      "unexpected": "Unexpected error"
+    },
+    "lawyers": {
+      "fromOrganization": "from {{organization}}",
+      "assignedLawyer": "Your lawyer",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "documents": {
+      "history": {
+        "action": "ACTION",
+        "user": "USER",
+        "date": "DATE",
+        "description": "DESCRIPTION"
+      },
+      "empty": {
+        "title": "No documents found",
+        "description": "Please contact your lawyer if you think this is an error."
+      },
+      "actions": {
+        "export": "Export document",
+        "viewDocument": "View document",
+        "delete": "Delete"
+      },
+      "info": {
+        "history": "History",
+        "askedBy": "Requested by",
+        "lastUpdate": "Last update"
+      },
+      "status": {
+        "completed": "Completed",
+        "pending": "Pending"
+      }
+    },
+    "appointments": {
+      "myAppointment": "My Appointment",
+      "subtitle": "Information about your appointment.",
+      "actions": {
+        "edit": "Editar"
+      },
+      "appointmentMethod": {
+        "phone": "We'll call you to the phone provided.",
+        "office": "We'll be waiting for you on our office"
+      },
+      "officeAppointment": {
+        "directions" : "Direction",
+        "directionLink": "https://g.page/eliza-asesores?share"
+      },
+      "form": {
+        "scheduleAppointment": "Schedule your appointment",
+        "fields": {
+          "time": {
+            "label": "Time",
+            "error": "Invalid time"
+          },
+          "method": {
+            "label": "How do we meet?",
+            "types": {
+              "phone": {
+                "label": "Your lawyer will call you",
+                "text": "Phone call",
+                "phoneNumber": "Phone number"
+              }, 
+              "office": {
+                "label": "You will meet your lawyer in our office",
+                "text": "In office"
+              }
+            }
+          }
+        },
+        "submit": "Schedule"
+      }
+    },
+    "reviews": {
+      "rating": "{{rating}} out of 5",
+      "totalReviews": "{{total}} reviews",
+      "five_star_count": "5 star",
+      "four_star_count": "4 star",
+      "three_star_count": "3 star",
+      "two_star_count": "2 star",
+      "one_star_count": "1 star"
+    },
+    "filters": {
+      "searchBy": "Search by {{filter}}",
+      "add": "Add filter"
+    },
+    "global": {
+      "loading": "Loading...",
+      "loading2": "Shouldn't take long...",
+      "ok": "Done!",
+      "error": "Error",
+      "disable": "Disable",
+      "retry": "Retry",
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "remove": "Remove",
+      "yes": "Yes",
+      "no": "No",
+      "back": "Back"
+    },
+    "navbar": {
+      "myProfile": "My account"
+    },
+    "profile": {
+      "title": "My Account"
+    },
+    "accounts": {
+      "lawyer": "Lawyer",
+      "client": "Client",
+      "root": "Root"
+    }
+  }
+  

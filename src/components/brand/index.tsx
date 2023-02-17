@@ -1,0 +1,1 @@
+export { BrandTitle } from "./BrandTitle";
