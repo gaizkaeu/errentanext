@@ -1,0 +1,12 @@
+{
+  "runtime": "edge",
+  "name": "src/middleware",
+  "deploymentTarget": "v8-worker",
+  "entrypoint": "index.js",
+  "envVarsInUse": [],
+  "assets": [],
+  "framework": {
+    "slug": "nextjs",
+    "version": "13.1.6"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "runtime": "edge",
+  "name": "[lang]/dashboard",
+  "deploymentTarget": "v8-worker",
+  "entrypoint": "index.js",
+  "envVarsInUse": [
+    "NEXT_PRIVATE_MINIMAL_MODE",
+    "READABLE_STREAM",
+    "NODE_DEBUG",
+    "API_BASE"
+  ],
+  "assets": [],
+  "framework": {
+    "slug": "nextjs",
+    "version": "13.1.6"
+  }
+}

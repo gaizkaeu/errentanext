@@ -25,9 +25,9 @@ export default function InputField(props: { name: string; [x: string]: any }) {
   }
 
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="grid w-full items-center gap-1.5">
       <Input {...field} {...rest} />
-      <p className="text-sm text-slate-500">{_renderHelperText()}</p>
+      <p className="text-sm text-slate-500 ">{_renderHelperText()}</p>
     </div>
   );
 }

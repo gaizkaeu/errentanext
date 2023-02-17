@@ -1,0 +1,17 @@
+{
+  "runtime": "edge",
+  "name": "[lang]/organizations",
+  "deploymentTarget": "v8-worker",
+  "entrypoint": "index.js",
+  "envVarsInUse": [
+    "API_BASE",
+    "NEXT_PRIVATE_MINIMAL_MODE",
+    "READABLE_STREAM",
+    "NODE_DEBUG"
+  ],
+  "assets": [],
+  "framework": {
+    "slug": "nextjs",
+    "version": "13.1.6"
+  }
+}
