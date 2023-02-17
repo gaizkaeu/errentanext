@@ -1,25 +1,25 @@
 "use client"
 import InputField from "@/components/fields/InputField";
 import { Button } from "@/components/ui/button"
-import { useAuth } from "@/components/providers/authProvider"
 import { useLoginAccountMutation } from "@/store/endpoints/userAccounts";
 import { SessionCreationData } from "@/store/types/User";
 import { Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 
 export const SignInForm = () => {
 
   const [signIn] = useLoginAccountMutation();
-  const { isAuthenticated } = useAuth();
+  const r = useRouter();
 
   const onSubmit = (values: SessionCreationData, h: FormikHelpers<SessionCreationData>) => {
     signIn(values).unwrap().then(() => {
-      
+      r.push('/dashboard')
     })
     .finally(() => h.setSubmitting(false));
   }
 
-  return !isAuthenticated ? (
+  return (
     <Formik onSubmit={onSubmit} initialValues={{ login: "", password: "" } as SessionCreationData}>
       {({ isSubmitting }) => (
       <Form className="mt-8 space-y-6" action="#" method="POST">
@@ -60,5 +60,5 @@ export const SignInForm = () => {
       </Form>
       )}
     </Formik>
-  ) : <p>ya estas</p>
+  );
 }

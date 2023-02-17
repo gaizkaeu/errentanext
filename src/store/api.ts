@@ -12,7 +12,7 @@ export const api = createApi({
     }
   },
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.API_BASE,
+    baseUrl: process.env.NEXT_PUBLIC_API_BASE + "/api/v1",
     credentials: "include",
     paramsSerializer(params) {
       return queryString.stringify(params, { arrayFormat: "bracket" });

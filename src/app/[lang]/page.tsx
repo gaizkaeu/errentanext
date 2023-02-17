@@ -3,7 +3,7 @@ import { IndexOrgs } from "@/components/organizations/Card";
 import queryString from "query-string";
 
 export const getOrgs = async (params?: string) => {
-  const res = await fetch(process.env.API_BASE + "/api/v1/organizations?" + params ?? "");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
   const data = await res.json();
   return data;
 };

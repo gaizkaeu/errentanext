@@ -2,8 +2,10 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    runtime: "edge",
+    runtime: "experimental-edge",
   },
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
 module.exports = nextConfig

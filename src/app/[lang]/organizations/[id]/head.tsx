@@ -1,7 +1,7 @@
 import { Organization } from "@/store/types/Organization";
 
 const getOrg = async (id: string) => {
-  const res = await fetch(process.env.API_BASE + "/api/v1/organizations/" + id);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id);
   const data = await res.json();
   return data.data;
 };
