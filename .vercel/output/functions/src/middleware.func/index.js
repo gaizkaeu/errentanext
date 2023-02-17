@@ -1187,7 +1187,7 @@ function splitParameters(str) {
 
 /***/ }),
 
-/***/ 9384:
+/***/ 1250:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1196,7 +1196,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_tsx_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fgaizkaurdangarin_2FDesktop_2Ferrenta_test_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik_2FW1xcLyNcXD9dPyQifV0_3D_)
+  "default": () => (/* binding */ next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fgaizkaurdangarin_2FDesktop_2Ferrenta_test_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik_2FW1xcLyNcXD9dPyQifV0_3D_)
 });
 
 ;// CONCATENATED MODULE: ./node_modules/next/dist/esm/server/web/error.js
@@ -2483,20 +2483,20 @@ function enhanceGlobals() {
 }
 
 //# sourceMappingURL=adapter.js.map
-;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=private-next-root-dir%2Fsrc%2Fmiddleware.tsx&page=%2Fsrc%2Fmiddleware&rootDir=%2FUsers%2Fgaizkaurdangarin%2FDesktop%2Ferrenta-test&matchers=W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik%2FW1xcLyNcXD9dPyQifV0%3D!
+;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=private-next-root-dir%2Fsrc%2Fmiddleware.ts&page=%2Fsrc%2Fmiddleware&rootDir=%2FUsers%2Fgaizkaurdangarin%2FDesktop%2Ferrenta-test&matchers=W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik%2FW1xcLyNcXD9dPyQifV0%3D!
 
         
 
         enhanceGlobals()
 
-        var mod = __webpack_require__(7691)
+        var mod = __webpack_require__(3923)
         var handler = mod.middleware || mod.default;
 
         if (typeof handler !== 'function') {
           throw new Error('The Middleware "pages/src/middleware" must export a `middleware` or a `default` function');
         }
 
-        /* harmony default export */ function next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_tsx_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fgaizkaurdangarin_2FDesktop_2Ferrenta_test_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik_2FW1xcLyNcXD9dPyQifV0_3D_(opts) {
+        /* harmony default export */ function next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fgaizkaurdangarin_2FDesktop_2Ferrenta_test_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHR8ZmF2aWNvbi5pY28pLiopKSguanNvbik_2FW1xcLyNcXD9dPyQifV0_3D_(opts) {
           return adapter({
               ...opts,
               page: "/src/middleware",
@@ -2805,7 +2805,7 @@ function removeTrailingSlash(route) {
 
 /***/ }),
 
-/***/ 7691:
+/***/ 3923:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3248,7 +3248,7 @@ function createIntlMiddleware(config) {
     };
 }
 //# sourceMappingURL=middleware.js.map
-;// CONCATENATED MODULE: ./src/middleware.tsx
+;// CONCATENATED MODULE: ./src/middleware.ts
 
 /* harmony default export */ const middleware = (createIntlMiddleware({
     locales: [
@@ -3261,7 +3261,8 @@ const config = {
     // Skip all non-content paths
     matcher: [
         "/((?!api|_next|favicon.ico).*)"
-    ]
+    ],
+    runtime: "experimental-edge"
 };
 
 
@@ -4187,7 +4188,7 @@ exports.URLPattern = serverExports.URLPattern
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(9384));
+/******/ var __webpack_exports__ = (__webpack_exec__(1250));
 /******/ (_ENTRIES = typeof _ENTRIES === "undefined" ? {} : _ENTRIES)["middleware_src/middleware"] = __webpack_exports__;
 /******/ }
 ]);

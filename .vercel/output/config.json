@@ -54,7 +54,13 @@
       "continue": true
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(.*).json",
+      "src": "^\\/[\\/#\\?]?$|^\\/index[\\/#\\?]?$",
+      "middlewarePath": "middleware",
+      "continue": true,
+      "override": true
+    },
+    {
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(.*).json",
       "dest": "/$1",
       "override": true,
       "continue": true,
@@ -84,7 +90,7 @@
         {
           "type": "header",
           "key": "x-prerender-revalidate",
-          "value": "26c26d7306020e6c51e934f4d36c7d27"
+          "value": "fd4f74008eea71fffc919599fc430e4d"
         }
       ],
       "middlewarePath": "src/middleware",
@@ -98,7 +104,7 @@
           "key": "x-nextjs-data"
         }
       ],
-      "dest": "/_next/data/UQw0onlfgAWZ0jDwRhCn3/index.json",
+      "dest": "/_next/data/hhH1WshEUUYIDNnPT-y73/index.json",
       "continue": true,
       "override": true
     },
@@ -110,7 +116,7 @@
           "key": "x-nextjs-data"
         }
       ],
-      "dest": "/_next/data/UQw0onlfgAWZ0jDwRhCn3/$1.json",
+      "dest": "/_next/data/hhH1WshEUUYIDNnPT-y73/$1.json",
       "continue": true,
       "override": true
     },
@@ -118,7 +124,7 @@
       "handle": "filesystem"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(.*).json",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(.*).json",
       "dest": "/$1",
       "continue": true,
       "has": [
@@ -166,7 +172,7 @@
           "key": "x-nextjs-data"
         }
       ],
-      "dest": "/_next/data/UQw0onlfgAWZ0jDwRhCn3/index.json",
+      "dest": "/_next/data/hhH1WshEUUYIDNnPT-y73/index.json",
       "continue": true
     },
     {
@@ -177,47 +183,47 @@
           "key": "x-nextjs-data"
         }
       ],
-      "dest": "/_next/data/UQw0onlfgAWZ0jDwRhCn3/$1.json",
+      "dest": "/_next/data/hhH1WshEUUYIDNnPT-y73/$1.json",
       "continue": true
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)(?:\\.rsc)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)(?:\\.rsc)(?:/)?.json$",
       "dest": "/[lang].rsc?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)(?:/)?.json$",
       "dest": "/[lang]?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/account/sign_in(?:\\.rsc)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/account/sign_in(?:\\.rsc)(?:/)?.json$",
       "dest": "/[lang]/account/sign_in.rsc?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/account/sign_in(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/account/sign_in(?:/)?.json$",
       "dest": "/[lang]/account/sign_in?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/dashboard(?:\\.rsc)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/dashboard(?:\\.rsc)(?:/)?.json$",
       "dest": "/[lang]/dashboard.rsc?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/dashboard(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/dashboard(?:/)?.json$",
       "dest": "/[lang]/dashboard?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/organizations(?:\\.rsc)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/organizations(?:\\.rsc)(?:/)?.json$",
       "dest": "/[lang]/organizations.rsc?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/organizations(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/organizations(?:/)?.json$",
       "dest": "/[lang]/organizations?lang=$lang"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/organizations/(?<id>[^/]+?)(?:\\.rsc)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/organizations/(?<id>[^/]+?)(?:\\.rsc)(?:/)?.json$",
       "dest": "/[lang]/organizations/[id].rsc?lang=$lang&id=$id"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(?<lang>[^/]+?)/organizations/(?<id>[^/]+?)(?:/)?.json$",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(?<lang>[^/]+?)/organizations/(?<id>[^/]+?)(?:/)?.json$",
       "dest": "/[lang]/organizations/[id]?lang=$lang&id=$id"
     },
     {
@@ -261,7 +267,7 @@
       "dest": "/[lang]/organizations/[id]?lang=$lang&id=$id"
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(.*).json",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(.*).json",
       "headers": {
         "x-nextjs-matched-path": "/$1"
       },
@@ -269,14 +275,14 @@
       "override": true
     },
     {
-      "src": "^/_next/data/UQw0onlfgAWZ0jDwRhCn3/(.*).json",
+      "src": "^/_next/data/hhH1WshEUUYIDNnPT\\-y73/(.*).json",
       "dest": "__next_data_catchall"
     },
     {
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|UQw0onlfgAWZ0jDwRhCn3)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|hhH1WshEUUYIDNnPT\\-y73)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
