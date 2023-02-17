@@ -8,17 +8,6 @@
   ],
   "builds": [
     {
-      "require": "@vercel/node",
-      "requirePath": "/Users/gaizkaurdangarin/Desktop/errenta-test/node_modules/@vercel/node/dist/index",
-      "apiVersion": 3,
-      "use": "@vercel/node",
-      "src": "middleware.ts",
-      "config": {
-        "zeroConfig": true,
-        "middleware": true
-      }
-    },
-    {
       "require": "@vercel/next",
       "requirePath": "/Users/gaizkaurdangarin/Desktop/errenta-test/node_modules/@vercel/next/dist/index",
       "apiVersion": 2,
