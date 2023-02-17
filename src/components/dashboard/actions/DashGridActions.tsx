@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import {ArrowUpRightIcon, GlobeAltIcon, PaperAirplaneIcon, QuestionMarkCircleIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline";
+import { ArrowUpRightIcon, GlobeAltIcon, PaperAirplaneIcon, QuestionMarkCircleIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
+import { Link } from "next-intl";
 
 export const DashGridActions = () => {
 
@@ -17,10 +18,10 @@ export const DashGridActions = () => {
         </div>
         <div className="divide-y">
           <Action title="Configuración de mi cuenta" color="purple" description="Puedes administrar tu cuenta, ver tus pagos y gestionar las notificaciones." href="ads" >
-           <WrenchScrewdriverIcon className="h-8" />
+            <WrenchScrewdriverIcon className="h-8" />
           </Action>
           <Action title="Ayuda" color="red" description="Contacta con nuestro departamento de soporte." href="ads" >
-           <QuestionMarkCircleIcon className="h-8" />
+            <QuestionMarkCircleIcon className="h-8" />
           </Action>
         </div>
       </div>
@@ -30,7 +31,7 @@ export const DashGridActions = () => {
 }
 
 const actionIconVariant = cva(
-  "p-1 w-fit rounded-lg font-light", 
+  "p-1 w-fit rounded-lg font-light",
   {
     variants: {
       variant: {
@@ -42,29 +43,31 @@ const actionIconVariant = cva(
     }
   });
 
-const Action = (props: { title: string, children?: JSX.Element, description: string, href: string, color?: "green" | "yellow" | "purple" | "red"}) => {
+const Action = (props: { title: string, children?: JSX.Element, description: string, href: string, color?: "green" | "yellow" | "purple" | "red" }) => {
 
   return (
-    <div className="transition-all h-48 p-3 hover:opacity-75">
-      <div className="flex items-center">
-        <div className="flex-1">
-          <div className={cn(actionIconVariant({ variant: props.color ?? 'green' }))}>
-            {props.children}
+
+    <Link href={props.href}>
+      <div className="transition-all h-48 p-3 hover:opacity-75">
+        <div className="flex items-center">
+          <div className="flex-1">
+            <div className={cn(actionIconVariant({ variant: props.color ?? 'green' }))}>
+              {props.children}
+            </div>
+          </div>
+          <div>
+            <ArrowUpRightIcon className="h-6" />
           </div>
         </div>
-        <div>
-          <ArrowUpRightIcon className="h-6" />
+        <div className="mt-8">
+          <p className="font-bold text-lg">
+            {props.title}
+          </p>
+          <p>
+            {props.description}
+          </p>
         </div>
       </div>
-      <div className="mt-8">
-        <p className="font-bold text-lg">
-          {props.title}
-        </p>
-        <p>
-          {props.description}
-        </p>
-      </div>
-
-    </div>
+    </Link>
   );
 }

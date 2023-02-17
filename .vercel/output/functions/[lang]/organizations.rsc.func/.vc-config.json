@@ -4,10 +4,9 @@
   "deploymentTarget": "v8-worker",
   "entrypoint": "index.js",
   "envVarsInUse": [
-    "API_BASE",
-    "NEXT_PRIVATE_MINIMAL_MODE",
     "READABLE_STREAM",
-    "NODE_DEBUG"
+    "NODE_DEBUG",
+    "NEXT_PRIVATE_MINIMAL_MODE"
   ],
   "assets": [],
   "framework": {
