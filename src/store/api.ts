@@ -12,7 +12,7 @@ export const api = createApi({
     }
   },
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.errenta.eus:3000/api/v1/",
+    baseUrl: process.env.API_BASE,
     credentials: "include",
     paramsSerializer(params) {
       return queryString.stringify(params, { arrayFormat: "bracket" });

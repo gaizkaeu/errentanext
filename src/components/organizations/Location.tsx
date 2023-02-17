@@ -7,7 +7,7 @@ export function OrganizationLocation(props: {latitude: number; longitude: number
   const googlemap = useRef(null);
   useEffect(() => {
     const loader = new Loader({
-      apiKey: 'AIzaSyAVJ4unu6x9VcFQHkyxHv_3DQyaR4zIuic',
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API ?? '',
       version: 'weekly',
     });
     let map;

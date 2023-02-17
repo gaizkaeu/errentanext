@@ -8,13 +8,13 @@ export function generateStaticParams() {
 }
 
 const getOrg = async (id: string) => {
-  const res = await fetch("https://api.errenta.eus/api/v1/organizations/" + id);
+  const res = await fetch(process.env.API_BASE + "/api/v1/organizations/" + id);
   const data = await res.json();
   return data.data;
 };
 
 const getOrgReview = async (id: string) => {
-  const res = await fetch("https://api.errenta.eus/api/v1/organizations/" + id + "/reviews");
+  const res = await fetch(process.env.API_BASE + "/api/v1/organizations/" + id + "/reviews");
   const data = await res.json();
   return data.data;
 };

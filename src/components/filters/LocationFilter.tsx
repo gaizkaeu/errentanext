@@ -110,7 +110,7 @@ export const LocationConfiguration = () => {
                   country: ["es"],
                 },
               }}
-              apiKey="AIzaSyAVJ4unu6x9VcFQHkyxHv_3DQyaR4zIuic"
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}
             />
           </div>
           <div>
