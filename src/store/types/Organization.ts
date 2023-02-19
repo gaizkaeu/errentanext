@@ -1,4 +1,6 @@
 import { round } from "lodash";
+import { BaseRelation, ClientRelation, LawyerRelation } from ".";
+import { TaxIncomeRelation } from "./TaxIncome";
 
 export interface StripeSubscription {
   id: string;
@@ -178,12 +180,12 @@ export interface Review {
       last_name: string;
     };
   };
-  // relationships: {
-  //   organization: BaseRelation<OrganizationRelation>;
-  //   user?: BaseRelation<ClientRelation>;
-  //   tax_income?: BaseRelation<TaxIncomeRelation>;
-  //   lawyer?: BaseRelation<LawyerRelation>;
-  // };
+  relationships: {
+    organization: BaseRelation<OrganizationRelation>;
+    user?: BaseRelation<ClientRelation>;
+    tax_income?: BaseRelation<TaxIncomeRelation>;
+    lawyer?: BaseRelation<LawyerRelation>;
+  };
   characteristics: ReviewCharacteristics;
 }
 
@@ -208,11 +210,10 @@ export interface OrganizationRatings {
   count: number;
 }
 
-// export const processOrganization = (org: Organization) => {
-//   org.attributes.processed_ratings = calculateRating(org.attributes.ratings);
-//   org.characteristics = calculateCharacteristicsOrg(org);
-//   return org;
-// };
+export const processOrganization = (org: Organization) => {
+  org.attributes.processed_ratings = calculateRating(org.attributes.ratings);
+  return org;
+};
 
 export const calculateRating = (ratings: RawRatingValues) => {
   const reviews_values = {

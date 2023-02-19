@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
@@ -21,7 +19,7 @@ export function MobileNav() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="-ml-4 text-base hover:bg-transparent focus:ring-0  focus:ring-offset-0 md:hidden"
+          className="-ml-4 text-base hover:bg-transparent focus:ring-0 focus:ring-offset-0 md:hidden"
         >
           <span className="font-bold">Menu</span>
         </Button>
@@ -34,6 +32,7 @@ export function MobileNav() {
       >
         <DropdownMenuItem asChild>
           <Link href="/" className="flex items-center">
+            asd
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

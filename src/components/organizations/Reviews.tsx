@@ -15,6 +15,4 @@ export const OrganizationReviews = (props: {
       </div>
     </>
   );
-
 }
-

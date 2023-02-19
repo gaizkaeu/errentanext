@@ -1,5 +1,3 @@
-import { Link } from "next-intl"
-import { buttonVariants } from "./button"
 import { MainNav } from "./main-nav"
 import { MobileNav } from "./mobile-nav"
 import { ModeToggle } from "./mode-toggle"

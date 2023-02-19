@@ -20,6 +20,8 @@ export const api = createApi({
   }),
   tagTypes: [
     "Organization",
+    "Review",
+    "TaxIncome",
     "AUTHENTICATED_USER",
     "User",
     "WEB_AUTHN_KEYS"

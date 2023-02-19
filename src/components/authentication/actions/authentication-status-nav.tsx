@@ -8,7 +8,7 @@ import { Link } from "next-intl";
 
 const AuthenticationStatusNav = () => {
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   return isAuthenticated ? (
     <DropdownMenu>
@@ -29,7 +29,7 @@ const AuthenticationStatusNav = () => {
             <span>Mi cuenta</span>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>
           <ArrowLeftOnRectangleIcon className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
