@@ -1,18 +1,19 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { NavLink } from "@/components/ui/nav-link";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link } from "next-intl";
 
-const SideNav = () => {
+const SideNav = ({ id }: {id: string}) => {
   return (
     <>
-      <SideNavMobile />
-      <SideNavBig />
+      <SideNavMobile id={id} />
+      <SideNavBig id={id} />
     </>
   )
 }
 
-const SideNavMobile = () => {
+const SideNavMobile = ({id} : {id: string}) => {
   return (
     <DropdownMenu>
     <DropdownMenuTrigger asChild>
@@ -39,31 +40,40 @@ const SideNavMobile = () => {
   </DropdownMenu>
   )
 };
-const SideNavBig = () => {
+const SideNavBig = ({id}: {id: string}) => {
+
   return (
     <aside className="pb-12 max-md:hidden">
       <div className="space-y-4">
         <div className="px-6 py-2">
           <div className="space-y-1">
+            <NavLink href={`/tax_incomes/${id}/lawyer`} text={"Abogado"} />
             <Button
-              variant="subtle"
+              variant="ghost"
               size="sm"
               className="w-full justify-start"
             >
-              En curso
+              Cita
             </Button>
             <Button
               variant="ghost"
               size="sm"
               className="w-full justify-start"
             >
-              Finalizadas
+              Pago
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full justify-start"
+            >
+              Documentación
             </Button>
           </div>
         </div>
         <div className="px-6 py-2">
           <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
-            Citas
+            Ajustes
           </h2>
           <div className="space-y-1">
             <Button
@@ -71,14 +81,14 @@ const SideNavBig = () => {
               size="sm"
               className="w-full justify-start"
             >
-              Próximas
+              Notificaciones
             </Button>
             <Button
               variant="ghost"
               size="sm"
               className="w-full justify-start"
             >
-              Pasadas
+              Seguridad
             </Button>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import { OrganizationLocation } from "@/components/organizations/Location";
-import { OrganizationReviews } from "@/components/organizations/Reviews";
+import { HireButton } from "@/components/organizations/actions";
+import { OrganizationLocation } from "@/components/organizations/org-location";
+import { OrganizationReviews } from "@/components/organizations/org-review";
 import { BackButton } from "@/components/ui/back-button";
 import { Button } from "@/components/ui/button";
 
@@ -51,6 +52,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="flex gap-4">
               <Button>Calcular precio</Button>
               <Button>Pedir cita</Button>
+              <HireButton org_id={params.id} />
             </div>
           </section>
           <section>

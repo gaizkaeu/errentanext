@@ -132,3 +132,8 @@ export const authenticationApi = api.injectEndpoints({
     }),
   }),
 });
+
+export const {
+  useWebAuthnAuthMutation,
+  useRequestEmailAuthMutation
+} = authenticationApi;

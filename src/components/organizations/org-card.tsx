@@ -3,7 +3,6 @@ import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 import { Link } from "next-intl"
 
-
 export const IndexOrgs = (props: { orgs: Organization[] }) => {
 
   return (

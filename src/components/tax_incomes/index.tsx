@@ -1,2 +1,2 @@
 export { IndexTaxIncomes } from "./dashboard/IndexTaxIncomes";
-export { TaxIncomeCard } from "./Card";
+export { TaxIncomeCard } from "./tax-card";

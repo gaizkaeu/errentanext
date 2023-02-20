@@ -1,15 +1,15 @@
-// const unpack = function (v: string) {
-//   return Uint8Array.from(atob(v.replace(/-/g, "+").replace(/_/g, "/")), (c) =>
-//     c.charCodeAt(0)
-//   );
-// };
+const unpack = function (v: string) {
+  return Uint8Array.from(atob(v.replace(/-/g, "+").replace(/_/g, "/")), (c) =>
+    c.charCodeAt(0)
+  );
+};
 
-// const pack = function (v: ArrayBuffer) {
-//   return btoa(String.fromCharCode.apply(null, [...new Uint8Array(v)]))
-//     .replace(/\+/g, "-")
-//     .replace(/\//g, "_")
-//     .replace(/=/g, "");
-// };
+const pack = function (v: ArrayBuffer) {
+  return btoa(String.fromCharCode.apply(null, [...new Uint8Array(v)]))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
+};
 
 export type AuthValue = {
   type: string;
@@ -115,102 +115,102 @@ type AuthOptionsBinary = {
   extensions: any;
 };
 
-// export const register = async function (
-//   opts: RegisterOptions
-// ): Promise<RegisterValue> {
-//   if (navigator.credentials) {
-//     const formattedOpts: RegisterOptionsBinary = {
-//       ...opts,
-//       excludeCredentials: [],
-//       challenge: unpack(opts.challenge),
-//       user: {
-//         ...opts.user,
-//         id: unpack(opts.user.id),
-//       },
-//     };
-//     formattedOpts.challenge = unpack(opts.challenge);
+export const register = async function (
+  opts: RegisterOptions
+): Promise<RegisterValue> {
+  if (navigator.credentials) {
+    const formattedOpts: RegisterOptionsBinary = {
+      ...opts,
+      excludeCredentials: [],
+      challenge: unpack(opts.challenge),
+      user: {
+        ...opts.user,
+        id: unpack(opts.user.id),
+      },
+    };
+    formattedOpts.challenge = unpack(opts.challenge);
 
-//     opts.excludeCredentials.forEach(function (cred) {
-//       formattedOpts.excludeCredentials.push({
-//         id: unpack(cred.id),
-//         type: cred.type,
-//       });
-//     });
+    opts.excludeCredentials.forEach(function (cred) {
+      formattedOpts.excludeCredentials.push({
+        id: unpack(cred.id),
+        type: cred.type,
+      });
+    });
 
-//     //console.log(opts);
-//     const cred_ = await navigator.credentials.create({
-//       publicKey: formattedOpts,
-//     });
-//     //console.log(cred);
-//     //window.cred = cred
-//     if (!cred_) {
-//       throw new Error("Could not create credential");
-//     }
-//     const cred = cred_ as PublicKeyCredential;
-//     const response = cred.response as AuthenticatorAttestationResponse;
+    //console.log(opts);
+    const cred_ = await navigator.credentials.create({
+      publicKey: formattedOpts,
+    });
+    //console.log(cred);
+    //window.cred = cred
+    if (!cred_) {
+      throw new Error("Could not create credential");
+    }
+    const cred = cred_ as PublicKeyCredential;
+    const response = cred.response as AuthenticatorAttestationResponse;
 
-//     const rawId = pack(cred.rawId);
-//     const registerValue = {
-//       type: cred.type,
-//       id: rawId,
-//       rawId: rawId,
-//       response: {
-//         attestationObject: pack(response.attestationObject),
-//         clientDataJSON: pack(response.clientDataJSON),
-//       },
-//     } as RegisterValue;
+    const rawId = pack(cred.rawId);
+    const registerValue = {
+      type: cred.type,
+      id: rawId,
+      rawId: rawId,
+      response: {
+        attestationObject: pack(response.attestationObject),
+        clientDataJSON: pack(response.clientDataJSON),
+      },
+    } as RegisterValue;
 
-//     return registerValue;
-//   } else {
-//     throw new Error("WebAuthn not supported");
-//   }
-// };
+    return registerValue;
+  } else {
+    throw new Error("WebAuthn not supported");
+  }
+};
 
-// export const authenticate = async function (
-//   opts: AuthOptions
-// ): Promise<AuthValue> {
-//   if (navigator.credentials) {
-//     const formattedOpts: AuthOptionsBinary = {
-//       ...opts,
-//       allowCredentials: [],
-//       challenge: new ArrayBuffer(0),
-//     };
-//     formattedOpts.challenge = unpack(opts.challenge);
+export const authenticate = async function (
+  opts: AuthOptions
+): Promise<AuthValue> {
+  if (navigator.credentials) {
+    const formattedOpts: AuthOptionsBinary = {
+      ...opts,
+      allowCredentials: [],
+      challenge: new ArrayBuffer(0),
+    };
+    formattedOpts.challenge = unpack(opts.challenge);
 
-//     opts.allowCredentials.forEach(function (cred) {
-//       formattedOpts.allowCredentials.push({
-//         id: unpack(cred.id),
-//         type: cred.type,
-//       });
-//     });
+    opts.allowCredentials.forEach(function (cred) {
+      formattedOpts.allowCredentials.push({
+        id: unpack(cred.id),
+        type: cred.type,
+      });
+    });
 
-//     //console.log(opts);
-//     const cred_ = await navigator.credentials.get({ publicKey: formattedOpts });
-//     //console.log(cred);
-//     //window.cred = cred
-//     if (!cred_) {
-//       throw new Error("Could not create credential");
-//     }
-//     const cred = cred_ as unknown as PublicKeyCredential;
-//     const response = cred.response as AuthenticatorAssertionResponse;
+    //console.log(opts);
+    const cred_ = await navigator.credentials.get({ publicKey: formattedOpts });
+    //console.log(cred);
+    //window.cred = cred
+    if (!cred_) {
+      throw new Error("Could not create credential");
+    }
+    const cred = cred_ as unknown as PublicKeyCredential;
+    const response = cred.response as AuthenticatorAssertionResponse;
 
-//     const rawId = pack(cred.rawId);
-//     const authValue = {
-//       type: cred.type,
-//       id: rawId,
-//       rawId: rawId,
-//       response: {
-//         authenticatorData: pack(response.authenticatorData),
-//         clientDataJSON: pack(response.clientDataJSON),
-//         signature: pack(response.signature),
-//       },
-//     } as AuthValue;
+    const rawId = pack(cred.rawId);
+    const authValue = {
+      type: cred.type,
+      id: rawId,
+      rawId: rawId,
+      response: {
+        authenticatorData: pack(response.authenticatorData),
+        clientDataJSON: pack(response.clientDataJSON),
+        signature: pack(response.signature),
+      },
+    } as AuthValue;
 
-//     if (response.userHandle) {
-//       authValue.response.userHandle = pack(response.userHandle);
-//     }
-//     return authValue;
-//   } else {
-//     throw new Error("Not supported navigator");
-//   }
-// };
+    if (response.userHandle) {
+      authValue.response.userHandle = pack(response.userHandle);
+    }
+    return authValue;
+  } else {
+    throw new Error("Not supported navigator");
+  }
+};

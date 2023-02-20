@@ -1,1 +1,1 @@
-export { OrganizationExplore } from './Explore';
+export { OrganizationExplore } from './org-explore';

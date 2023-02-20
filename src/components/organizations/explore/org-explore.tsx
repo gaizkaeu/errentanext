@@ -3,8 +3,8 @@ import { SearchBar } from "@/components/filters";
 import { TextFilter } from "@/components/filters/TextFilter";
 import { useGetOrganizationsQuery } from "@/store/api"
 import { useState } from "react";
-import { OrganizationCard } from "../Card";
 import { LocationFilter } from "@/components/filters/LocationFilter";
+import { OrganizationCard } from "../org-card";
 
 export const OrganizationExplore = () => {
   const [search, setSearch] = useState({});

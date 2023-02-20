@@ -1,5 +1,5 @@
 import { HomeHero } from "@/components/homepage/HomeHero";
-import { IndexOrgs } from "@/components/organizations/Card";
+import { IndexOrgs } from "@/components/organizations/org-card";
 import queryString from "query-string";
 
 export const getOrgs = async (params?: string) => {
