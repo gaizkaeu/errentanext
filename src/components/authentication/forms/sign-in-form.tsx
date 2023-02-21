@@ -8,13 +8,13 @@ import { SessionCreationData } from "@/store/types/User";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import Link from "next/link"
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const t = useTranslations();
-  const [loginWebAuthnRequest, { isError, isUninitialized, error }] =
+  const [loginWebAuthnRequest, { isError, isUninitialized }] =
     useWebAuthnAuthMutation();
 
   const authenticateButton = () => {
@@ -22,6 +22,7 @@ const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
     loginWebAuthnRequest({ login: props.login })
       .unwrap()
       .catch(async (err) => {
+        if (err.data.webauthn_auth) {
         authenticate(err.data.webauthn_auth).then((auth) => {
           loginWebAuthnRequest({
             login: props.login,
@@ -35,16 +36,20 @@ const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
             })
             .finally(() => setLoading(false));
         });
+        } else {
+          setError("You can sign in with webauthn")
+        }
       });
   };
 
   return (
     <>
-      {/* {error && !loading && <div>{error.data.error}</div>} */}
+      {error && !loading && <div>{error}</div>}
       <Button
-        color={loading ? "primary" : isError ? "error" : "success"}
+        variant="subtle"
         className="flex-1"
         size="sm"
+        type="button"
         onClick={() => {
           authenticateButton();
         }}
@@ -66,9 +71,10 @@ const EmailAuth = (props: { login: string }) => {
     <>
       {/* {error && <div>{error.data.error}</div>} */}
       <Button
-        color={isUninitialized ? "primary" : isError ? "error" : "success"}
         className="flex-1"
-        size="sm"
+        variant="subtle"
+        type="button"
+        size="sm" 
         onClick={() => {
           loginEmailRequest(props);
         }}
@@ -91,7 +97,7 @@ const RecognizedAccount = (props: {
     <>
       <InputField type="password" name="password" id="password" />
       <br />
-      <div className="flex flex-wrap w-full gap-y-2">
+      <div className="flex flex-wrap w-full gap-y-2 gap-3">
         <EmailAuth {...props} />
         <WebAuthnAuth {...props} />
       </div>
@@ -108,14 +114,13 @@ const RecognizedAccount = (props: {
 };
 
 
-export const SignInForm = () => {
+export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
 
   const [recognized, setRecognized] = useState(false);
   const t = useTranslations();
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [loginMutation] = useLoginAccountMutation();
-  const r = useRouter();
 
   const handleRecognize = (
     values: SessionCreationData,
@@ -144,6 +149,7 @@ export const SignInForm = () => {
     loginMutation(data)
       .unwrap()
       .then((_response) => {
+        afterLogin();
         helpers.setSubmitting(false);
       })
       .catch((_error) => {
@@ -153,7 +159,7 @@ export const SignInForm = () => {
   };
 
   return (
-    <Formik onSubmit={recognized ? login : handleRecognize} initialValues={{ login: "", password: undefined } as SessionCreationData}>
+    <Formik onSubmit={recognized ? login : handleRecognize} initialValues={{ login: "", password: recognized ? "" : undefined } as SessionCreationData}>
       {({ isSubmitting, values }) => (
       <Form className="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" defaultValue="true" />
@@ -170,7 +176,7 @@ export const SignInForm = () => {
           {recognized && (
             <RecognizedAccount
               login={values.login}
-              afterLogin={() => {}}
+              afterLogin={afterLogin}
             />
           )}
         </div>

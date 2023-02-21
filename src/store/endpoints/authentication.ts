@@ -129,11 +129,13 @@ export const authenticationApi = api.injectEndpoints({
         method: "get",
       }),
       providesTags: () => ["AUTHENTICATED_USER", "WEB_AUTHN_KEYS"],
+
     }),
   }),
 });
 
 export const {
   useWebAuthnAuthMutation,
-  useRequestEmailAuthMutation
+  useRequestEmailAuthMutation,
+  useGetMFAuthMethodsQuery
 } = authenticationApi;

@@ -1,6 +1,4 @@
-import { SignInComponent } from '@/components/authentication/actions';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Example() {
 
@@ -17,15 +15,8 @@ export default function Example() {
               alt="Your Company"
             />
             <p className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to your account
+              MFA
             </p>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Or{' '}
-              <Link href="#">
-                sign-up
-              </Link>
-            </p>
-            <SignInComponent />
           </div>
         </div>
       </div>
