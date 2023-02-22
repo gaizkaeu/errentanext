@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps & {href: string }
     variant = isActive ? "subtle" : "ghost";
 
     return (
-      <Link href={href} >
+      <Link href={href}>
         <button
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
