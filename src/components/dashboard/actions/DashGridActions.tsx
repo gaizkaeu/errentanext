@@ -6,7 +6,7 @@ import { Link } from "next-intl";
 export const DashGridActions = () => {
 
   return (
-    <div className="bg-slate-50 rounded-xl overflow-hidden">
+    <div className="bg-slate-50 dark:bg-slate-700 rounded-xl overflow-hidden">
       <div className="grid lg:grid-cols-2 grid-cols-1 lg:divide-x max-lg:divide-y">
         <div className="divide-y">
           <Action title="Mis declaraciones" color="yellow" description="Ver todas mis declaraciones." href="/tax_incomes" >
@@ -48,7 +48,7 @@ const Action = (props: { title: string, children?: JSX.Element, description: str
   return (
 
     <Link href={props.href}>
-      <div className="transition-all h-48 p-3 hover:bg-slate-200">
+      <div className="transition-all h-48 p-3 hover:bg-slate-200  hover:dark:bg-slate-800">
         <div className="flex items-center">
           <div className="flex-1">
             <div className={cn(actionIconVariant({ variant: props.color ?? 'green' }))}>

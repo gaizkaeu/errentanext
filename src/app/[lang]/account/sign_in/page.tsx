@@ -16,10 +16,10 @@ export default function Example() {
               height={200}
               alt="Your Company"
             />
-            <p className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <p className="mt-6 text-center text-3xl font-bold tracking-tight ">
               Sign in to your account
             </p>
-            <p className="mt-2 text-center text-sm text-gray-600">
+            <p className="mt-2 text-center text-sm ">
               Or{' '}
               <Link href="#">
                 sign-up

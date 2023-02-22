@@ -8,7 +8,7 @@ export function Providers(props: {children: JSX.Element}) {
   return (
     <Provider store={store}>
         <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider>
             {props.children}
           </ThemeProvider>
         </AuthProvider>

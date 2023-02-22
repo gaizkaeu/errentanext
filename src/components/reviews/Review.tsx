@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 export const ReviewComponent = (props: { review: Review }) => {
   return (
 
-    <div className="flex justify-between space-x-4 bg-slate-50 rounded-xl p-4">
+    <div className="flex justify-between space-x-4 bg-slate-50 dark:bg-slate-700 rounded-xl p-4">
       <div className="flex justify-between space-x-4">
         <Avatar>
           <AvatarImage src="https://github.com/vercel.png" />

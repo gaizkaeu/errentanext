@@ -74,8 +74,8 @@ export const TooltipContentBase = (props: {
           {t("filters.searchBy", {
             filter: props.title,
           })}
-          {props.children}
         </p>
+        {props.children}
       </div>
     </div>
   );

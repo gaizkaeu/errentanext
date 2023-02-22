@@ -9,7 +9,7 @@ const TaxIncomeCard = (props: {tax: TaxIncome}) => {
 
   return (
     <Link href={`/tax_incomes/${props.tax.id}`}>
-      <div className="transition-all space-y-3 w-full bg-slate-50 rounded-lg p-3 hover:rounded-xl hover:-translate-y-1 hover:shadow">
+      <div className="transition-all space-y-3 w-full bg-slate-50  dark:bg-slate-700 rounded-lg p-3 hover:rounded-xl hover:-translate-y-1 hover:shadow">
         <div className="flex">
           <div className="text-xl font-bold">
             {t(`taxincome.statuses.${props.tax.attributes.state}`)}
