@@ -12,15 +12,15 @@ export const DashGridActions = () => {
           <Action title="Mis declaraciones" color="yellow" description="Ver todas mis declaraciones." href="/tax_incomes" >
             <PaperAirplaneIcon className="h-8" />
           </Action>
-          <Action title="Explorar organizacaciones" color="green" description="Encuentra todas las asesorías disponibles por tu zona." href="ads" >
+          <Action title="Explorar organizacaciones" color="green" description="Encuentra todas las asesorías disponibles por tu zona." href="" >
             <GlobeAltIcon className="h-8" />
           </Action>
         </div>
         <div className="divide-y">
-          <Action title="Configuración de mi cuenta" color="purple" description="Puedes administrar tu cuenta, ver tus pagos y gestionar las notificaciones." href="ads" >
+          <Action title="Configuración de mi cuenta" color="purple" description="Puedes administrar tu cuenta, ver tus pagos y gestionar las notificaciones." href="" >
             <WrenchScrewdriverIcon className="h-8" />
           </Action>
-          <Action title="Ayuda" color="red" description="Contacta con nuestro departamento de soporte." href="ads" >
+          <Action title="Ayuda" color="red" description="Contacta con nuestro departamento de soporte." href="" >
             <QuestionMarkCircleIcon className="h-8" />
           </Action>
         </div>

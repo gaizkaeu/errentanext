@@ -1,7 +1,6 @@
 "use client";
 import { PlusCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { createContext } from "react";
-import { useTranslations } from "next-intl";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 interface SearchContextProps {
@@ -64,17 +63,9 @@ export const TooltipContentBase = (props: {
   title: string;
 }) => {
 
-  const t = useTranslations();
-
   return (
     <div>
       <div className="w-full">
-        <p>
-          {" "}
-          {t("filters.searchBy", {
-            filter: props.title,
-          })}
-        </p>
         {props.children}
       </div>
     </div>
