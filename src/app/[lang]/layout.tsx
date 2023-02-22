@@ -19,15 +19,15 @@ export default async function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  // let messages;
-  // try {
-  //   messages = (await import(`../../../dictionaries/${params.lang}.json`)).default;
-  // } catch (error) {
-  //   notFound();
-  // }
+  let messages;
+  try {
+    messages = (await import(`../../../dictionaries/${params.lang}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
-    <html>
+    <html lang={params.lang}>
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
@@ -38,7 +38,7 @@ export default async function RootLayout({
             "min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50"
           )}>
         <Providers>
-        <NextIntlClientProvider locale='es'>
+        <NextIntlClientProvider locale={params.lang} messages={messages}>
           <div className="min-h-screen">
             <SiteHeader />
             <div className="flex-1 px-4 max-w-7xl mx-auto">{children}</div>

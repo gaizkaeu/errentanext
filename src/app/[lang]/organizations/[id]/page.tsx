@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const [org, reviews] = await Promise.all([orgProm, reviewProm]);
 
-  return org && reviews && (
+  return org && (
     <div className="w-full">
       <div className="flex items-center gap-4">
         <BackButton />
