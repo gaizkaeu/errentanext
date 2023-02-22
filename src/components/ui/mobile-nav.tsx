@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Link } from "next-intl"
 
 export function MobileNav() {
   return (
@@ -32,7 +32,7 @@ export function MobileNav() {
       >
         <DropdownMenuItem asChild>
           <Link href="/" className="flex items-center">
-            asd
+            Home
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

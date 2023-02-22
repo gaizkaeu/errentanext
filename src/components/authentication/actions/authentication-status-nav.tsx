@@ -40,7 +40,7 @@ const AuthenticationStatusNav = () => {
       <Link
         href="/account/sign_in"
       >
-        <div
+        <Button
           className={
             buttonVariants({
               size: "sm",
@@ -50,8 +50,7 @@ const AuthenticationStatusNav = () => {
           }
         >
           Sign in
-          <span className="sr-only">Sign in</span>
-        </div >
+        </Button >
       </Link >
     </>
   )

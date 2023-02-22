@@ -13,7 +13,14 @@ export const LocationFilter = () => {
   const { searchParams } = useContext(SearchContext);
 
   return (
-    <BaseTooltip title="Location" active={"coordinates" in searchParams}>
+    <BaseTooltip
+      title={
+        "coordinates[place_name]" in searchParams ? (
+          "Cerca de " + searchParams["coordinates[place_name]"].substring(0, 12) + "..."
+        ) : (
+          "Location"
+        )
+      } active={"coordinates[status]" in searchParams}>
       <LocationConfiguration />
     </BaseTooltip>
   );

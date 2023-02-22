@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import {
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { BrandTitle } from "../brand"
 import { FingerPrintIcon } from "@heroicons/react/24/outline"
+import { Link } from "next-intl"
 
 export function MainNav() {
   return (
