@@ -137,5 +137,6 @@ export const authenticationApi = api.injectEndpoints({
 export const {
   useWebAuthnAuthMutation,
   useRequestEmailAuthMutation,
-  useGetMFAuthMethodsQuery
+  useGetMFAuthMethodsQuery,
+  useEmailAuthMutation
 } = authenticationApi;
