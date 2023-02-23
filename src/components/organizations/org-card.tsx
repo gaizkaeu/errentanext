@@ -37,7 +37,7 @@ export const IndexOrgs = (props: { orgs: Organization[] }) => {
 export const OrganizationCard = (props: { org: Organization }) => {
 
   return (
-    <Link href={`/organizations/${props.org.id}`} className="w-full lg:max-w-lg">
+    <Link href={`/organizations`} className="w-full lg:max-w-lg">
       <div className="transition-all animate-in fade-in-10 w-full lg:max-w-lg bg-slate-50 dark:bg-slate-700 rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl">
         <div className="flex items-center mb-3">
           <h3 className="flex-1 text-lg font-light leading-tight tracking-tighter md:text-2xl lg:text-3xl lg:leading-[1.1]">
