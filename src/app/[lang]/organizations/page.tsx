@@ -3,7 +3,7 @@ import { OrganizationCard } from "@/components/organizations/org-card";
 import { Organization } from "@/store/types/Organization";
 import queryString from "query-string";
 
-export const getOrgs = async (params?: string) => {
+const getOrgs = async (params?: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
   const data = await res.json();
   return data;
