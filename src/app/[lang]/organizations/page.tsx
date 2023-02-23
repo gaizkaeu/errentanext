@@ -16,7 +16,7 @@ import queryString from "query-string";
 // }) {
   // const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
 
-  export default function OrganizationIndexPage() {
+export default function Page() {
 
   return (
     <div className="flex px-4 mx-auto w-full sm:px-6 lg:px-8 mt-8 md:mt-12">
