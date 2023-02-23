@@ -11,7 +11,13 @@ export const OrganizationCard = (props: { org: Organization }) => {
           {props.org.attributes.name}
         </h3>
         <p>
-          A 2 km
+          {props.org.attributes.distance ? (
+            <span>{props.org.attributes.distance.toFixed(2)} km</span>
+            ) : (
+            <span>
+              {props.org.attributes.city}
+            </span>
+            )}
         </p>
       </div>
       <Separator />

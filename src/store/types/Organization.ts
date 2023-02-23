@@ -152,6 +152,7 @@ export interface OrganizationAttributes {
   website: string;
   tax_income_count: number;
   app_fee?: number;
+  distance?: number;
   subscription_id: string;
   logo: string;
   created_at: string;
