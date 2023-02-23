@@ -17,7 +17,7 @@ jobs:
   build_image:
 
     env:
-      NEXT_PUBLIC_API_BASE: 'https://api.errenta.eus'
+      API: 'https://api.errenta.eus'
       CI: true
 
 
@@ -49,10 +49,13 @@ jobs:
         run: |
           export COMMIT_TIME=$(git show -s --format=%cI ${GITHUB_SHA})
           export COMMIT_VERSION=$(git describe --always)
+          export COMMIT_VERSION=$(git describe --always)
+          export BUILD_API=${{ env.API }}
           echo $GITHUB_SHA
           echo $COMMIT_TIME
           echo $COMMIT_VERSION
-          docker  build --build-arg COMMIT_TIME --build-arg COMMIT_VERSION -t app .
+          echo $BUILD_API
+          docker  build --build-arg COMMIT_TIME --build-arg COMMIT_VERSION --build-arg BUILD_API -t app .
       - name: Push the image tagged with version to the container registry
         run: |
           docker tag app ${{ env.AR_LOCATION }}.gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.SERVICE_NAME }}:${{ github.sha }}
