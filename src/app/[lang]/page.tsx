@@ -25,7 +25,7 @@ export default async function IndexPage({
         </div>
         <div className="lg:col-span-5">
           <IndexOrgs orgs={orgs.data}/>
-          <Link href={`/organizations/org_SUMaOFmsZpjD`} className="w-full lg:max-w-lg">
+          <Link href={`/organizations`} className="w-full lg:max-w-lg">
             <div>
                 prubea
             </div>
