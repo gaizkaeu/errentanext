@@ -1,7 +1,7 @@
 import { HomeHero } from "@/components/homepage/HomeHero";
 import { IndexOrgs } from "@/components/organizations/org-card";
 import queryString from "query-string";
-import Link from "next/link"
+import { Link } from "next-intl"
 
 export const getOrgs = async (params?: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
@@ -25,8 +25,10 @@ export default async function IndexPage({
         </div>
         <div className="lg:col-span-5">
           <IndexOrgs orgs={orgs.data}/>
-          <Link href="/en/account/sign_in">
-            prueba
+          <Link href="/account/sign_in">
+            <div>
+                prubea
+            </div>
           </Link>
         </div>
       </div>
