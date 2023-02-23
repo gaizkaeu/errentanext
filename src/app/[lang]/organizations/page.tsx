@@ -27,14 +27,14 @@ export default async function OrgsPage({
             Asesorías.
           </h3>
         </div>
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <OrganizationExplore />
           <div className="grid grid-cols-1 gap-4">
             {orgs && orgs?.data.map((org: Organization) => (
               <OrganizationCard key={org.id} org={org} />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
