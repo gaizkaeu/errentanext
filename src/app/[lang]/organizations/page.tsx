@@ -3,20 +3,18 @@ import { OrganizationCard } from "@/components/organizations/org-card";
 import { Organization } from "@/store/types/Organization";
 import queryString from "query-string";
 
-// const getOrgs = async (params?: string) => {
-//   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
-//   const data = await res.json();
-//   return data;
-// };
+const getOrgs = async (params?: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
+  const data = await res.json();
+  return data;
+};
 
-// export default function OrganizationIndexPage({
-//   searchParams,
-// }: {
-//   searchParams?: { [key: string]: string | string[] | undefined };
-// }) {
-  // const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
-
-export default function Page() {
+export default async function OrganizationIndexPage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
 
   return (
     <div className="flex px-4 mx-auto w-full sm:px-6 lg:px-8 mt-8 md:mt-12">
@@ -29,14 +27,14 @@ export default function Page() {
             Asesorías.
           </h3>
         </div>
-        {/* <div className="space-y-3">
+        <div className="space-y-3">
           <OrganizationExplore />
           <div className="grid grid-cols-1 gap-4">
             {orgs && orgs?.data.map((org: Organization) => (
               <OrganizationCard key={org.id} org={org} />
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   )
