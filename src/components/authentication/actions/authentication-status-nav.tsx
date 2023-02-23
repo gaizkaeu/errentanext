@@ -8,7 +8,7 @@ import { Link } from "next-intl";
 
 const AuthenticationStatusNav = () => {
 
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, currentUser, logout } = useAuth();
 
   return isAuthenticated ? (
     <DropdownMenu>
@@ -29,6 +29,13 @@ const AuthenticationStatusNav = () => {
             <span>Mi cuenta</span>
           </Link>
         </DropdownMenuItem>
+        {currentUser?.attributes.account_type == "org_manage" && (
+            <DropdownMenuItem>
+              <Link href="/organization-manage">
+                <span>Administrar Asesorías</span>
+              </Link>
+            </DropdownMenuItem>
+          )}
         <DropdownMenuItem onClick={logout}>
           <ArrowLeftOnRectangleIcon className="mr-2 h-4 w-4" />
           <span>Log out</span>
@@ -57,4 +64,4 @@ const AuthenticationStatusNav = () => {
 
 }
 
-export {AuthenticationStatusNav};
+export { AuthenticationStatusNav };

@@ -1,7 +1,10 @@
 import { OrganizationExplore } from "@/components/organizations/explore";
 import { OrganizationCard } from "@/components/organizations/org-card";
 import { Organization } from "@/store/types/Organization";
+import { Link } from "next-intl";
 import queryString from "query-string";
+
+export const dynamic = 'force-dynamic'
 
 const getOrgs = async (params?: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
@@ -31,7 +34,9 @@ export default async function OrganizationIndexPage({
           <OrganizationExplore />
           <div className="grid grid-cols-1 gap-4">
             {orgs && orgs?.data.map((org: Organization) => (
-              <OrganizationCard key={org.id} org={org} />
+              <Link href={`/organizations/${org.id}`} key={org.id} className="w-full lg:max-w-lg">
+                <OrganizationCard org={org} />
+              </Link>
             ))}
           </div>
         </div>
