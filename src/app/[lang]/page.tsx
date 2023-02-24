@@ -5,8 +5,10 @@ import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
 import queryString from "query-string";
 
+export const revalidate = true
+
 const getOrgs = async (params?: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "", { next: { revalidate: 60 } });
   const data = await res.json();
   return data;
 };
@@ -18,6 +20,7 @@ export default async function IndexPage({
 }) {
 
   const orgs = await getOrgs(queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" }));
+  console.log(orgs.data[0].attributes)
 
   return (
     <>
@@ -38,8 +41,8 @@ export default async function IndexPage({
               </div>
 
               <div className="grid grid-cols-1 w-full mt-5 justify-items-center gap-3">
-                {orgs.data.map((org: Organization) => (
-                  <Link href={`/organizations/${org.id}`} key={org.id}>
+                {orgs && orgs?.data.map((org: Organization) => (
+                  <Link href={`/organizations/${org.id}`} key={org.id} className="w-full lg:max-w-lg">
                     <OrganizationCard org={org} />
                   </Link>
                 ))}
