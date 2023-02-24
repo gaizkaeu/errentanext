@@ -1,6 +1,6 @@
 "use client";
 
-import InputField from "@/components/fields/InputField";
+import { InputField } from "@/components/fields";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useCreateTaxIncomeMutation } from "@/store/endpoints/taxIncomes";

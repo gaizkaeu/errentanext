@@ -156,6 +156,10 @@ export interface OrganizationAttributes {
   subscription_id: string;
   logo: string;
   created_at: string;
+  visible: boolean;
+  settings?: {
+    hireable: boolean;
+  }
 }
 
 export interface Organization {

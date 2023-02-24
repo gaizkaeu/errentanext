@@ -1,17 +1,17 @@
 "use client"
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"
 import { Button } from "./button"
-import { useRouter } from "next/navigation";
+import { Link } from "next-intl"
 
-export const BackButton = () => {
-
-  const router = useRouter();
+export const BackButton = (props: { href: string }) => {
 
   return (
-    <Button onClick={() => router.back()} size="sm">
-      <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
-      <span className="sr-only">Back</span>
-    </Button>
+    <Link href={props.href}>
+      <Button size="sm">
+        <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+        <span className="sr-only">Back</span>
+      </Button>
+    </Link>
   )
 }
 

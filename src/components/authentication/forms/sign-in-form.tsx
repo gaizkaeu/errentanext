@@ -1,5 +1,5 @@
 "use client";
-import InputField from "@/components/fields/InputField";
+import { InputField } from "@/components/fields";
 import { Button } from "@/components/ui/button"
 import { authenticate } from "@/lib/utils/webauth";
 import { useRequestEmailAuthMutation, useWebAuthnAuthMutation } from "@/store/endpoints/authentication";

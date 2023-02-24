@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   return org && (
     <div className="w-full">
       <div className="flex items-center gap-4">
-        <BackButton />
+        <BackButton href="/organizations"/>
         <div>
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
             {org.attributes.name}

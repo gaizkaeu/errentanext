@@ -42,7 +42,7 @@ export const NavLink = ({ href, children, text, ...rest  }: { href: string, chil
     )
   } else {
     return (
-      <Link href={href} >
+      <Link href={href} className="w-full" >
         <ShadCNButton variant={isActive ? "subtle" : "ghost"} size="sm" className="w-full justify-start">
           {text}
         </ShadCNButton>

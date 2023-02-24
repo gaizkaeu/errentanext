@@ -32,6 +32,10 @@ export default async function RootLayout({
         href: `/organization-manage/${params.id}/general`,
       },
       {
+        text: "Ajustes",
+        href: `/organization-manage/${params.id}/settings`,
+      },
+      {
         text: "Precios",
         href: `/organization-manage/${params.id}/prices`,
       },
@@ -55,7 +59,7 @@ export default async function RootLayout({
   return (
     <div className="rounded-md bg-white transition-all dark:bg-slate-900">
       <div className="flex gap-4 items-center">
-        <BackButton />
+        <BackButton href="/organization-manage"/>
         <OrganizationTitle org={org} />
       </div>
 

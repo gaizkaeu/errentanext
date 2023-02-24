@@ -69,7 +69,7 @@ const SideNavBig = (props: { sections: Section[] }) => {
               <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
                 {item.title}
               </h2>
-              <div className="space-y-1">
+              <div className="grid grid-cols-1 gap-2">
                 {item.links.map((item, index) => (
                   <NavLink href={item.href} text={item.text} key={index} />
                 ))}

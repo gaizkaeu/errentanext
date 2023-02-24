@@ -1,10 +1,10 @@
 "use client";
-import InputField from "@/components/fields/InputField";
 import { Button } from "@/components/ui/button";
 import { useUpdateOrganizationByIdMutation } from "@/store/endpoints/organizations";
 import { Organization, OrganizationAttributes } from "@/store/types/Organization";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Label } from "@/components/ui/label";
+import { InputField } from "@/components/fields";
 
 export const OrganizationEditForm = (props: {organization: Organization}) => {
   const [mutation] = useUpdateOrganizationByIdMutation();

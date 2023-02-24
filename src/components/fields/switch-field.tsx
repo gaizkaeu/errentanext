@@ -1,11 +1,16 @@
 "use client";
 import { at } from "lodash";
-import { useField } from "formik";
-import { Input } from "../ui/input";
+import { useField, useFormikContext } from "formik";
+import { Switch } from "../ui/switch";
 
-export default function InputField(props: { name: string; [x: string]: any }) {
+export function SwitchField(props: { name: string; autoSubmit?: boolean, [x: string]: any }) {
   const { name, ...rest } = props;
-  const [field, meta] = useField(name);
+  const [field, meta, helpers] = useField({
+    name: name,
+    type: "checkbox",
+  });
+
+  const { submitForm } = useFormikContext();
 
   function _renderHelperText() {
     const [touched, error] = at(meta, "touched", "error");
@@ -24,9 +29,17 @@ export default function InputField(props: { name: string; [x: string]: any }) {
     return "default";
   }
 
+  function onChange() {
+    helpers.setValue(!field.value);
+
+    if (props.autoSubmit) {
+      submitForm();
+    }
+  }
+
   return (
     <div className="grid w-full items-center gap-1.5">
-      <Input {...field} {...rest} />
+      <Switch  onCheckedChange={onChange} checked={field.checked}/>
       <p className="text-sm text-slate-500 ">{_renderHelperText()}</p>
     </div>
   );

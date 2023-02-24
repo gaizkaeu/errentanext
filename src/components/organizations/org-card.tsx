@@ -10,6 +10,7 @@ export const OrganizationCard = (props: { org: Organization }) => {
         <h3 className="flex-1 text-lg font-light leading-tight tracking-tighter md:text-2xl lg:text-3xl lg:leading-[1.1]">
           {props.org.attributes.name}
         </h3>
+        <OrganizationBadge org={props.org} />
         <p>
           {props.org.attributes.distance ? (
             <span>{props.org.attributes.distance.toFixed(2)} km</span>
@@ -43,6 +44,20 @@ export const OrganizationCard = (props: { org: Organization }) => {
     </div>
   )
 
+}
+
+const OrganizationBadge = (props: { org: Organization }) => {
+
+  return (
+    <div className="flex items-center gap-2">
+     {!props.org.attributes.visible && (
+      <p className="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">No visible</p>
+     )}
+     {props.org.attributes.status =="not_subscribed" && (
+      <p className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Sin suscripción</p>
+     )}
+    </div>
+  )
 }
 
 const PriceRange = (props: { range: number }) => {

@@ -3,6 +3,9 @@ import { PlusCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { createContext } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
+export { TextFilter } from "./text-filter";
+export { LocationFilter } from "./location-filter";
+
 interface SearchContextProps {
   searchParams: any;
   setSearchParams: (newSearchParams: any) => void;

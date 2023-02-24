@@ -1,4 +1,4 @@
-import { HomeHero } from "@/components/homepage/HomeHero";
+import { HomeHero } from "@/components/homepage/home-hero";
 import { OrganizationCard } from "@/components/organizations";
 import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";

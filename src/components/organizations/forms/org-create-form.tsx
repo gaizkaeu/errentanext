@@ -1,11 +1,11 @@
 "use client";
-import InputField from "@/components/fields/InputField";
 import { Button } from "@/components/ui/button";
 import { useCreateOrganizationMutation } from "@/store/endpoints/organizations";
 import { OrganizationAttributes } from "@/store/types/Organization";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { InputField } from "@/components/fields";
 
 export const OrganizationCreateForm = () => {
   const [mutation] = useCreateOrganizationMutation();

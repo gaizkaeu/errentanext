@@ -1,8 +1,6 @@
 "use client";
-import { SearchBar } from "@/components/filters";
-import { TextFilter } from "@/components/filters/TextFilter";
+import { LocationFilter, SearchBar, TextFilter } from "@/components/filters";
 import { useEffect, useRef, useState } from "react";
-import { LocationFilter } from "@/components/filters/LocationFilter";
 import { useRouter, useSearchParams} from "next/navigation";
 import queryString from "query-string";
 

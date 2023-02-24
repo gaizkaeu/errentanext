@@ -1,4 +1,4 @@
-import { HeadingText } from "./HeadingText"
+import { HeadingText } from "./heading-text"
 
 const HomeHero = () => {
   return (
