@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AuthState } from "../types/User";
 import { userAccountsApi } from "../endpoints/userAccounts";
 import { authenticationApi } from "../endpoints/authentication";
-import { isErrorWithMessage, isFetchBaseQueryError } from "../helpers";
+import { isFetchBaseQueryError } from "../helpers";
 
 const initialState: AuthState = {
   status: true,
@@ -49,8 +49,8 @@ const authSlice = createSlice({
         userAccountsApi.endpoints.getCurrentUser.matchRejected,
         (state, { payload }) => {
           if (isFetchBaseQueryError(payload)) {
-            const errMsg = 'error' in payload ? payload.error : JSON.stringify(payload.data)
-            switch (errMsg) {
+            const err = payload.data as any;
+            switch (err.error) {
               case "Please login to continue":
                 state.status = false;
                 break;
@@ -60,10 +60,12 @@ const authSlice = createSlice({
                 break;
               default:
                 state.status = false;
+                state.status_mfa = "no-mfa";
                 break;
             }
           } else {
             state.status = false;
+            state.status_mfa = "no-mfa";
           }
         }
       )
