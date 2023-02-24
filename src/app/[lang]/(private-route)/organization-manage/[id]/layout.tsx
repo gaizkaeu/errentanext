@@ -1,6 +1,6 @@
 import { OrganizationTitle } from "@/components/organizations";
-import { SideNav } from "@/components/organizations/manage/org-manage-side-nav"
 import { BackButton } from "@/components/ui/back-button";
+import { SideNav } from "@/components/ui/side-nav";
 
 export function generateStaticParams() {
   return [];
@@ -13,6 +13,7 @@ const getOrg = async (id: string) => {
 };
 
 
+
 export default async function RootLayout({
   children,
   params,
@@ -20,7 +21,36 @@ export default async function RootLayout({
   children: React.ReactNode
   params: {id: string}
 }) {
-  const org= await getOrg(params.id);
+  const org = await getOrg(params.id);
+  
+  const links = [
+  {
+    title: "General",
+    links: [
+      {
+        text: "Información",
+        href: `/organization-manage/${params.id}/general`,
+      },
+      {
+        text: "Precios",
+        href: `/organization-manage/${params.id}/prices`,
+      },
+      {
+        text: "Abogados",
+        href: `/organization-manage/${params.id}/lawyers`,
+      }
+    ]
+  },
+  {
+    title: "Balances",
+    links: [
+      {
+        text: "Transacciones",
+        href: `/organization-manage/${params.id}/transactions`,
+      },
+    ]
+  }
+]
 
   return (
     <div className="rounded-md bg-white transition-all dark:bg-slate-900">
@@ -30,7 +60,7 @@ export default async function RootLayout({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 mt-5">
-        <SideNav id={params.id} />
+        <SideNav sections={links} />
 
         <div className="col-span-3 md:border-l border-l-slate-200 dark:border-l-slate-700 xl:col-span-4 p-3">
           {children}

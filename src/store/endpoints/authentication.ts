@@ -138,5 +138,6 @@ export const {
   useWebAuthnAuthMutation,
   useRequestEmailAuthMutation,
   useGetMFAuthMethodsQuery,
-  useEmailAuthMutation
+  useEmailAuthMutation,
+  useMfaOTPAuthMutation,
 } = authenticationApi;

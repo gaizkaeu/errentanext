@@ -1,3 +1,4 @@
+import { OrganizationCreateButton } from "@/components/organizations";
 import { OrganizationManageList } from "@/components/organizations/manage";
 
 export default function OrganizationManageIndex() {
@@ -14,6 +15,7 @@ export default function OrganizationManageIndex() {
           </h3>
         </div>
         <div className="space-y-3">
+          <OrganizationCreateButton />
           <OrganizationManageList />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
-import { Organization, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
+import { Organization, OrganizationAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
 
 
 const transformResponse = (response: BaseQueryResponse<Organization>) => {
@@ -102,6 +102,18 @@ const organizationsApi = api.injectEndpoints({
       }),
       invalidatesTags: (result) => [{ type: "Organization", id: result?.id }],
     }),
+    createOrganization: build.mutation<
+      Organization,
+      Partial<OrganizationAttributes>
+    >({
+      query: (data) => ({
+        url: `organization-manage/`,
+        method: "POST",
+        body: data,
+      }),
+      transformResponse: transformResponse,
+      invalidatesTags: (result) => [{ type: "Organization", id: result?.id }],
+    }),
     createReview: build.mutation<
       Review,
       Partial<Review> & { organization_id: string }
@@ -171,4 +183,5 @@ export const {
   useGetOrganizationsManageQuery,
   useLazyGetSubscriptionPaymentUrlQuery,
   useGetSubscriptionOverviewQuery,
+  useCreateOrganizationMutation
 } = organizationsApi;

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AuthState } from "../types/User";
 import { userAccountsApi } from "../endpoints/userAccounts";
 import { authenticationApi } from "../endpoints/authentication";
+import { isErrorWithMessage, isFetchBaseQueryError } from "../helpers";
 
 const initialState: AuthState = {
   status: true,
@@ -47,17 +48,23 @@ const authSlice = createSlice({
       .addMatcher(
         userAccountsApi.endpoints.getCurrentUser.matchRejected,
         (state, { payload }) => {
-          state.user = undefined;
-          state.status = false;
-          // if (true) (
-          //   state = false;
-          // ) {
-          //   state.status = true;
-          //   state.status_mfa = "mfa-required";
-          // } else {
-          //   state.status = false;
-          //   state.status_mfa = "no-mfa";
-          // }
+          if (isFetchBaseQueryError(payload)) {
+            const errMsg = 'error' in payload ? payload.error : JSON.stringify(payload.data)
+            switch (errMsg) {
+              case "Please login to continue":
+                state.status = false;
+                break;
+              case "You need to authenticate via an additional factor before continuing":
+                state.status_mfa = "mfa-required";
+                state.status = true;
+                break;
+              default:
+                state.status = false;
+                break;
+            }
+          } else {
+            state.status = false;
+          }
         }
       )
       .addMatcher(
