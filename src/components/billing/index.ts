@@ -1,0 +1,1 @@
+export { StripeCustomerPortal } from './stripe-customer-portal';

@@ -46,6 +46,13 @@ export default async function RootLayout({
     ]
   },
   {
+    title: "Suscripción",
+    links: [{
+      text: "Información",
+      href: `/organization-manage/${params.id}/subscription`,
+    }]
+  },
+  {
     title: "Balances",
     links: [
       {
