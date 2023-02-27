@@ -1,5 +1,6 @@
 import { OrganizationExplore } from "@/components/organizations/explore";
 import { OrganizationCard } from "@/components/organizations/org-card";
+import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
 import queryString from "query-string";
@@ -40,6 +41,15 @@ export default async function OrganizationIndexPage({
                 <OrganizationCard org={org} />
               </Link>
             ))}
+            <div className='inset-x-0 bottom-5 z-10 sticky'>
+              <div className='w-fit mx-auto'>
+                <Link href="/organizations/map">
+                  <Button>
+                    Ver en mapa
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
