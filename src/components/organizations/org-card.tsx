@@ -23,11 +23,6 @@ export const OrganizationCard = (props: { org: Organization }) => {
       </div>
       <Separator />
       <div className="flex gap-4 justify-center">
-        <div className="p-1 hidden md:inline">
-          <div className="stat-title">Declaraciones</div>
-          <div className="stat-value">{props.org.attributes.tax_income_count}</div>
-          <div className="stat-desc">21% mas que el mes pasado</div>
-        </div>
         <div className="p-1">
           <div className="stat-title">Rating</div>
           <div className="stat-value text-green-400">{calculateRating(props.org.attributes.ratings).rating}</div>

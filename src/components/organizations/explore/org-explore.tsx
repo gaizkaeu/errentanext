@@ -16,7 +16,7 @@ export const OrganizationExplore = () => {
       didMount.current = true;
       return;
     }
-    r.push('/organizations?' + queryString.stringify(search));
+    r.push(window.location.pathname + "?" + queryString.stringify(search));
   }, [search]);
 
   return (
