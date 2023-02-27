@@ -133,7 +133,7 @@ h1 {
   }
 
   .heading-line-first::before {
-    content: "Declaración.";
+    content: "Cerca.";
     animation: first_heading_white_text 8s infinite;
   }
 
@@ -153,6 +153,6 @@ h1 {
   }
 
   .heading-line-third::before {
-    content: "Sencilla.";
+    content: "Segura.";
     animation: third_heading_white_text 8s infinite;
   }

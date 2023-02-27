@@ -20,7 +20,6 @@ export default async function IndexPage({
 }) {
 
   const orgs = await getOrgs(queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" }));
-  console.log(orgs.data[0].attributes)
 
   return (
     <>

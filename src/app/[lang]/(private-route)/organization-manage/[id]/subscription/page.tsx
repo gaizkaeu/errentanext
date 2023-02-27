@@ -5,7 +5,6 @@ import { useGetOrganizationManageByIdQuery, useGetSubscriptionOverviewQuery } fr
 
 export default function Page({ params }: { params: { id: string } }) {
 
-  const { currentData } = useGetOrganizationManageByIdQuery(params.id);
   const { currentData: subscriptonData } = useGetSubscriptionOverviewQuery(params.id);
 
   return (

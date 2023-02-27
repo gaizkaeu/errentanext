@@ -1,6 +1,8 @@
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
+import { LawyerProfile } from "../types/LawyerProfile";
 import { Organization, OrganizationAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
+import { Transaction } from "../types/Transaction";
 
 
 const transformResponse = (response: BaseQueryResponse<Organization>) => {
@@ -148,6 +150,30 @@ const organizationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponseList<OrganizationStats>) =>
         response.data,
     }),
+    getOrganizationLawyers: build.query<
+      LawyerProfile[],
+      { id: string; filters: Record<string, string> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.id}/lawyer_profiles`,
+        method: "get",
+        params: id.filters,
+      }),
+      transformResponse: (response: BaseQueryResponseList<LawyerProfile>) =>
+        response.data,
+    }),
+    getOrganizationTransactions: build.query<
+      Transaction[],
+      { id: string; filters: Record<string, string> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.id}/transactions`,
+        method: "get",
+        params: id.filters,
+      }),
+      transformResponse: (response: BaseQueryResponseList<Transaction>) =>
+        response.data,
+    }),
     getSubscriptionPaymentUrl: build.query<
       { url: string },
       { id: string; return_url: string; price_id: string }
@@ -183,5 +209,7 @@ export const {
   useGetOrganizationsManageQuery,
   useLazyGetSubscriptionPaymentUrlQuery,
   useGetSubscriptionOverviewQuery,
-  useCreateOrganizationMutation
+  useCreateOrganizationMutation,
+  useGetOrganizationLawyersQuery,
+  useGetOrganizationTransactionsQuery
 } = organizationsApi;

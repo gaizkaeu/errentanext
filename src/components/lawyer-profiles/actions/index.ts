@@ -1,0 +1,1 @@
+export { LawyerEditButton } from "./law-edit-button";
