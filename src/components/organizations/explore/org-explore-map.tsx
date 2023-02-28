@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { useState } from 'react';
 import { Organization } from '@/store/types/Organization';
 import { useGetOrganizationsQuery } from '@/store/api';
 import { OrganizationCard } from '../org-card';
@@ -11,6 +10,8 @@ import { BottomSheet } from 'react-spring-bottom-sheet'
 
 import 'react-spring-bottom-sheet/dist/style.css'
 import { Button } from '@/components/ui/button';
+import { GoogleMap } from '@/components/map';
+import { OrganizationMarker } from '../map';
 
 export const OrganizationExploreMap = () => {
 
@@ -28,7 +29,7 @@ export const OrganizationExploreMap = () => {
         </BottomSheetComponent>
       )}
       <div className="relative col-span-7 lg:col-span-5">
-        <div className='absolute inset-x-0 top-28 lg:top-32 z-10'>
+        <div className='absolute inset-x-0 top-20 lg:top-24 z-10'>
           <div className='w-fit mx-auto'>
             <Link href="/organizations">
               <Button>
@@ -37,7 +38,11 @@ export const OrganizationExploreMap = () => {
             </Link>
           </div>
         </div>
-        <MapComponent orgs={currentData ?? []} />
+        <GoogleMap>
+          {currentData?.map((org) => (
+            <OrganizationMarker key={org.id} org={org} />
+          ))}
+        </GoogleMap>
       </div>
     </div>
   )
@@ -80,74 +85,4 @@ const OrganizationList = (props: { orgs: Organization[], search: any, setSearch:
       ))}
     </div>
   )
-}
-
-function MapComponent(props: { orgs: Organization[] }) {
-  const [map, setMap] = useState<google.maps.Map>();
-  const [markers, setMarkers] = useState<google.maps.Marker[]>([]);
-
-  useEffect(() => {
-    if (map == undefined) {
-      return;
-    }
-    // remove all markers
-    markers.forEach((marker) => {
-      marker.setMap(null);
-    });
-
-    // add markers for all organizations
-    const newMarkers = props.orgs.map((org) => {
-      return new google.maps.Marker({
-        position: {
-          lat: org.attributes.latitude,
-          lng: org.attributes.longitude,
-        },
-        map: map,
-        title: org.attributes.name,
-      });
-    });
-    setMarkers(newMarkers);
-
-  }, [props.orgs, map]);
-
-  return (
-    <InnerMap setMap={setMap} />
-  );
-};
-
-
-function InnerMap(props: { setMap: ((arg0: google.maps.Map) => void) }) {
-  const googlemap = useRef(null);
-
-  useEffect(() => {
-    const loader = new Loader({
-      apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API ?? '',
-      version: 'weekly',
-    });
-    let map: google.maps.Map;
-    loader.load().then(() => {
-      if (googlemap.current === null) {
-        return;
-      }
-
-      map = new google.maps.Map(googlemap.current, {
-        disableDoubleClickZoom: false,
-        gestureHandling: 'greedy',
-        mapId: 'd4895c37d1e0542d',
-        disableDefaultUI: true,
-        center:
-        {
-          lat: 40.416775,
-          lng: -3.703790
-        },
-        zoom: 10,
-      });
-
-      props.setMap(map);
-    });
-  }, []);
-
-  return (
-    <div id="map" className="h-screen z-0" ref={googlemap} />
-  );
 }

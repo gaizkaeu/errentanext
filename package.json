@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@heroicons/react": "^2.0.15",
     "@next/font": "13.1.6",
     "@radix-ui/react-avatar": "^1.0.1",
