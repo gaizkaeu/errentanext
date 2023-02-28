@@ -1,8 +1,11 @@
 import { Organization, calculateRating } from "@/store/types/Organization"
 import { Separator } from "../ui/separator"
+import { useMemo } from "react"
 
 
 export const OrganizationCard = (props: { org: Organization }) => {
+
+  const rating = useMemo(() => calculateRating(props.org.attributes.ratings), [props.org.attributes.ratings])
 
   return (
     <div className="transition-all animate-in fade-in-10 w-full lg:max-w-lg bg-slate-50 dark:bg-slate-700 rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl">
@@ -25,7 +28,7 @@ export const OrganizationCard = (props: { org: Organization }) => {
       <div className="flex gap-4 justify-center">
         <div className="p-1">
           <div className="stat-title">Rating</div>
-          <div className="stat-value text-green-400">{calculateRating(props.org.attributes.ratings).rating}</div>
+          <div className="stat-value text-green-400">{rating.rating}</div>
           <div className="stat-desc">Mejor que el 99%.</div>
         </div>
         <div className="p-1">
@@ -55,7 +58,7 @@ const OrganizationBadge = (props: { org: Organization }) => {
   )
 }
 
-const PriceRange = (props: { range: number }) => {
+export const PriceRange = (props: { range: number }) => {
 
   switch (props.range) {
     case 0:
