@@ -5,13 +5,13 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 
-const orgCardBackground = cva(
-  "transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
+const orgLineBackground = cva(
+  "transition-all animate-in fade-in-10 w-full lg:max-w-lg h-54 p-4",
   {
     variants: {
       status: {
         disable:
-          "bg-slate-50 dark:bg-slate-700",
+          "hover:bg-slate-100 dark:hover:bg-slate-600",
         active:
           "bg-slate-200 dark:bg-slate-500",
       },
@@ -23,28 +23,23 @@ const orgCardBackground = cva(
 )
 
 
-export const OrganizationCard = (props: { org: Organization, selected?: boolean }) => {
+export const OrganizationLineItem = (props: { org: Organization, selected?: boolean }) => {
 
   const rating = useMemo(() => calculateRating(props.org.attributes.ratings), [props.org.attributes.ratings])
 
   return (
-    <div className={cn(orgCardBackground({ status: props.selected ? "active" : "disable" }))}>
+    <div className={cn(orgLineBackground({ status: props.selected ? "active" : "disable" }))}>
       <div className="flex items-center mb-3">
         <h3 className="flex-1 text-lg font-light leading-tight tracking-tighter md:text-2xl lg:text-3xl lg:leading-[1.1]">
           {props.org.attributes.name}
         </h3>
         <OrganizationBadge org={props.org} />
         <p>
-          {props.org.attributes.distance ? (
+          {props.org.attributes.distance && (
             <span>{props.org.attributes.distance.toFixed(2)} km</span>
-            ) : (
-            <span>
-              {props.org.attributes.city}
-            </span>
             )}
         </p>
       </div>
-      <Separator />
       <div className="flex gap-4 justify-center">
         <div className="p-1">
           <div className="stat-title">Rating</div>

@@ -1,2 +1,3 @@
-export { OrganizationExplore } from './org-explore';
-export { OrganizationExploreMap} from './org-explore-map';
+export { OrganizationExplore } from './org-explore-filters';
+export { MapComponent } from './map-component';
+export * from './navigation'
