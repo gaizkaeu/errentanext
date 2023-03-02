@@ -13,6 +13,10 @@ const getOrgs = async (params?: string) => {
   return data;
 };
 
+export const metadata = {
+  title: 'ERRENTA',
+};
+
 export default async function IndexPage({
   searchParams,
 }: {

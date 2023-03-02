@@ -1,6 +1,8 @@
-import { BottomSheetComponent, MapComponent, OrganizationExplore, OrganizationLineItem } from "@/components/organizations";
+import { BottomSheetComponent, MapComponent, OrganizationActionsSmall, OrganizationExplore, OrganizationLineItem } from "@/components/organizations";
+import { ReviewComponentInline, ReviewsSummary } from "@/components/reviews";
 import { Button } from "@/components/ui/button";
-import { Organization } from "@/store/types/Organization";
+import { Separator } from "@/components/ui/separator";
+import { Organization, Review } from "@/store/types/Organization";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "next-intl";
 import queryString from "query-string";
@@ -22,6 +24,12 @@ const getOrg = async (id: string) => {
   return data.data;
 };
 
+const getOrgReview = async (id: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id + "/reviews");
+  const data = await res.json();
+  return data.data;
+};
+
 export default async function OrganizationIndexPage({
   searchParams,
 }: {
@@ -29,9 +37,11 @@ export default async function OrganizationIndexPage({
 }) {
   const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
   let org: Organization | undefined = undefined;
+  let reviews: Review[] | undefined = undefined;
 
   if (searchParams && 'org' in searchParams) {
     org = await getOrg(searchParams['org'] as string);
+    reviews = await getOrgReview(searchParams['org'] as string)
   }
 
   return (
@@ -43,11 +53,11 @@ export default async function OrganizationIndexPage({
               <OrganizationList orgs={orgs.data} selected={org?.id} />
             </div>
             <BottomSheetComponent>
-              {org ? (
-                    <OrgViewContent org={org} />
-                ) : (
-                    <OrganizationList orgs={orgs.data} selected='' />
-                )}
+              {org && reviews ? (
+                <OrgViewContent org={org} reviews={reviews} />
+              ) : (
+                <OrganizationList orgs={orgs.data} selected='' />
+              )}
             </BottomSheetComponent>
             <div className="relative col-span-7 lg:col-span-5">
               <div className='absolute inset-x-0 top-20 lg:top-24 z-10'>
@@ -59,10 +69,10 @@ export default async function OrganizationIndexPage({
                   </Link>
                 </div>
               </div>
-              <div className='absolute top-48 lg:top-52 left-4 z-10 h-64'>
-                {org && (
-                  <div className="animate-in slide-in-from-left h-[32rem] bg-white dark:bg-slate-800 w-80 z-50 rounded-xl shadow-xl max-lg:hidden">
-                    <OrgViewContent org={org} />
+              <div className='absolute lg:top-32 xl:top-40 2xl:top-44 left-4 z-10 h-64'>
+                {org && reviews && (
+                  <div className="animate-in slide-in-from-left h-[32rem] bg-white dark:bg-slate-900 w-80 z-50 rounded-xl shadow-xl max-lg:hidden">
+                    <OrgViewContent org={org} reviews={reviews} />
                   </div>
                 )}
               </div>
@@ -95,17 +105,43 @@ const OrganizationList = (props: { orgs: Organization[], selected?: string }) =>
   )
 }
 
-const OrgViewContent = (props: { org: Organization }) => {
+const OrgViewContent = (props: { org: Organization, reviews: Review[] }) => {
+
+  const { org, reviews } = props;
+
   return (
-    <div className="flex p-3">
-      <div className="flex-1">
-        <p className="font-bold">{props.org.attributes.name}</p>
+    <div className="p-3 grid grid-cols-1 gap-4">
+      <div className="flex">
+        <div className="flex-1">
+          <p className="text-2xl font-bold leading-tight tracking-tighter">
+            {org.attributes.name}
+          </p>
+          <p className="text-xl font-bold leading-tight tracking-tighter">
+            Asesoría en <span className="font-light">{org.attributes.city}</span>.
+          </p>
+        </div>
+        <div>
+          <Link href={`/organizations/map`}>
+            <XMarkIcon className="h-6" />
+          </Link>
+        </div>
       </div>
-      <div>
-        <Link href={`/organizations/map`}>
-          <XMarkIcon className="h-6" />
-        </Link>
-      </div>
+      <Separator />
+      <section>
+        <OrganizationActionsSmall org={org} />
+      </section>
+      <Separator />
+      <section>
+        <p className="text-xl font-bold leading-tight tracking-tighter">
+          Reseñas
+        </p>
+        <ReviewsSummary reviews={org.attributes.ratings} />
+        {reviews.map((i, index) => {
+          return (
+            <ReviewComponentInline review={i} key={index} />
+          )
+        })}
+      </section>
     </div>
   );
 }
