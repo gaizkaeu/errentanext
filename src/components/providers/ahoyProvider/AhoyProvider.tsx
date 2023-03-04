@@ -21,8 +21,8 @@ export function AhoyProvider(props: { children: JSX.Element }) {
   const ahoyConfigured = async () => {
     const ahoyConfigured = (await import('ahoy.js')).default
     ahoyConfigured.configure({
-      visitsUrl: `http://localhost:3000/ahoy/visits`,
-      eventsUrl: `http://localhost:3000/ahoy/events`,
+      visitsUrl: process.env.NEXT_PUBLIC_API_BASE + "/ahoy/visits",
+      eventsUrl: process.env.NEXT_PUBLIC_API_BASE + "/ahoy/events",
       trackVisits: true,
     })
     setAhoy(ahoyConfigured);

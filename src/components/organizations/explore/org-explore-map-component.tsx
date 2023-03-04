@@ -23,7 +23,7 @@ export const MapComponent = (props: { orgs: Organization[] }) => {
     west: s.get('bounds[west]') ? parseFloat(s.get('bounds[west]') as string) : -9.40462867150571
   })
 
-  const debouncedSetBounds = debounce(setBounds, 500);
+  const debouncedSetBounds = debounce(setBounds, 1000);
 
   useEffect(() => {
     if (!didMount.current) {
