@@ -20,11 +20,11 @@ export const OrganizationExplore = () => {
   }, [search]);
 
   return (
-    <div className="space-y-3">
+    <>
       <SearchBar searchParams={search} setSearchParams={setSearch}>
         <TextFilter key_name="name" key="name" title={"Buscar por nombre"} />
         <LocationFilter />
       </SearchBar>
-    </div>
+    </>
   );
 }

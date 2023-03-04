@@ -14,7 +14,8 @@ const OrganizationCalculateButton = (props: { size: "big" | "small", org: Organi
       <DialogTrigger>
         <Button variant="subtle">
           <span className="sr-only">Calcular presupuesto en {props.org.attributes.name}</span>
-          <CalculatorIcon className="h-6" />
+          {props.size === "big" && "Calcular presupuesto"}
+          {props.size === "small" && <CalculatorIcon className="h-6" />}
         </Button>
       </DialogTrigger>
       <DialogContent>

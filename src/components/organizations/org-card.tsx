@@ -48,7 +48,7 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean 
       <div className="flex gap-4 justify-center">
         <div className="p-1">
           <div className="stat-title">Rating</div>
-          <div className="stat-value text-green-400">{rating.rating}</div>
+          <div className="stat-value text-green-600">{rating.rating}</div>
           <div className="stat-desc">Mejor que el 99%.</div>
         </div>
         <div className="p-1">

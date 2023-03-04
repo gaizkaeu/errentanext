@@ -26,6 +26,7 @@ export const OrgViewExplore = (props: { org: Organization, reviews: Review[] }) 
         <div>
           <Link href={`/organizations/map?${s({org: undefined})}`}>
             <XMarkIcon className="h-6" />
+            <span className="sr-only">Cerrar</span>
           </Link>
         </div>
       </div>

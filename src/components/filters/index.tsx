@@ -44,7 +44,7 @@ export const BaseTooltip = (props: {
 }) => {
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger>
       <div className="flex text-md font-medium mr-2 px-2 py-2 border border-gray-400 p-8 rounded-xl border-dashed gap-2 items-center">
         {props.active ? (
           <span className="flex w-3 h-3 bg-green-600 rounded-full"></span>

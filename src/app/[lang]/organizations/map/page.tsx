@@ -56,7 +56,7 @@ export default async function OrganizationIndexPage({
             )}
           </BottomSheetComponent>
           <div className="relative col-span-7 lg:col-span-5">
-            <div className='absolute inset-x-0 top-20 lg:top-24 z-10'>
+            <div className='absolute inset-x-0 top-2 z-10'>
               <div className='w-fit mx-auto'>
                 <Link href="/organizations">
                   <Button>

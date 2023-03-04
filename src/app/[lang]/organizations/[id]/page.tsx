@@ -1,4 +1,5 @@
 import { HireButton } from "@/components/organizations/actions";
+import { OrganizationCalculateButton } from "@/components/organizations/actions/org-calculate-button";
 import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
 import { BackButton } from "@/components/ui/back-button";
@@ -46,20 +47,21 @@ export default async function Page({ params }: { params: { id: string } }) {
         </blockquote>
       </section>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-4">
-        <div className="grid grid-cols-1 gap-4">
+        <div>
           <section>
-            <h4 className="text-2xl font-semibold">Acciones</h4>
+            <h3 className="text-2xl font-semibold">Acciones</h3>
             <div className="flex gap-4">
-              <Button>Calcular precio</Button>
+              <OrganizationCalculateButton size={"big"} org={org} />
               <Button>Pedir cita</Button>
               <HireButton org_id={params.id} />
             </div>
           </section>
           <section>
+            <h4 className="text-2xl font-semibold">Reseñas</h4>
             <OrganizationReviews reviews={reviews}/>
           </section>
         </div>
-        <div className="h-[32rem]">
+        <div className="h-[28rem]">
           <OrganizationLocation org={org} />
         </div>
       </div>
