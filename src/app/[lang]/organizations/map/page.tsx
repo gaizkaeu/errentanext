@@ -8,7 +8,6 @@ export const dynamic = 'force-dynamic'
 export const dynamicParams = true // true | false,
 export const revalidate = true
 
-
 const getOrgs = async (params?: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "", { next: { revalidate: 60 } });
   const data = await res.json();
@@ -32,6 +31,7 @@ export default async function OrganizationIndexPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
+
   const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
   let org: Organization | undefined = undefined;
   let reviews: Review[] | undefined = undefined;

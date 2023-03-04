@@ -49,8 +49,6 @@ export function Map({ children, center, setCenter, setBounds, bounds, setZoom, z
     });
     setMap(mapinstance);
 
-    bounds && mapinstance.fitBounds(bounds);
-
     mapinstance.addListener("dragend", () => {
       const center = mapinstance.getCenter();
       setCenter?.({lat: center?.lat() ?? 0, lng: center?.lng() ?? 0});

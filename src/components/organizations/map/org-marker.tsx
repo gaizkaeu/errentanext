@@ -52,9 +52,9 @@ export function OrganizationMarker({
           map={map}
         >
           <Link href={`/organizations/map?${g({org: org.id})}`} onClick={() => ahoy.track("org_click", {place: "org_map_marker", org_id: org.id})}>
-          <Button variant="ghost"className={cn(orgMarker({ status: selected ? "active" : "disable" }))}>
-            <p className="font-bold">{org.attributes.name} | <span className="text-green-500"><PriceRange range={org.attributes.price_range} /></span></p>
-          </Button>
+            <Button variant="ghost"className={cn(orgMarker({ status: selected ? "active" : "disable" }))}>
+              <p className="font-bold">{org.attributes.name} | <span className="text-green-500"><PriceRange range={org.attributes.price_range} /></span></p>
+            </Button>
           </Link>
         </OverlayView>
       )}

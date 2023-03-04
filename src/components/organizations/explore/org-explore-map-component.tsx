@@ -23,22 +23,43 @@ export const MapComponent = (props: { orgs: Organization[] }) => {
     west: s.get('bounds[west]') ? parseFloat(s.get('bounds[west]') as string) : -9.40462867150571
   })
 
+  const [center, setCenter] = useState({
+    lat: s.get('center[lat]') ? parseFloat(s.get('center[lat]') as string) : 40.4167754,
+    lng: s.get('center[lng]') ? parseFloat(s.get('center[lng]') as string) : -3.7037902
+  })
+
+  const [zoom, setZoom] = useState(s.get('zoom') ? parseFloat(s.get('zoom') as string) : 6)
+
   const debouncedSetBounds = debounce(setBounds, 1000);
+  const debouncedSetCenter = debounce(setCenter, 1000);
+  const debouncedSetZoom = debounce(setZoom, 1000);
 
   useEffect(() => {
     if (!didMount.current) {
       didMount.current = true;
       return;
     }
-    
-     r.replace(`/organizations/map?${g({'bounds[east]': bounds.east, 'bounds[north]': bounds.north, 'bounds[south]': bounds.south, 'bounds[west]': bounds.west})}`)
-  }, [bounds])
+
+    r.replace(`/organizations/map?${g({
+      'bounds[east]': bounds.east,
+      'bounds[north]': bounds.north,
+      'bounds[south]': bounds.south,
+      'bounds[west]': bounds.west,
+      'center[lat]': center.lat,
+      'center[lng]': center.lng,
+      'zoom': zoom
+    })}`)
+
+  }, [bounds, zoom, center])
 
 
   return (
     <div className="h-screen">
       <GoogleMap
-        bounds={bounds}
+        center={center}
+        zoom={zoom}
+        setZoom={debouncedSetZoom}
+        setCenter={debouncedSetCenter}
         setBounds={debouncedSetBounds}
       >
         {props.orgs.map((org) => (
