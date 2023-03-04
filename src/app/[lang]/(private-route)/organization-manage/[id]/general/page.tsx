@@ -12,8 +12,6 @@ export default function Page({ params }: { params: { id: string } }) {
       {data && (
         <>
           <OrganizationEditForm organization={data} />
-          <p className="text-xl font-bold">Ubicación</p>
-          <OrganizationLocation latitude={data.attributes.latitude} longitude={data.attributes.longitude} />
         </>
       )}
     </div>

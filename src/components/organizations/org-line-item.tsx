@@ -1,12 +1,11 @@
 import { Organization, calculateRating } from "@/store/types/Organization"
-import { Separator } from "../ui/separator"
 import { useMemo } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 
 const orgLineBackground = cva(
-  "transition-all animate-in fade-in-10 w-full lg:max-w-lg h-54 p-4",
+  "transition-all animate-in fade-in-10 h-54 p-4 w-full",
   {
     variants: {
       status: {

@@ -1,7 +1,6 @@
 import { OrganizationExplore } from "@/components/organizations/explore";
-import { OrganizationCard } from "@/components/organizations/org-card";
+import { OrganizationList } from "@/components/organizations/lists/org-list-explore";
 import { Button } from "@/components/ui/button";
-import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
 import queryString from "query-string";
 
@@ -36,11 +35,9 @@ export default async function OrganizationIndexPage({
         <div className="space-y-3">
           <OrganizationExplore />
           <div className="grid grid-cols-1 gap-4">
-            {orgs && orgs?.data.map((org: Organization) => (
-              <Link href={`/organizations/${org.id}`} key={org.id} className="w-full lg:max-w-lg">
-                <OrganizationCard org={org} />
-              </Link>
-            ))}
+            {orgs && (
+              <OrganizationList orgs={orgs.data} />
+            )}
             <div className='inset-x-0 bottom-5 z-10 sticky'>
               <div className='w-fit mx-auto'>
                 <Link href="/organizations/map">

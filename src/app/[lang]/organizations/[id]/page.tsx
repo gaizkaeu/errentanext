@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const [org, reviews] = await Promise.all([orgProm, reviewProm]);
 
   return org && (
-    <div className="w-full">
+    <div className="w-full p-4">
       <div className="flex items-center gap-4">
         <BackButton href="/organizations"/>
         <div>
@@ -59,7 +59,9 @@ export default async function Page({ params }: { params: { id: string } }) {
             <OrganizationReviews reviews={reviews}/>
           </section>
         </div>
-        <OrganizationLocation latitude={org.attributes.latitude} longitude={org.attributes.longitude} />
+        <div className="h-[32rem]">
+          <OrganizationLocation org={org} />
+        </div>
       </div>
     </div>
   );

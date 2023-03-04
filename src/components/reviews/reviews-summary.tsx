@@ -14,9 +14,19 @@ export const ReviewsSummary = (props: { reviews: RawRatingValues }) => {
   return (
     <div>
       <div className="flex items-center mt-4 gap-4 p-3">
-        <div>
-          <p className="text-3xl font-semibold">{avg.rating}</p>
-          <p className="text-slate-700 text-center dark:text-slate-50">({avg.count})</p>
+        <div className="text-center">
+          <p className="text-3xl font-semibold">
+            {avg.count === 0 ? (
+              <span className="text-slate-500 dark:text-slate-400">-</span>
+            ) : (
+              <span className="text-slate-500 dark:text-slate-400">{avg.rating}</span>
+            )}
+          </p>
+          {avg.count === 0 ? (
+              <span className="text-slate-500 dark:text-slate-400">No data</span>
+            ) : (
+              <span className="text-slate-500 dark:text-slate-400">{avg.count}</span>
+            )}
         </div>
         <div className="flex-1 flex flex-col gap-2">
           <Progress value={(props.reviews.five_star_count * 100) / total} />

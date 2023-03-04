@@ -1,8 +1,13 @@
+"use client";
 import { OverlayView } from "@/components/map/overlay";
-import { Organization, calculateRating } from "@/store/types/Organization";
+import { Organization } from "@/store/types/Organization";
 import { PriceRange } from "../org-card";
 import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn, useKeepSearchParams } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Link } from "next-intl";
+import { useAhoy } from "@/components/providers";
+
 interface CustomMarkerProps {
   map?: google.maps.Map;
   selected: boolean;
@@ -10,7 +15,7 @@ interface CustomMarkerProps {
 }
 
 const orgMarker = cva(
-  "rounded-xl p-2",
+  "rounded-xl",
   {
     variants: {
       status: {
@@ -32,6 +37,10 @@ export function OrganizationMarker({
   map,
   selected
 }: CustomMarkerProps) {
+
+  const g = useKeepSearchParams();
+  const { ahoy } = useAhoy();
+
   return (
     <>
       {map && (
@@ -42,9 +51,11 @@ export function OrganizationMarker({
           }}
           map={map}
         >
-          <div className={cn(orgMarker({ status: selected ? "active" : "disable" }))}>
+          <Link href={`/organizations/map?${g({org: org.id})}`} onClick={() => ahoy.track("org_click", {place: "org_map_marker", org_id: org.id})}>
+          <Button variant="ghost"className={cn(orgMarker({ status: selected ? "active" : "disable" }))}>
             <p className="font-bold">{org.attributes.name} | <span className="text-green-500"><PriceRange range={org.attributes.price_range} /></span></p>
-          </div>
+          </Button>
+          </Link>
         </OverlayView>
       )}
     </>
