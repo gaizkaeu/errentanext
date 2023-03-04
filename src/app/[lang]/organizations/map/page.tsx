@@ -43,38 +43,36 @@ export default async function OrganizationIndexPage({
 
   return (
     <>
-      <div className="h-screen">
-        <div className="absolute inset-0 z-0">
-          <div className="grid grid-cols-7">
-            <div className="max-lg:hidden lg:col-span-2 items-center pt-24 h-screen overflow-y-auto">
+      <div className="h-[calc(100%-4rem)]">
+        <div className="grid grid-cols-7">
+          <div className="max-lg:hidden lg:col-span-2 items-center h-screen overflow-y-auto">
+            <OrgListExploreMap orgs={orgs.data} selected={org?.id} />
+          </div>
+          <BottomSheetComponent>
+            {org && reviews ? (
+              <OrgViewExplore org={org} reviews={reviews} />
+            ) : (
               <OrgListExploreMap orgs={orgs.data} selected={org?.id} />
+            )}
+          </BottomSheetComponent>
+          <div className="relative col-span-7 lg:col-span-5">
+            <div className='absolute inset-x-0 top-20 lg:top-24 z-10'>
+              <div className='w-fit mx-auto'>
+                <Link href="/organizations">
+                  <Button>
+                    Modo lista
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <BottomSheetComponent>
-              {org && reviews ? (
-                <OrgViewExplore org={org} reviews={reviews} />
-              ) : (
-                <OrgListExploreMap orgs={orgs.data} selected={org?.id} />
-              )}
-            </BottomSheetComponent>
-            <div className="relative col-span-7 lg:col-span-5">
-              <div className='absolute inset-x-0 top-20 lg:top-24 z-10'>
-                <div className='w-fit mx-auto'>
-                  <Link href="/organizations">
-                    <Button>
-                      Modo lista
-                    </Button>
-                  </Link>
+            <div className='absolute lg:top-28 xl:top-32 2xl:top-38 left-4 z-10 h-screen'>
+              {org && reviews && (
+                <div className="animate-in slide-in-from-left h-4/6 bg-white dark:bg-slate-900 w-80 xl:w-96 2xl:w-[28rem] z-50 rounded-xl shadow-xl max-lg:hidden overflow-y-scroll">
+                  <OrgViewExplore org={org} reviews={reviews} />
                 </div>
-              </div>
-              <div className='absolute lg:top-32 xl:top-40 2xl:top-44 left-4 z-10 h-64'>
-                {org && reviews && (
-                  <div className="animate-in slide-in-from-left h-[32rem] bg-white dark:bg-slate-900 w-80 z-50 rounded-xl shadow-xl max-lg:hidden overflow-y-scroll">
-                    <OrgViewExplore org={org} reviews={reviews} />
-                  </div>
-                )}
-              </div>
-              <MapComponent orgs={orgs.data} />
+              )}
             </div>
+            <MapComponent orgs={orgs.data} />
           </div>
         </div>
       </div>

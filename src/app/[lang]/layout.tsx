@@ -41,7 +41,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={params.lang} messages={messages}>
           <div className="min-h-screen">
             <SiteHeader />
-            <div className="flex-1 max-w-7xl mx-auto">{children}</div>
+            {children}
             <Footer />
           </div>
         </NextIntlClientProvider>
