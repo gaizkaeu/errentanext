@@ -1,5 +1,5 @@
 
-export default async function Head()  {
+export default function Head()  {
 
   return (
     <>

@@ -1,3 +1,4 @@
+import { Link } from "next-intl"
 import { HeadingText } from "./heading-text"
 
 const HomeHero = () => {
@@ -9,6 +10,9 @@ const HomeHero = () => {
           <HeadingText />
         </h1>
       </div>
+      <Link href={"/organizations/onboarding"} className="text-md lg:text-xl underline">
+        Quiero que <span className="font-bold">mi asesoría</span> aparezca aquí.
+      </Link>
     </section>
   )
 }
