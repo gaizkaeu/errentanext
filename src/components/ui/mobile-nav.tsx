@@ -7,10 +7,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Link } from "next-intl"
 import { Bars3Icon } from "@heroicons/react/24/outline"
 
@@ -37,7 +35,7 @@ export function MobileNav() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/organizations/explore" className="flex items-center">
+          <Link href="/organizations" className="flex items-center">
             Explorar asesorías
           </Link>
         </DropdownMenuItem>
