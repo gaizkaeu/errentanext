@@ -7,6 +7,7 @@ import { cn, useKeepSearchParams } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-intl";
 import { useAhoy } from "@/components/providers";
+import { OrganizationBadge } from "../org-badge";
 
 interface CustomMarkerProps {
   map?: google.maps.Map;
@@ -53,7 +54,11 @@ export function OrganizationMarker({
         >
           <Link href={`/organizations/map?${g({org: org.id})}`} onClick={() => ahoy.track("org_click", {place: "org_map_marker", org_id: org.id})}>
             <Button variant="ghost"className={cn(orgMarker({ status: selected ? "active" : "disable" }))}>
-              <p className="font-bold">{org.attributes.name} | <span className="text-green-500"><PriceRange range={org.attributes.price_range} /></span></p>
+              <div className="flex gap-2 items-center">
+                <p className="text-xs">{org.attributes.name}</p>
+                <OrganizationBadge org={org} />
+              </div>
+              <span className="sr-only">Ver detalles</span>
             </Button>
           </Link>
         </OverlayView>

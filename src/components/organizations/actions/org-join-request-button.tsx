@@ -7,7 +7,7 @@ const OrganizationJoinRequestButton = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>
+        <Button className="hover:bg-slate-700 bg-slate-50 text-slate-900">
           Inscribirse
         </Button>
       </DialogTrigger>

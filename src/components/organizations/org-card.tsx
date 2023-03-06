@@ -3,6 +3,7 @@ import { Separator } from "../ui/separator"
 import { useMemo } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { OrganizationBadge } from "./org-badge"
 
 
 const orgCardBackground = cva(
@@ -37,11 +38,11 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean 
         <p>
           {props.org.attributes.distance ? (
             <span>{props.org.attributes.distance.toFixed(2)} km</span>
-            ) : (
+          ) : (
             <span>
               {props.org.attributes.city}
             </span>
-            )}
+          )}
         </p>
       </div>
       <Separator />
@@ -63,21 +64,6 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean 
   )
 
 }
-
-const OrganizationBadge = (props: { org: Organization }) => {
-
-  return (
-    <div className="flex items-center gap-2">
-     {!props.org.attributes.visible && (
-      <p className="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">No visible</p>
-     )}
-     {props.org.attributes.status =="not_subscribed" && (
-      <p className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Sin suscripción</p>
-     )}
-    </div>
-  )
-}
-
 export const PriceRange = (props: { range: number }) => {
 
   switch (props.range) {

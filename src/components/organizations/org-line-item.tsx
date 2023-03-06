@@ -2,6 +2,7 @@ import { Organization, calculateRating } from "@/store/types/Organization"
 import { useMemo } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { OrganizationBadge } from "./org-badge"
 
 
 const orgLineBackground = cva(
@@ -56,20 +57,6 @@ export const OrganizationLineItem = (props: { org: Organization, selected?: bool
     </div>
   )
 
-}
-
-const OrganizationBadge = (props: { org: Organization }) => {
-
-  return (
-    <div className="flex items-center gap-2">
-     {!props.org.attributes.visible && (
-      <p className="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">No visible</p>
-     )}
-     {props.org.attributes.status =="not_subscribed" && (
-      <p className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Sin suscripción</p>
-     )}
-    </div>
-  )
 }
 
 export const PriceRange = (props: { range: number }) => {

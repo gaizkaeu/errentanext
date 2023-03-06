@@ -7,7 +7,7 @@ export default async function Layout({
 }) {
   return (
     <>
-      {children}
+      <div className="p-3">{children}</div>
       <PrivateRoute action="auth" roles="*" />
     </>
   )
