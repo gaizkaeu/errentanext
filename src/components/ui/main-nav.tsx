@@ -12,19 +12,17 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { BrandTitle } from "../brand"
-import { FingerPrintIcon } from "@heroicons/react/24/outline"
 import { Link } from "next-intl"
 
 export function MainNav() {
   return (
     <div className="hidden md:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
-        <FingerPrintIcon className="ml-3 h-6 w-6" />
+      <Link href="/" className="mr-6 flex items-center space-x-2 ml-3">
         <BrandTitle />
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <NavigationMenuTrigger className="h-9">
               ¿Qué es?
             </NavigationMenuTrigger>
@@ -56,7 +54,7 @@ export function MainNav() {
                 </ListItem>
               </ul>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Link } from "next-intl"
+import { Bars3Icon } from "@heroicons/react/24/outline"
 
 export function MobileNav() {
   return (
@@ -21,23 +22,30 @@ export function MobileNav() {
           variant="ghost"
           className="-ml-4 text-base hover:bg-transparent focus:ring-0 focus:ring-offset-0 md:hidden"
         >
-          <span className="font-bold">Menu</span>
+          <Bars3Icon className="w-8 h-8" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="start"
         sideOffset={24}
         alignOffset={4}
-        className="w-[300px] overflow-scroll"
+        className="overflow-scroll"
       >
         <DropdownMenuItem asChild>
           <Link href="/" className="flex items-center">
             Home
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <ScrollArea className="h-[400px]">
-        </ScrollArea>
+        <DropdownMenuItem asChild>
+          <Link href="/organizations/explore" className="flex items-center">
+            Explorar asesorías
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/organizations/onboarding" className="flex items-center">
+            Inscribir mi asesoría
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

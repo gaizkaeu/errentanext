@@ -116,6 +116,19 @@ const organizationsApi = api.injectEndpoints({
       transformResponse: transformResponse,
       invalidatesTags: (result) => [{ type: "Organization", id: result?.id }],
     }),
+    createOrganizationJoinRequest: build.mutation<
+      Partial<Organization>,
+      Partial<OrganizationAttributes>
+    >({
+      query: (data) => ({
+        url: `organization_requests/`,
+        method: "POST",
+        body: data,
+      }),
+      transformResponse: (response: BaseQueryResponse<Partial<Organization>>) => (
+        response.data
+      ),
+    }),
     createReview: build.mutation<
       Review,
       Partial<Review> & { organization_id: string }
@@ -211,5 +224,6 @@ export const {
   useGetSubscriptionOverviewQuery,
   useCreateOrganizationMutation,
   useGetOrganizationLawyersQuery,
-  useGetOrganizationTransactionsQuery
+  useGetOrganizationTransactionsQuery,
+  useCreateOrganizationJoinRequestMutation
 } = organizationsApi;

@@ -35,7 +35,7 @@ export default async function IndexPage({
                   Explorar
                 </h2>
                 <h3 className="text-2xl font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
-                  Asesorías en Madrid.
+                  Asesorías.
                 </h3>
               </div>
 

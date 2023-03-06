@@ -1,25 +1,25 @@
+import { OrganizationJoinRequestButton } from "@/components/organizations";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 export default async function OrganizationOnboarding() {
-
-
   return (
-    <><div className="flex flex-col items-center justify-center h-screen pb-12">
-      <h1 className="text-2xl lg:text-8xl font-bold">Llega a <span className="font-light">más gente</span>.</h1>
-      <h2 className="text-xl lg:text-3xl text-center">Descubre el poder de la tecnología para moderizar tu <span className="font-bold">asesoría</span>.</h2>
-      <h3 className="text-xl lg:text-3xl text-center">Desde <span className="font-bold text-green-500">0</span>€.</h3>
-      <div className="absolute inset-x-0 bottom-8">
-        <ArrowDownIcon className="h-12 w-12 mx-auto animate-bounce" />
+    <div className="relative">
+      <div className="relative h-96 py-12">
+        <h1 className="text-4xl lg:text-8xl font-bold text-center">Llega a <span className="font-light">más gente</span>.</h1>
+        <h2 className="text-xl lg:text-3xl text-center">Descubre el poder de la tecnología para moderizar tu <span className="font-bold">asesoría</span>.</h2>
+        <h3 className="text-xl lg:text-3xl text-center">Desde <span className="font-bold text-green-500">0</span>€.</h3>
+        <div className="absolute inset-x-0 bottom-8 z-10">
+          <ArrowDownIcon className="h-12 w-12 mx-auto animate-bounce" />
+        </div>
       </div>
-    </div>
       <section id="features" aria-label="Features for running your books" className="relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32">
         <Image width={1000} height={1000} alt="background" decoding="async" className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]" loading="lazy" src="/images/onboarding/background.jpg" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-            <h4 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-              Todo lo que necesita tu asesoría.</h4>
-            <p className="mt-6 text-lg tracking-tight text-blue-100">
+            <h4 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+              <span className="font-light">Todo</span> lo que necesita tu <span className="font-light">asesoría</span>.</h4>
+            <p className="mt-6 text-xl lg:text-3xl tracking-tight text-blue-100">
               Nos encargamos de guiar a los clientes a tu negocio.
             </p>
           </div>
@@ -31,8 +31,11 @@ export default async function OrganizationOnboarding() {
                     <span className="font-display text-lg [&amp;:not(:focus-visible)]:focus:outline-none text-white" >
                       <span className="absolute inset-0 rounded-full lg:rounded-r-none lg:rounded-l-xl">
                       </span>
-                      Alto rendimiento
+                      Alto rendimiento SEO
                     </span>
+                  </p>
+                  <p className="text-sm text-white">
+                    Gracias a nuestro rendimiento y optimización SEO, <br /> tu negocio aparecerá en los primeros resultados.
                   </p>
                 </div>
                 <div className="group relative rounded-full py-1 px-4 lg:rounded-r-none lg:rounded-l-xl lg:p-6">
@@ -43,8 +46,8 @@ export default async function OrganizationOnboarding() {
                       Administración
                     </span>
                   </p>
-                  <p className="mt-2 text-sm text-blue-100">
-
+                  <p className="text-sm text-white">
+                    Gestiona tu asesoría de forma <br /> rápida y sencilla.
                   </p>
                 </div>
                 <div className="group relative rounded-full py-1 px-4 lg:rounded-r-none lg:rounded-l-xl lg:p-6">
@@ -55,7 +58,8 @@ export default async function OrganizationOnboarding() {
                       Seguimiento
                     </span>
                   </p>
-                  <p className="mt-2 text-sm text-blue-100">
+                  <p className="text-sm text-white">
+                   Conoce como funciona tu asesoría <br /> y cómo puedes mejorarla.
                   </p>
                 </div>
                 <div className="group relative rounded-full py-1 px-4 lg:rounded-r-none lg:rounded-l-xl lg:p-6">
@@ -65,7 +69,9 @@ export default async function OrganizationOnboarding() {
                       </span>
                       Publicidad</span>
                   </p>
-                  <p className="mt-2 text-sm text-blue-100"></p>
+                  <p className="text-sm text-white">
+                   Nos encargamos de la gesitón de la publicidad.
+                  </p>
                 </div>
               </div>
             </div>
@@ -80,14 +86,15 @@ export default async function OrganizationOnboarding() {
       <section id="secondary-features" aria-label="Features for simplifying everyday business tasks" className="pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 text-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl md:text-center">
-            <h4 className="font-display text-3xl tracking-tight  sm:text-4xl">
-              Gestión integral</h4>
-            <p className="mt-4 text-lg tracking-tight">
+            <h4 className="font-display text-3xl font-bold tracking-tight  sm:text-4xl md:text-5xl">
+              Gestión <span className="font-light">integral</span>.
+            </h4>
+            <p className="mt-4 text-xl lg:text-3xl tracking-tight">
               Simplemente gestiona tu negocio.
             </p>
           </div>
           <div className="lg:mt-20">
-            <div className="grid sm:grid-cols-3 gap-x-8 place-content-center mt-3">
+            <div className="grid sm:grid-cols-3 gap-x-8 place-content-center mt-3 space-y-3 sm:space-y-0">
               <div className="relative">
                 <div className="w-9 rounded-lg bg-blue-600 mx-auto ">
                   <svg aria-hidden="true" className="h-9 w-9" fill="none">
@@ -99,18 +106,18 @@ export default async function OrganizationOnboarding() {
                         </stop>
                       </linearGradient>
                     </defs>
-                    <path d="m30 15-4 5-4-11-4 18-4-11-4 7-4-5" stroke="url(#:Rardm:)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m30 15-4 5-4-11-4 18-4-11-4 7-4-5" stroke="url(#:Rardm:)" stroke-width="2" stroke-linecap="round" strokeLinejoin="round">
                     </path>
                   </svg>
                 </div>
-                <h3 className="mt-6 text-sm font-medium text-blue-600">
+                <p className="mt-6 text-sm font-medium text-blue-600">
                   <span className="[&amp;:not(:focus-visible)]:focus:outline-none">
                     <span className="absolute inset-0">
                     </span>
                     Estadisticas
                   </span>
-                </h3>
-                <p className="mt-2 font-display text-xl d">
+                </p>
+                <p className="mt-2 font-display text-xl">
                   Conoce el funcionamiento de tu negocio.
                 </p>
               </div>
@@ -125,13 +132,13 @@ export default async function OrganizationOnboarding() {
                     </path>
                   </svg>
                 </div>
-                <h3 className="mt-6 text-sm font-medium ">
+                <p className="mt-6 text-sm font-medium text-blue-500 ">
                   <span className="[&amp;:not(:focus-visible)]:focus:outline-none">
                     <span className="absolute inset-0">
                     </span>
                     Clientes
                   </span>
-                </h3>
+                </p>
                 <p className="mt-2 font-display text-xl ">
                   Facilita el proceso a tus clientes.</p>
               </div>
@@ -144,27 +151,52 @@ export default async function OrganizationOnboarding() {
                     </path>
                   </svg>
                 </div>
-                <h3 className="mt-6 text-sm font-medium text-blue-600">
+                <p className="mt-6 text-sm font-medium text-blue-600">
                   <span className="[&amp;:not(:focus-visible)]:focus:outline-none">
                     <span className="absolute inset-0">
                     </span>
                     Equipo
                   </span>
-                </h3>
+                </p>
                 <p className="mt-2 font-display text-xl ">
                   Gestiona tu equipo.</p>
               </div>
             </div>
             <div className="relative mt-20 overflow-hidden rounded-4xl bg-slate-200 px-14 py-16 xl:px-16">
               <div className="-mx-5 flex">
-                <div className="px-5 transition duration-500 ease-in-out [&amp;:not(:focus-visible)]:focus:outline-none"  aria-hidden="false">
-                  <Image height={1000} width={1000} alt="administración "className="w-full" loading="lazy" src="/images/management.png" />
+                <div className="px-5 transition duration-500 ease-in-out [&amp;:not(:focus-visible)]:focus:outline-none" aria-hidden="false">
+                  <Image height={1000} width={1000} alt="administración " className="w-full" loading="lazy" src="/images/management.png" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </>
+      <section>
+        <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+          <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+            <svg viewBox="0 0 1024 1024" className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:translate-y-0 lg:-translate-x-1/2" aria-hidden="true">
+              <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+              <defs>
+                <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                  <stop stop-color="#7775D6" />
+                  <stop offset="1" stop-color="#E935C1" />
+                </radialGradient>
+              </defs>
+            </svg>
+            <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+              <p className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Inscribe tu asesoría en <br /><span className="font-light">ERRENTA</span> ahora mismo.</p>
+              <p className="mt-6 text-lg leading-8 text-gray-300">Rellena un formulario y nuestro equipo se pondrá en contacto contigo lo antes posible.</p>
+              <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                <OrganizationJoinRequestButton />
+              </div>
+            </div>
+            <div className="relative mt-16 h-80 lg:mt-8">
+              <Image loading="lazy" className="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="/images/map.png" alt="App screenshot" width="1824" height="1080" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
