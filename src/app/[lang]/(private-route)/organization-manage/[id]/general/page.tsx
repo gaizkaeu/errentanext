@@ -1,5 +1,5 @@
 "use client";
-import { OrganizationEditForm, OrganizationLocation } from "@/components/organizations";
+import { OrganizationEditForm } from "@/components/organizations";
 import { useGetOrganizationManageByIdQuery } from "@/store/endpoints/organizations";
 
 

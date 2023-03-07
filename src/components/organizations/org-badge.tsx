@@ -68,3 +68,25 @@ export const FeaturedCountryBadge = () => (
 )
 
 
+export const PriceRange = (props: { range: number }) => {
+
+  switch (props.range) {
+    case 0:
+      return <span>€<span className="opacity-50">€€</span></span>
+    case 1:
+      return <span>€€<span className="opacity-50">€</span></span>
+    case 2:
+      return <span>€€€</span>
+    default:
+      return <span>∅</span>
+  }
+}
+
+export const Rating = (props: { rating: number }) => {
+
+  if (props.rating == 0) {
+    return <span className="opacity-50">∅</span>
+  } else {
+    return <span className="text-green-500">{props.rating}</span>
+  }
+}

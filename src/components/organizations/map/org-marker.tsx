@@ -1,7 +1,6 @@
 "use client";
 import { OverlayView } from "@/components/map/overlay";
 import { Organization } from "@/store/types/Organization";
-import { PriceRange } from "../org-card";
 import { cva } from "class-variance-authority";
 import { cn, useKeepSearchParams } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

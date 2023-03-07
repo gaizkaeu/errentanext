@@ -34,6 +34,16 @@ export const OrganizationEditSettings = (props: {organization: Organization}) =>
                   <SwitchField name="visible" id="visible" autoSubmit />
                   <Label htmlFor="visible">Visibile</Label>
                 </div>
+                <p className="text-xl font-bold">Habilitar contrataciones</p>
+                <div className="flex items-center space-x-2 w-12">
+                  <SwitchField name="settings[hireable]" id="hireable" autoSubmit />
+                  <Label htmlFor="settings[hireable]">Contratable</Label>
+                </div>
+                <p className="text-xl font-bold">Habilitar citas</p>
+                <div className="flex items-center space-x-2 w-12">
+                  <SwitchField name="settings[appointment_open]" id="appointments" autoSubmit />
+                  <Label htmlFor="settings[appointment_open]">Citas</Label>
+                </div>
               </div>
               {isSubmitting && (
                 <p>Guardando...</p>

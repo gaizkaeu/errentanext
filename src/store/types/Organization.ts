@@ -147,8 +147,7 @@ export interface OrganizationAttributes {
     | "featured_city"
     | "featured_province"
     | "featured_country";
-  ratings: RawRatingValues;
-  processed_ratings: OrganizationRatings;
+  ratings: OrganizationReviews;
   website: string;
   tax_income_count: number;
   app_fee?: number;
@@ -194,7 +193,8 @@ export interface Review {
   characteristics: ReviewCharacteristics;
 }
 
-export interface RawRatingValues {
+export interface OrganizationReviews {
+  avg_rating: number;
   one_star_count: number;
   two_star_count: number;
   three_star_count: number;
@@ -210,40 +210,8 @@ export interface ReviewCharacteristics {
   new: boolean;
 }
 
-export interface OrganizationRatings {
-  rating: number;
-  count: number;
-}
-
 export const processOrganization = (org: Organization) => {
-  org.attributes.processed_ratings = calculateRating(org.attributes.ratings);
   return org;
-};
-
-export const calculateRating = (ratings: RawRatingValues) => {
-  const reviews_values = {
-    one_star_count: 1,
-    two_star_count: 2,
-    three_star_count: 3,
-    four_star_count: 4,
-    five_star_count: 5,
-  } as RawRatingValues;
-
-  const total: number = Object.entries(reviews_values).reduce(
-    (acc, [key]) => acc + ratings[key as keyof RawRatingValues],
-    0
-  );
-  const rating: number = Object.entries(reviews_values).reduce(
-    (acc, [key, value]) => {
-      return acc + ratings[key as keyof RawRatingValues] * value;
-    },
-    0
-  );
-
-  return {
-    rating: total ? round(rating / total, 1) : 0,
-    count: total,
-  };
 };
 
 // export const calculateCharacteristicsOrg = (org: Organization) => {

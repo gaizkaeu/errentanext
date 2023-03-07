@@ -1,6 +1,5 @@
 import { Review } from "@/store/types/Organization";
 import { CalendarDays } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import moment from "moment";
 import { StarIcon } from "@heroicons/react/24/outline";
 
