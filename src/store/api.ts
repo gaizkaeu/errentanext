@@ -27,7 +27,7 @@ export const api = createApi({
     "WEB_AUTHN_KEYS"
   ],
   endpoints: (build) => ({
-    getOrganizations: build.query<Organization[], Record<string, string | string[]>>({
+    getOrganizations: build.query<Organization[], Record<string, string | string[] | number>>({
       query: (params) => ({
         url: `organizations`,
         params: params,

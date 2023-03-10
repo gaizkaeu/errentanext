@@ -6,12 +6,10 @@ export const OrganizationReviews = (props: {
 }) => {
 
   return (
-    <>
-      <div className="grid gap-4 m-3">
-        {props.reviews.map((review) => (
-          <ReviewComponent key={review.id} review={review} />
-        ))}
-      </div>
-    </>
+    <div className="grid gap-4">
+      {props.reviews.map((review) => (
+        <ReviewComponent key={review.id} review={review} />
+      ))}
+    </div>
   );
 }

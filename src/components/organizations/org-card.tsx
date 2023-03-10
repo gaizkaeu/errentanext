@@ -7,7 +7,7 @@ import { OrganizationBadge, PriceRange, Rating } from "./org-badge"
 
 
 const orgCardBackground = cva(
-  "transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
+  "min-w-[25rem] transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
   {
     variants: {
       status: {

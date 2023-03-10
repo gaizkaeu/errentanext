@@ -1,9 +1,12 @@
-import { HireButton } from "@/components/organizations/actions";
-import { OrganizationCalculateButton } from "@/components/organizations/actions/org-calculate-button";
+import { OrganizationExploreOthers } from "@/components/organizations";
+import { OrganizationActionsSmall } from "@/components/organizations/actions";
 import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
+import { ReviewsSummary } from "@/components/reviews";
 import { BackButton } from "@/components/ui/back-button";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 
 export function generateStaticParams() {
   return [];
@@ -28,9 +31,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   const [org, reviews] = await Promise.all([orgProm, reviewProm]);
 
   return org && (
-    <div className="w-full p-4">
+    <div className="w-full p-4 md:p-8">
       <div className="flex items-center gap-4">
-        <BackButton href="/organizations"/>
+        <BackButton href="/organizations" />
         <div>
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
             {org.attributes.name}
@@ -40,29 +43,43 @@ export default async function Page({ params }: { params: { id: string } }) {
           </h2>
         </div>
       </div>
-      <section>
-        <blockquote className="text-md italic font-semibold text-gray-900 dark:text-white">
-          <svg aria-hidden="true" className="w-10 h-10 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/></svg>
-          <p>{org.attributes.description}</p>
-        </blockquote>
-      </section>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-4">
         <div>
           <section>
-            <h3 className="text-2xl font-semibold">Acciones</h3>
-            <div className="flex gap-4">
-              <OrganizationCalculateButton size={"big"} org={org} />
-              <Button>Pedir cita</Button>
-              <HireButton org_id={params.id} />
-            </div>
+            <blockquote className="text-sm italic font-semibold text-gray-900 dark:text-white">
+              <svg aria-hidden="true" className="w-10 h-10 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" /></svg>
+              <p>{org.attributes.description}</p>
+            </blockquote>
           </section>
+          <br />
+          <Separator />
+          <br />
+          <section>
+            <h3 className="text-2xl font-semibold">Acciones</h3>
+            <OrganizationActionsSmall org={org} />
+          </section>
+          <br />
           <section>
             <h4 className="text-2xl font-semibold">Reseñas</h4>
-            <OrganizationReviews reviews={reviews}/>
+            <div className="flex">
+              <div className="flex-1">
+                <ReviewsSummary reviews={org.attributes.ratings} />
+              </div>
+              <Button className="h-28 w-36">
+                <ChatBubbleBottomCenterIcon className="w-8 h-8" />
+                <span className="sr-only">Escribir reseña</span>
+              </Button>
+            </div>
+            <br />
+            <OrganizationReviews reviews={reviews} />
           </section>
         </div>
-        <div className="h-[28rem]">
-          <OrganizationLocation org={org} />
+        <div>
+          <div className="h-[28rem]">
+            <OrganizationLocation org={org} />
+          </div>
+          <br />
+          <OrganizationExploreOthers org={org} />
         </div>
       </div>
     </div>

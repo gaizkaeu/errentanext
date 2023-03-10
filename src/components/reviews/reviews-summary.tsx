@@ -22,7 +22,7 @@ export const ReviewsSummary = (props: { reviews: OrganizationReviews }) => {
           {total === 0 ? (
               <span className="text-slate-500 dark:text-slate-400">No data</span>
             ) : (
-              <span className="text-slate-500 dark:text-slate-400">{props.reviews.avg_rating}</span>
+              <span className="text-slate-500 dark:text-slate-400">({total})</span>
             )}
         </div>
         <div className="flex-1 flex flex-col gap-2">
