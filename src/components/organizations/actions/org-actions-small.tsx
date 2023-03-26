@@ -5,6 +5,7 @@ import { GlobeEuropeAfricaIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/2
 import { OrganizationCalculateButton } from "./org-calculate-button";
 
 import { useAhoy } from "@/components/providers";
+
 export const OrganizationActionsSmall = (props: { org: Organization }) => {
 
   const { org } = props;

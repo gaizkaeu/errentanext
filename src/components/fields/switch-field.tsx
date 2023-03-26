@@ -30,7 +30,12 @@ export function SwitchField(props: { name: string; autoSubmit?: boolean, [x: str
   }
 
   function onChange() {
-    helpers.setValue(!field.value);
+    if (props.onFalse && !field.value) {
+      helpers.setValue(props.onFalse);
+    } else if (props.onTrue && field.value) {
+      helpers.setValue(props.onTrue);
+    } else
+      helpers.setValue(!field.value);
 
     if (props.autoSubmit) {
       submitForm();

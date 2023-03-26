@@ -4,6 +4,9 @@ module.exports = {
   content: ["src/app/**/*.{ts,tsx}", "src/components/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        midnight: "#1f2226",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

@@ -12,7 +12,7 @@ export const OrganizationListInline = (props: { orgs: Organization[], place?: st
 
   const track = (org_id: string) => {
 
-    ahoy.track("org_click", { 
+    ahoy?.track("org_click", { 
       place: props.place ?? "org_list",
       org_id: org_id,
       meta: props.meta_ind_click 
@@ -38,7 +38,7 @@ export const OrganizationListMap = (props: { orgs: Organization[], place?: strin
 
   const track = (org_id: string) => {
 
-    ahoy.track("org_click", { 
+    ahoy?.track("org_click", { 
       place: props.place ?? "org_list",
       org_id: org_id,
       meta: props.meta_ind_click 

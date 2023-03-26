@@ -39,10 +39,19 @@ export default async function RootLayout({
         text: "Precios",
         href: `/organization-manage/${params.id}/prices`,
       },
+    ]
+  },
+  {
+    title: "Equipo",
+    links: [
+      {
+        text: "Miembros",
+        href: `/organization-manage/${params.id}/memberships`,
+      },
       {
         text: "Abogados",
         href: `/organization-manage/${params.id}/lawyers`,
-      }
+      },
     ]
   },
   {
@@ -64,7 +73,7 @@ export default async function RootLayout({
 ]
 
   return (
-    <div className="rounded-md bg-white transition-all dark:bg-slate-900">
+    <>
       <div className="flex gap-4 items-center">
         <BackButton href="/organization-manage"/>
         <OrganizationTitle org={org} />
@@ -73,10 +82,10 @@ export default async function RootLayout({
       <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 mt-5">
         <SideNav sections={links} />
 
-        <div className="col-span-3 md:border-l border-l-slate-200 dark:border-l-slate-700 xl:col-span-4 p-3">
+        <div className="col-span-3 max-md:mt-3 xl:col-span-4">
           {children}
         </div>
       </div>
-    </div>
+    </>
   )
 }

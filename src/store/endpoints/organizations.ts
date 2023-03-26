@@ -1,7 +1,7 @@
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
 import { LawyerProfile } from "../types/LawyerProfile";
-import { Organization, OrganizationAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
+import { Organization, OrganizationAttributes, OrganizationInvitation, OrganizationInvitationAttributes, OrganizationMembership, OrganizationMembershipAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
 import { Transaction } from "../types/Transaction";
 
 
@@ -42,14 +42,16 @@ const organizationsApi = api.injectEndpoints({
             ]
           : [{ type: "Organization", id: "LIST" }],
     }),
-    getOrganizationsManage: build.query<Organization[], Record<string, string>>(
+    getOrganizationsManage: build.query<OrganizationMembership[], Record<string, string>>(
       {
         query: (data) => ({
-          url: "organization-manage",
+          url: "organization-memberships",
           method: "get",
           params: data,
         }),
-        transformResponse: transformResponseList,
+        transformResponse: (response: BaseQueryResponseList<OrganizationMembership>) => (
+          response.data
+        ),
         providesTags: (result) =>
           result
             ? [
@@ -187,6 +189,50 @@ const organizationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponseList<Transaction>) =>
         response.data,
     }),
+    getOrganizationMemberships: build.query<
+      OrganizationMembership[],
+      { id: string; filters: Record<string, string> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.id}/memberships`,
+        method: "get",
+      }),
+      transformResponse: (response: BaseQueryResponseList<OrganizationMembership>) =>
+        response.data,
+      providesTags: () => [{ type: "OrganizationMembership", id: "LIST" }],
+    }),
+    updateOrganizationMembership: build.mutation<
+      OrganizationMembership,
+      Partial<OrganizationMembershipAttributes> & Pick<OrganizationMembership, "id">
+    >({
+      query: (data) => ({
+        url: `organization-manage/${data.organization_id}/memberships/${data.id}`,
+        method: "put",
+        body: data,
+      }),
+      invalidatesTags: () => [{ type: "OrganizationMembership", id: "LIST" }],
+    }),
+    deleteOrganizationMembership: build.mutation<
+      void,
+      string
+    >({
+      query: (data) => ({
+        url: `organization-manage/memberships/${data}`,
+        method: "delete",
+      }),
+      invalidatesTags: () => [{ type: "OrganizationMembership", id: "LIST" }],
+    }),
+    updateOrganizationInvitation: build.mutation<
+      OrganizationInvitation,
+      Partial<OrganizationInvitationAttributes> & Pick<OrganizationInvitation, "id">
+    >({
+      query: (data) => ({
+        url: `organization-manage/invitations/${data.id}`,
+        method: "put",
+        body: data,
+      }),
+      invalidatesTags: () => [{ type: "OrganizationInvitation", id: "LIST" }],
+    }),
     getSubscriptionPaymentUrl: build.query<
       { url: string },
       { id: string; return_url: string; price_id: string }
@@ -205,6 +251,52 @@ const organizationsApi = api.injectEndpoints({
         url: `organization-manage/${id}/subscription/retrieve`,
         method: "get",
       }),
+    }),
+    createOrganizationInvitation: build.mutation<
+      OrganizationInvitation,
+      Partial<OrganizationInvitationAttributes>
+      >({
+      query: (data) => ({
+        url: `organization-manage/${data.organization_id}/invitations`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: () => [{ type: "OrganizationInvitation", id: "LIST" }],
+    }),
+    getOrganizationInvitations: build.query<
+      OrganizationInvitation[],
+      { id: string; filters: Record<string, string> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.id}/invitations`,
+        method: "get",
+        params: id.filters,
+      }),
+      transformResponse: (response: BaseQueryResponseList<OrganizationInvitation>) =>
+        response.data,
+      providesTags: () => [{ type: "OrganizationInvitation", id: "LIST" }]
+    }),
+    getOrganizationInvitation: build.query<
+      OrganizationInvitation,
+      string
+    >({
+      query: (id) => ({
+        url: `organization-manage/invitations/${id}`,
+        method: "get",
+      }),
+      transformResponse: (response: BaseQueryResponse<OrganizationInvitation>) =>
+        response.data,
+    }),
+    acceptOrganizationInvitation: build.mutation<
+      OrganizationInvitation,
+      string
+    >({
+      query: (id) => ({
+        url: `organization-manage/invitations/${id}/accept`,
+        method: "post",
+      }),
+      invalidatesTags: () => [{ type: "OrganizationInvitation", id: "LIST" }, 
+      { type: "Organization", id: "LIST" }],
     }),
   }),
   overrideExisting: false,
@@ -225,5 +317,14 @@ export const {
   useCreateOrganizationMutation,
   useGetOrganizationLawyersQuery,
   useGetOrganizationTransactionsQuery,
-  useCreateOrganizationJoinRequestMutation
+  useCreateOrganizationJoinRequestMutation,
+  useGetOrganizationMembershipsQuery,
+  useCreateOrganizationInvitationMutation,
+  useGetOrganizationInvitationsQuery,
+  useUpdateOrganizationMembershipMutation,
+  useUpdateOrganizationInvitationMutation,
+  useDeleteOrganizationMembershipMutation,
+  useGetOrganizationInvitationQuery,
+  useLazyGetOrganizationInvitationQuery,
+  useAcceptOrganizationInvitationMutation
 } = organizationsApi;

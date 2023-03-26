@@ -1,0 +1,1 @@
+export { OrganizationMembershipsTable } from "./org-memberships-table";

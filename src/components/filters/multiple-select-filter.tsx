@@ -1,3 +1,4 @@
+"use client";
 import { useContext } from "react";
 import Select, { MultiValue } from "react-select";
 import { BaseTooltip, SearchContext, TooltipContentBase } from ".";

@@ -165,11 +165,46 @@ export interface Organization {
   id: string;
   type: "organization";
   attributes: OrganizationAttributes;
-  // relationships: {
-  //   owner?: BaseRelation<LawyerRelation>;
-  // };
   characteristics: OrganizationCharacteristics;
 }
+
+export interface OrganizationMembership {
+  id: string;
+  type: "organization_membership";
+  attributes: OrganizationMembershipAttributes;
+}
+
+export interface OrganizationMembershipAttributes {
+  role: OrganizationMembershipRole;
+  created_at: string;
+  user_id: string;
+  organization_id: string;
+  organization: {
+    data: Organization;
+  }
+  first_name: string;
+  last_name: string;
+}
+
+export interface OrganizationInvitation {
+  id: string;
+  type: "organization_invitation";
+  attributes: OrganizationInvitationAttributes;
+}
+
+export interface OrganizationInvitationAttributes {
+  email: string;
+  role: OrganizationMembershipRole;
+  created_at?: string;
+  organization_id: string;
+  updated_at?: string;
+  token: string;
+}
+
+
+export const OrganizationMembershipRoles = ["admin", "lawyer"] as const;
+
+export type OrganizationMembershipRole = (typeof OrganizationMembershipRoles)[number];
 
 export interface Review {
   id: string;

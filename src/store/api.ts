@@ -24,7 +24,10 @@ export const api = createApi({
     "TaxIncome",
     "AUTHENTICATED_USER",
     "User",
-    "WEB_AUTHN_KEYS"
+    "WEB_AUTHN_KEYS",
+    "OrganizationInvitation",
+    "OrganizationMembership",
+    "LawyerProfile"
   ],
   endpoints: (build) => ({
     getOrganizations: build.query<Organization[], Record<string, string | string[] | number>>({

@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 
-export function generateStaticParams() {
-  return [];
-}
+export const dynamicParams = true // true | false,
+export const revalidate = true
+export const dynamic = 'force-dynamic'
 
 const getOrg = async (id: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id);

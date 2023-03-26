@@ -67,7 +67,7 @@ export default async function OrganizationIndexPage({
             </div>
             <div className='absolute lg:top-28 xl:top-32 2xl:top-38 left-4 z-10 h-screen'>
               {org && reviews && (
-                <div className="animate-in slide-in-from-left h-4/6 bg-white dark:bg-slate-900 w-80 xl:w-96 2xl:w-[28rem] z-50 rounded-xl shadow-xl max-lg:hidden overflow-y-scroll">
+                <div className="animate-in slide-in-from-left h-4/6 bg-white dark:bg-black  w-80 xl:w-96 2xl:w-[28rem] z-50 rounded-xl shadow-xl max-lg:hidden overflow-y-scroll">
                   <OrgViewExplore org={org} reviews={reviews} />
                 </div>
               )}

@@ -14,12 +14,9 @@ export interface LawyerProfile {
 export interface LawyerProfileAttributes {
   first_name: string;
   last_name: string;
-  org_status?: OrgStatus;
-  lawyer_status: LawyerStatus;
+  on_duty: boolean;
+  phone: string;
+  email: string;
+  skill_list: string[];
+  avatar_url?: string;
 }
-
-export const OrgStatuses = ["accepted", "pending"] as const;
-export const LawyerStatuses = ["on_duty", "off_duty", "deleted"] as const;
-
-export type OrgStatus = (typeof OrgStatuses)[number];
-export type LawyerStatus = (typeof LawyerStatuses)[number];

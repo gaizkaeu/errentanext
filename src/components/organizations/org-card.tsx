@@ -1,20 +1,19 @@
 import { Organization } from "@/store/types/Organization"
 import { Separator } from "../ui/separator"
-import { useMemo } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { OrganizationBadge, PriceRange, Rating } from "./org-badge"
 
 
 const orgCardBackground = cva(
-  "min-w-[25rem] transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
+  "transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
   {
     variants: {
       status: {
         disable:
-          "bg-slate-50 dark:bg-slate-700",
+          "bg-slate-50 dark:bg-midnight",
         active:
-          "bg-slate-200 dark:bg-slate-500",
+          "bg-slate-200 dark:bg-gray-500",
       },
     },
     defaultVariants: {
@@ -24,7 +23,7 @@ const orgCardBackground = cva(
 )
 
 
-export const OrganizationCard = (props: { org: Organization, selected?: boolean }) => {
+export const OrganizationCard = (props: { org: Organization, selected?: boolean, badges?: JSX.Element | JSX.Element[] }) => {
 
   return (
     <div className={cn(orgCardBackground({ status: props.selected ? "active" : "disable" }))}>
@@ -33,6 +32,7 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean 
           {props.org.attributes.name}
         </h3>
         <OrganizationBadge org={props.org} />
+        {props.badges}
         <p>
           {props.org.attributes.distance ? (
             <span>{props.org.attributes.distance.toFixed(2)} km</span>

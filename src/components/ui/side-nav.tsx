@@ -62,7 +62,7 @@ const SideNavMobile = (props: { sections: Section[] }) => {
 const SideNavBig = (props: { sections: Section[] }) => {
   return (
     <aside className="pb-12 max-md:hidden">
-      <div className="space-y-4">
+      <div className="space-y-4 sticky top-12">
         <div className="px-6 py-2">
           {props.sections.map((item, index) => (
             <div className="px-6 py-2" key={index}>

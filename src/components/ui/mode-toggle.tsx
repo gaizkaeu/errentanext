@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { SunIcon } from "@heroicons/react/24/outline"
 
 export function ModeToggle() {
   const { setTheme } = useTheme()
@@ -18,7 +19,7 @@ export function ModeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
-          Toggle theme
+          <SunIcon className="h-6 w-6" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

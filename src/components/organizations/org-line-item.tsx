@@ -10,9 +10,9 @@ const orgLineBackground = cva(
     variants: {
       status: {
         disable:
-          "hover:bg-slate-100 dark:hover:bg-slate-600",
+          "hover:bg-slate-100 dark:hover:bg-gray-800",
         active:
-          "bg-slate-200 dark:bg-slate-500",
+          "bg-slate-200 dark:bg-gray-700",
       },
     },
     defaultVariants: {
