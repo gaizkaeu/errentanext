@@ -11,7 +11,7 @@ const orgCardBackground = cva(
     variants: {
       status: {
         disable:
-          "bg-slate-50 dark:bg-midnight",
+          "bg-slate-50 dark:bg-midnight-700",
         active:
           "bg-slate-200 dark:bg-gray-500",
       },

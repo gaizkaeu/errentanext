@@ -1,7 +1,7 @@
 "use client";
 import { PlusCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { createContext } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { createContext, useState } from "react";
+import Popover from "../ui/popover-card";
 
 export { TextFilter } from "./text-filter";
 export { LocationFilter } from "./location-filter";
@@ -42,21 +42,24 @@ export const BaseTooltip = (props: {
   title: string;
   active: boolean;
 }) => {
+
+  const [openPopover, setOpenPopover] = useState(false);
+
   return (
-    <Popover>
-      <PopoverTrigger>
-      <div className="flex text-md font-medium mr-2 px-2 py-2 border border-gray-400 p-8 rounded-xl border-dashed gap-2 items-center">
+    <Popover content={
+      props.children
+    }
+      openPopover={openPopover}
+      setOpenPopover={setOpenPopover}
+    >
+      <button onClick={() => setOpenPopover(!openPopover)} className="flex text-md font-medium mr-2 px-2 py-2 border border-gray-400 p-8 rounded-xl border-dashed gap-2 items-center">
         {props.active ? (
           <span className="flex w-3 h-3 bg-green-600 rounded-full"></span>
         ) : (
           <PlusCircleIcon className="w-6 h-6 text-gray-400" />
         )}
         <span>{props.title}</span>
-      </div>
-    </PopoverTrigger>
-      <PopoverContent>
-          {props.children}
-      </PopoverContent>
+      </button>
     </Popover>
   );
 };
@@ -67,10 +70,9 @@ export const TooltipContentBase = (props: {
 }) => {
 
   return (
-    <div>
-      <div className="w-full">
-        {props.children}
-      </div>
+    <div className="w-full p-2 md:w-48 max-md:h-64">
+      <p className="text-md font-medium text-gray-900 dark:text-white">{props.title}</p>
+      {props.children}
     </div>
   );
 };

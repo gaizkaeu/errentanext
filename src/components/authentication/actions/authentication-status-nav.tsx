@@ -15,12 +15,11 @@ const AuthenticationStatusNav = () => {
       <DropdownMenuTrigger asChild>
         <Button
           size="sm"
-          variant="subtle"
         >
           <span className="sr-only">My account</span>
           <UserIcon className="h-6 w-6" />
           <div className="ml-2">
-            <p className="text-lg font-semibold">{currentUser?.attributes.first_name}</p>
+            <p className="text-md font-semibold">{currentUser?.attributes.first_name}</p>
           </div>
         </Button>
       </DropdownMenuTrigger>
@@ -82,8 +81,6 @@ const AuthenticationStatusNav = () => {
           className={
             buttonVariants({
               size: "sm",
-              variant: "ghost",
-              className: "text-slate-700 dark:text-slate-400",
             })
           }
         >

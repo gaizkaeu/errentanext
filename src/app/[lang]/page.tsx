@@ -25,32 +25,30 @@ export default async function IndexPage({
     <>
       <div className="grid grid-cols-1 justify-items-center">
         <HomeHero />
-        <div className="w-full px-2">
-          <div className="lg:mx-auto lg:w-fit">
-            <div className="flex items-center gap-2">
-              <h2 className="text-2xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
-                Explorar
-              </h2>
-              <h3 className="text-2xl font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
-                Asesorías en
-              </h3>
-              <input type="text" className="text-2xl max-w-xs font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1] focus:outline-none" placeholder="Madrid" />
-            </div>
-
-            <div className="grid grid-cols-1 space-y-2">
-              {orgs && orgs?.data.map((org: Organization) => (
-                <Link href={`/organizations/${org.id}`} key={org.id} className="w-full lg:max-w-lg">
-                  <OrganizationCard org={org} />
-                </Link>
-              ))}
-            </div>
-            <div className="flex w-full mt-5 justify-center gap-2">
-              <Link href="/organizations">
-                <Button>
-                  Mostrar más
-                </Button>
+        <div className="w-full px-2 lg:p-12 max-w-7xl">
+          <div className="flex items-center gap-2">
+            <h2 className="text-2xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
+              Explorar
+            </h2>
+            <h3 className="text-2xl whitespace-nowrap font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
+              Asesorías en
+            </h3>
+            <input className="text-2xl border-b dark:bg-black border-b-midnight-800 whitespace-nowrap font-light leading-tight tracking-tighter w-20 md:w-64 lg:w-72 md:text-5xl lg:text-6xl lg:leading-[1.1] focus:outline-none" placeholder="Madrid" />
+          </div>
+          <br />
+          <div className="grid grid-cols-1 space-y-2 justify-items-center">
+            {orgs && orgs?.data.map((org: Organization) => (
+              <Link href={`/organizations/${org.id}`} key={org.id} className="w-full lg:max-w-lg">
+                <OrganizationCard org={org} />
               </Link>
-            </div>
+            ))}
+          </div>
+          <div className="flex w-full mt-5 justify-center gap-2">
+            <Link href="/organizations">
+              <Button>
+                Mostrar más
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

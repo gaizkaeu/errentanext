@@ -6,9 +6,9 @@ import { Link } from "next-intl";
 export const DashGridActions = () => {
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-900 rounded-xl overflow-hidden">
-      <div className="grid lg:grid-cols-2 grid-cols-1 dark:border-gray-700">
-        <div className="grid grid-cols-1 divide-y dark:border-gray-700">
+    <div className="bg-slate-50 dark:bg-midnight-800 rounded-xl overflow-hidden">
+      <div className="grid lg:grid-cols-2 grid-cols-1 divide-x dark:border-midnight-700">
+        <div className="grid grid-cols-1 divide-y dark:border-midnight-700">
           <Action title="Mis declaraciones" color="yellow" description="Ver todas mis declaraciones." href="/tax_incomes" >
             <PaperAirplaneIcon className="h-8" />
           </Action>
@@ -16,7 +16,7 @@ export const DashGridActions = () => {
             <GlobeAltIcon className="h-8" />
           </Action>
         </div>
-        <div className="grid grid-cols-1 divide-y dark:border-gray-700">
+        <div className="grid grid-cols-1 divide-y dark:border-midnight-700">
           <Action title="Configuración de mi cuenta" color="purple" description="Puedes administrar tu cuenta, ver tus pagos y gestionar las notificaciones." href="" >
             <WrenchScrewdriverIcon className="h-8" />
           </Action>

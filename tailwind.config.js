@@ -5,7 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        midnight: "#1f2226",
+        midnight: {
+          700: "#1f2226",
+          800: "#111214"
+
+        }
       },
       keyframes: {
         "accordion-down": {
