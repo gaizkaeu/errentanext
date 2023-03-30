@@ -16,7 +16,7 @@ export const ReviewsSummary = (props: { reviews: OrganizationReviews }) => {
             {total === 0 ? (
               <span className="text-slate-500 dark:text-slate-400">-</span>
             ) : (
-              <span className="text-slate-500 dark:text-slate-400">{props.reviews.avg_rating}</span>
+              <span className="text-slate-500 dark:text-slate-400">{props.reviews.average}</span>
             )}
           </p>
           {total === 0 ? (

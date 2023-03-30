@@ -42,7 +42,7 @@ export const OrganizationLineItem = (props: { org: Organization, selected?: bool
         <div className="p-1">
           <div className="stat-title">Rating</div>
           <div className="stat-value">
-            <Rating rating={props.org.attributes.ratings.avg_rating} />
+            <Rating rating={props.org.attributes.ratings.average} />
           </div>
         </div>
         <div className="p-1">
