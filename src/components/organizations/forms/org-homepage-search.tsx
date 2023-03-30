@@ -17,7 +17,7 @@ export const OrgHomepageSearch = () => {
           setOpenPopover={setFocused}
         >
 
-          <button onClick={() => setFocused(!focused)} className="text-2xl text-gray-700 border-b dark:bg-black border-b-midnight-800 whitespace-nowrap font-light leading-tight tracking-tighter w-20 md:w-64 lg:w-72 md:text-5xl lg:text-6xl lg:leading-[1.1] focus:outline-none">
+          <button onClick={() => setFocused(!focused)} className="text-2xl text-gray-700 dark:text-gray-400 border-b dark:bg-black border-b-midnight-800 whitespace-nowrap font-light leading-tight tracking-tighter w-20 md:w-64 lg:w-72 md:text-5xl lg:text-6xl lg:leading-[1.1] focus:outline-none">
             Madrid
           </button>
         </Popover>

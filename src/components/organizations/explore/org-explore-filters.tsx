@@ -3,6 +3,7 @@ import { LocationFilter, SearchBar, TextFilter } from "@/components/filters";
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams} from "next/navigation";
 import queryString from "query-string";
+import { TagList } from "@/components/tags";
 
 
 export const OrganizationExplore = () => {
@@ -26,6 +27,7 @@ export const OrganizationExplore = () => {
         <TextFilter key_name="name" key="name" title={"Rango de precio"} />
         <LocationFilter />
       </SearchBar>
+      <TagList />
     </>
   );
 }

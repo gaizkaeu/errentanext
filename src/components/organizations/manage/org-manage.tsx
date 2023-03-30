@@ -4,16 +4,20 @@ import { OrganizationCard } from "../org-card";
 import { Link } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { OrganizationManageBadgeRoles } from "./org-manage-roles-badges";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export const OrganizationManageList = () => {
 
   const { data } = useGetOrganizationsManageQuery({});
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-4 justify-items-center">
       {data && data.map((org) => (
-        <Link href={`/organization-manage/${org.attributes.organization.data.id}`} key={org.id} className="w-full lg:max-w-lg">
+        <Link href={`/organization-manage/${org.attributes.organization.data.id}`} key={org.id} className="w-full lg:max-w-lg relative">
           <OrganizationCard org={org.attributes.organization.data} badges={<OrganizationManageBadgeRoles role={org.attributes.role} />} />
+          <Button variant="destructive" size="sm" className="absolute top-[-1rem] right-[-1rem] z-10">
+            <XMarkIcon className="w-4 h-4" />
+          </Button>
         </Link>
       ))}
       {data && data.length == 0 && <OrganizationManageListEmpty />}

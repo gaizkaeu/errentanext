@@ -13,11 +13,11 @@ export default function OrganizationManageIndex() {
           Asesorías.
         </h3>
       </div>
-      <div className="grid lg:grid-cols-7 grid-cols-1 gap-3">
-        <div className="lg:col-span-2">
+      <div className="grid lg:grid-cols-7 grid-cols-1 gap-3 max-w-7xl mx-auto">
+        <div className="lg:col-span-3">
           <OrganizationJoinComponent />
         </div>
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <OrganizationManageList />
         </div>
       </div>

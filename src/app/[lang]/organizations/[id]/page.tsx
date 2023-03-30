@@ -13,13 +13,13 @@ export const revalidate = true
 export const dynamic = 'force-dynamic'
 
 const getOrg = async (id: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id, { next: { revalidate: 60 } });
   const data = await res.json();
   return data.data;
 };
 
 const getOrgReview = async (id: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id + "/reviews");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id + "/reviews",  { next: { revalidate: 60 } });
   const data = await res.json();
   return data.data;
 };
@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const [org, reviews] = await Promise.all([orgProm, reviewProm]);
 
   return org && (
-    <div className="w-full md:p-8">
+    <div className="w-full md:p-8 p-1">
       <div className="flex items-center gap-4">
         <BackButton href="/organizations" />
         <div>
