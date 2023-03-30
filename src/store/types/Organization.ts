@@ -232,7 +232,7 @@ export interface Review {
 }
 
 export interface OrganizationReviews {
-  avg_rating: number;
+  average: number;
   one_star_count: number;
   two_star_count: number;
   three_star_count: number;
