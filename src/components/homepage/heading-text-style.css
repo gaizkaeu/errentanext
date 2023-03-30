@@ -7,13 +7,12 @@ h1 {
 
   .heading-line {
     line-height: 1;
-    display: block;
+    display: inline-block;
     position: relative;
   }
 
   .heading-line::before {
     line-height: 1;
-    display: block;
     position: absolute;
     pointer-events: none;
     width: 100%;

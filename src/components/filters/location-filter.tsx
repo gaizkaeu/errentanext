@@ -8,6 +8,7 @@ import { BaseTooltip, SearchContext, TooltipContentBase } from ".";
 import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { LoadingText } from "../ui/loading-text";
+import { MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 export const LocationFilter = () => {
   const { searchParams } = useContext(SearchContext);
@@ -98,28 +99,9 @@ export const LocationConfiguration = () => {
   }, []);
 
   return (
-    <TooltipContentBase title="location">
+    <TooltipContentBase title="Ubicación">
       <div>
         <div className="w-64">
-          <div className="">
-            <GooglePlacesAutocomplete
-              selectProps={{
-                value: {
-                  label: searchParams["coordinates[place_name]"],
-                  value: {
-                    place_id: searchParams["coordinates[place_object]"],
-                  },
-                },
-                onChange: updateSearchValue,
-              }}
-              autocompletionRequest={{
-                componentRestrictions: {
-                  country: ["es"],
-                },
-              }}
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}
-            />
-          </div>
           <div>
             {searchParams["coordinates[status]"] ? (
               <Button onClick={handleLocationDisable} color="error" size="sm">
@@ -128,13 +110,33 @@ export const LocationConfiguration = () => {
             ) : searchParams["coordinates[status]"] === "loading" ? (
               <LoadingText />
             ) : (
-              <Button
-                size="sm"
-                onClick={handleLocationToggle}
-                disabled={!available}
-              >Locate me</Button>
+              <div className="hover:opacity-80">
+                <div className="flex items-center">
+                  <MapPinIcon className="w-5 h-5 mr-2" />
+                  <p className="text-md font-medium">
+                    Localizarme
+                  </p>
+                </div>
+              </div>
             )}
           </div>
+          <GooglePlacesAutocomplete
+            selectProps={{
+              value: {
+                label: searchParams["coordinates[place_name]"],
+                value: {
+                  place_id: searchParams["coordinates[place_object]"],
+                },
+              },
+              onChange: updateSearchValue,
+            }}
+            autocompletionRequest={{
+              componentRestrictions: {
+                country: ["es"],
+              },
+            }}
+            apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}
+          />
         </div>
       </div>
     </TooltipContentBase>

@@ -18,7 +18,7 @@ export const TagList = () => {
   return data ? (
     <motion.div
       initial="hidden"
-      style={{ display: "flex", overflowX: "auto" }}
+      style={{ display: "flex" }}
       animate="show"
       variants={{
         hidden: {},
@@ -31,9 +31,7 @@ export const TagList = () => {
       className="mt-3 grid gap-2"
     >
       {data.map((tag) => (
-        <motion.div key={tag.id} variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
-          <AnimatedTag tag={tag} key={tag.id} />
-        </motion.div>
+        <AnimatedTag tag={tag} key={tag.id} />
       ))}
     </motion.div>
   ) : <></>;
@@ -55,6 +53,7 @@ const AnimatedTag = ({ tag }: { tag: Tag }) => {
       initial={{ x: "100%" }}
       animate={{ x: "0%" }}
       whileTap={{ scale: 0.9 }}
+      variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
       whileDrag={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
       onTap={handleClick}
@@ -69,19 +68,7 @@ const AnimatedTag = ({ tag }: { tag: Tag }) => {
       <TagComponent tag={tag} />
     </motion.div>
   );
-}      /* // drag
-      // initial={{ x: "100%" }}
-      // animate={{ x: "0%" }}
-      // whileTap={{ scale: 0.9 }}
-      // whileDrag={{ scale: 0.9 }}
-      // whileHover={{ scale: 1.1 }}
-      // onTap={handleClick}
-      // dragConstraints={{
-      //   top: 0,
-      //   left: 0,
-      //   right: 0,
-      //   bottom: 0,
-      // }}> */
+} 
 
 export const TagInline = ({ tags }: { tags: VerifiedTag[] }) => {
   return (
