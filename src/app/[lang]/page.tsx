@@ -1,5 +1,6 @@
 import { HomeHero } from "@/components/homepage/home-hero";
-import { OrganizationCard } from "@/components/organizations";
+import { OrgHomepageSearch, OrganizationCard } from "@/components/organizations";
+import { TagList } from "@/components/tags";
 import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
@@ -33,8 +34,9 @@ export default async function IndexPage({
             <h3 className="text-2xl whitespace-nowrap font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
               Asesorías en
             </h3>
-            <input className="text-2xl border-b dark:bg-black border-b-midnight-800 whitespace-nowrap font-light leading-tight tracking-tighter w-20 md:w-64 lg:w-72 md:text-5xl lg:text-6xl lg:leading-[1.1] focus:outline-none" placeholder="Madrid" />
+            <OrgHomepageSearch />
           </div>
+          <TagList />
           <br />
           <div className="grid grid-cols-1 space-y-2 justify-items-center">
             {orgs && orgs?.data.map((org: Organization) => (

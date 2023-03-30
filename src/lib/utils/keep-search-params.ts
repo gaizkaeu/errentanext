@@ -1,7 +1,6 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import queryString from "query-string";
 
 export function useKeepSearchParams() {
   const s = useSearchParams();

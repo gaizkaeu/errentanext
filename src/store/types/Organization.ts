@@ -1,6 +1,7 @@
 import { round } from "lodash";
 import { BaseRelation, ClientRelation, LawyerRelation } from ".";
 import { TaxIncomeRelation } from "./TaxIncome";
+import { Tag, VerifiedTag } from "./Tag";
 
 export interface StripeSubscription {
   id: string;
@@ -159,6 +160,8 @@ export interface OrganizationAttributes {
   settings?: {
     hireable: boolean;
   }
+  skills_verified: VerifiedTag[];
+  skill_list: string[];
 }
 
 export interface Organization {

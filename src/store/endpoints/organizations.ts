@@ -2,6 +2,7 @@ import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
 import { LawyerProfile } from "../types/LawyerProfile";
 import { Organization, OrganizationAttributes, OrganizationInvitation, OrganizationInvitationAttributes, OrganizationMembership, OrganizationMembershipAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
+import { Tag } from "../types/Tag";
 import { Transaction } from "../types/Transaction";
 
 
@@ -165,6 +166,17 @@ const organizationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponseList<OrganizationStats>) =>
         response.data,
     }),
+    getTags: build.query<
+    Tag[],
+    void
+  >({
+    query: (id) => ({
+      url: 'tags',
+      method: "get",
+    }),
+    transformResponse: (response: BaseQueryResponseList<Tag>) =>
+      response.data,
+  }),
     getOrganizationLawyers: build.query<
       LawyerProfile[],
       { id: string; filters: Record<string, string> }
@@ -317,6 +329,7 @@ export const {
   useCreateOrganizationMutation,
   useGetOrganizationLawyersQuery,
   useGetOrganizationTransactionsQuery,
+  useGetTagsQuery,
   useCreateOrganizationJoinRequestMutation,
   useGetOrganizationMembershipsQuery,
   useCreateOrganizationInvitationMutation,

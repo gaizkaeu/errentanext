@@ -3,10 +3,11 @@ import { Separator } from "../ui/separator"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { OrganizationBadge, PriceRange, Rating } from "./org-badge"
+import { TagInline } from "../tags"
 
 
 const orgCardBackground = cva(
-  "transition-all animate-in fade-in-10 w-full lg:max-w-lg rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
+  "transition-all animate-in fade-in-10 w-full lg:max-w-xl rounded-xl h-54 p-4 shadow-md hover:-translate-y-1 hover:rounded-2xl",
   {
     variants: {
       status: {
@@ -27,7 +28,7 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean,
 
   return (
     <div className={cn(orgCardBackground({ status: props.selected ? "active" : "disable" }))}>
-      <div className="flex items-center mb-3">
+      <div className="flex items-center">
         <h3 className="flex-1 text-lg font-light leading-tight tracking-tighter md:text-2xl lg:text-3xl lg:leading-[1.1]">
           {props.org.attributes.name}
         </h3>
@@ -43,6 +44,9 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean,
           )}
         </p>
       </div>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+         <TagInline tags={props.org.attributes.skills_verified} />
+      </p>
       <Separator />
       <div className="flex gap-4 justify-center">
         <div className="p-1">

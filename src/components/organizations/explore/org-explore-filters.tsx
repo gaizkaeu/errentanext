@@ -22,7 +22,8 @@ export const OrganizationExplore = () => {
   return (
     <>
       <SearchBar searchParams={search} setSearchParams={setSearch}>
-        <TextFilter key_name="name" key="name" title={"Buscar por nombre"} />
+        <TextFilter key_name="name" key="name" title={"Nombre"} />
+        <TextFilter key_name="name" key="name" title={"Rango de precio"} />
         <LocationFilter />
       </SearchBar>
     </>

@@ -4,7 +4,7 @@ import { useUpdateOrganizationByIdMutation } from "@/store/endpoints/organizatio
 import { Organization, OrganizationAttributes } from "@/store/types/Organization";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Label } from "@/components/ui/label";
-import { InputField } from "@/components/fields";
+import { InputField, TagsField } from "@/components/fields";
 import { FormSection } from "@/components/ui/form-section";
 
 export const OrganizationEditForm = (props: { organization: Organization }) => {
@@ -34,6 +34,10 @@ export const OrganizationEditForm = (props: { organization: Organization }) => {
                 <Label htmlFor="name">Nombre</Label>
                 <InputField name="name" />
                 {/* <TextAreaField name="description" label="Descripción" /> */}
+              </FormSection>
+              <FormSection title="Etiquetas" description="Etiquetas de tu asesoría." note={"Solo se verificarán las que coincidan con la de tus abogados."}>
+                <Label htmlFor="skill_list">Especialidades</Label>
+                <TagsField name="skill_list"  />
               </FormSection>
               <FormSection title="Contacto" description="Métodos de contacto para tus clientes." note="Mantén la información actualizada">
                 <Label htmlFor="website">Página web</Label>

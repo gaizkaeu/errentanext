@@ -26,7 +26,7 @@ const lawyerProfilesApi = api.injectEndpoints({
       LawyerProfile,
       Partial<LawyerProfileAttributes>
     >({
-      query: (body) => ({ url: `my-lawyer-profile`, method: "post", body: body }),
+      query: (body) => ({ url: `my-lawyer-profile`, method: "post", body: {lawyer_profile: body} }),
       invalidatesTags: [{ type: "LawyerProfile", id: "me" }],
       transformResponse: (response: BaseQueryResponse<LawyerProfile>) =>
         response.data,
@@ -38,7 +38,7 @@ const lawyerProfilesApi = api.injectEndpoints({
       query: (data) => ({
         url: `my-lawyer-profile`,
         method: "put",
-        body: data,
+        body: {lawyer_profile: data},
       }),
       invalidatesTags: () => [{ type: "LawyerProfile", id: "me" }],
       transformResponse: (response: BaseQueryResponse<LawyerProfile>) =>

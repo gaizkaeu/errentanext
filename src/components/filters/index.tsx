@@ -28,7 +28,7 @@ export const SearchBar = (props: {
   return (
     <SearchContext.Provider value={{ searchParams, setSearchParams }}>
       <div className="flex items-center">
-        <div className="flex-1 flex flex-wrap gap-y-2">{props.children}</div>
+        <div className="flex-1 flex flex-row overflow-x-auto gap-y-2">{props.children}</div>
         <div>
           <XCircleIcon className="w-6 h-6 text-gray-400" />
         </div>
@@ -58,7 +58,7 @@ export const BaseTooltip = (props: {
         ) : (
           <PlusCircleIcon className="w-6 h-6 text-gray-400" />
         )}
-        <span>{props.title}</span>
+        <span className="whitespace-nowrap">{props.title}</span>
       </button>
     </Popover>
   );
