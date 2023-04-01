@@ -26,7 +26,7 @@ export const OrganizationMembershipInviteForm = (props: { organization_id: strin
 
   return (
 
-    <Formik onSubmit={onSubmit} initialValues={{ organization_id: props.organization_id, role: "lawyer", email: "", token: ""}}>
+    <Formik onSubmit={onSubmit} initialValues={{ organization_id: props.organization_id, role: "admin", email: "", token: ""}}>
       {({ isSubmitting, status }) => (
       <Form>
         {status?.success && (

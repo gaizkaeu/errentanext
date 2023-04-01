@@ -3,7 +3,7 @@
 import { useAuth } from "@/components/providers/authProvider";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { BuildingOfficeIcon, TagIcon, UserGroupIcon, UserIcon } from "@heroicons/react/24/outline";
+import { BuildingOfficeIcon, UserGroupIcon, UserIcon } from "@heroicons/react/24/outline";
 import { Link } from "next-intl";
 
 const AuthenticationStatusNav = () => {
@@ -51,18 +51,6 @@ const AuthenticationStatusNav = () => {
               </div>
               <div className="flex-1 ml-2">
                 <p className="text-lg font-semibold">Mis <span className="font-light">asesorías</span>.</p>
-              </div>
-            </div>
-          </DropdownMenuItem>
-        </Link>
-        <Link href="/lawyer-profiles">
-          <DropdownMenuItem>
-            <div className="flex items-center">
-              <div className="w-10 h-10 flex rounded-full bg-slate-100 dark:bg-slate-900 text-center ">
-                <TagIcon className="m-auto h-8" />
-              </div>
-              <div className="flex-1 ml-2">
-                <p className="text-lg font-semibold">Perfil de <span className="font-light">abogado</span>.</p>
               </div>
             </div>
           </DropdownMenuItem>

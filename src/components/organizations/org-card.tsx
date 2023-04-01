@@ -45,7 +45,7 @@ export const OrganizationCard = (props: { org: Organization, selected?: boolean,
         </p>
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-         <TagInline tags={props.org.attributes.skills_verified} />
+         <TagInline tags={props.org.attributes.skill_list} />
       </p>
       <Separator />
       <div className="flex gap-4 justify-center">

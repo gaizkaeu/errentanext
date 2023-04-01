@@ -1,4 +1,4 @@
-import { SignInComponent } from '@/components/authentication/actions';
+import { GoogleSignInButton, SignInComponent } from '@/components/authentication/actions';
 
 export default function SignIn() {
 
@@ -14,6 +14,7 @@ export default function SignIn() {
               Or{' '}
               sign-up
             </p>
+            <GoogleSignInButton />
             <SignInComponent />
           </div>
         </div>

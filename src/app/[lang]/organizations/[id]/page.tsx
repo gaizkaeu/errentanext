@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const [org, reviews] = await Promise.all([orgProm, reviewProm]);
 
   return org && (
-    <div className="w-full md:p-8 p-1">
+    <div className="w-full md:p-4 p-1">
       <div className="flex items-center gap-4">
         <BackButton href="/organizations" />
         <div>
@@ -55,7 +55,6 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Separator />
           <br />
           <section>
-            <h3 className="text-2xl font-semibold">Acciones</h3>
             <OrganizationActionsSmall org={org} />
           </section>
           <br />

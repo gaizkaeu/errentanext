@@ -1,5 +1,5 @@
 "use client";
-import { Tag, VerifiedTag } from "@/store/types/Tag";
+import { Tag } from "@/store/types/Tag";
 import { TagComponent } from "./tag";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ export const TagList = () => {
   return data ? (
     <motion.div
       initial="hidden"
-      style={{ display: "flex" }}
+      style={{ display: "flex", overflowX: "auto" }}
       animate="show"
       variants={{
         hidden: {},
@@ -49,20 +49,12 @@ const AnimatedTag = ({ tag }: { tag: Tag }) => {
 
   return (
     <motion.div
-      drag
       initial={{ x: "100%" }}
       animate={{ x: "0%" }}
       whileTap={{ scale: 0.9 }}
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
-      whileDrag={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
       onTap={handleClick}
-      dragConstraints={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
     >
 
       <TagComponent tag={tag} />
@@ -70,20 +62,10 @@ const AnimatedTag = ({ tag }: { tag: Tag }) => {
   );
 } 
 
-export const TagInline = ({ tags }: { tags: VerifiedTag[] }) => {
+export const TagInline = ({ tags }: { tags: string[] }) => {
   return (
     <span>
-      {tags.map((tag) => (
-        <span key={tag.name}> {tag.verified && <VerifiedBadge />} {tag.name}</span>
-      ))}
+      {tags.join(", ")}
     </span>
-  )
-}
-
-const VerifiedBadge = () => {
-  return (
-    <>
-      <CheckBadgeIcon className="h-4 w-4 text-green-500 inline-block" />
-    </>
   )
 }

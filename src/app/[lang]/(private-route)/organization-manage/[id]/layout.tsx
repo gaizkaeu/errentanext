@@ -35,10 +35,6 @@ export default async function RootLayout({
         text: "Ajustes",
         href: `/organization-manage/${params.id}/settings`,
       },
-      {
-        text: "Precios",
-        href: `/organization-manage/${params.id}/prices`,
-      },
     ]
   },
   {
@@ -47,11 +43,7 @@ export default async function RootLayout({
       {
         text: "Miembros",
         href: `/organization-manage/${params.id}/memberships`,
-      },
-      {
-        text: "Abogados",
-        href: `/organization-manage/${params.id}/lawyers`,
-      },
+      }
     ]
   },
   {
@@ -60,15 +52,6 @@ export default async function RootLayout({
       text: "Información",
       href: `/organization-manage/${params.id}/subscription`,
     }]
-  },
-  {
-    title: "Balances",
-    links: [
-      {
-        text: "Transacciones",
-        href: `/organization-manage/${params.id}/transactions`,
-      },
-    ]
   }
 ]
 

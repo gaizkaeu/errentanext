@@ -131,6 +131,13 @@ export const authenticationApi = api.injectEndpoints({
       providesTags: () => ["AUTHENTICATED_USER", "WEB_AUTHN_KEYS"],
 
     }),
+    getGoogleAuthUrl: build.mutation<{ authorize_url: string }, void>({
+      query: () => ({ url: "auth/auth/google", method: "post" }),
+    }),
+    googleCallback: build.mutation<void, string>({
+      query: (data) => ({ url: `auth/auth/google/callback${data}`, method: "post" }),
+      invalidatesTags: () => ["AUTHENTICATED_USER"],
+    }),
   }),
 });
 
@@ -140,4 +147,6 @@ export const {
   useGetMFAuthMethodsQuery,
   useEmailAuthMutation,
   useMfaOTPAuthMutation,
+  useGetGoogleAuthUrlMutation,
+  useGoogleCallbackMutation
 } = authenticationApi;

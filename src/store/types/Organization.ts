@@ -205,7 +205,7 @@ export interface OrganizationInvitationAttributes {
 }
 
 
-export const OrganizationMembershipRoles = ["admin", "lawyer"] as const;
+export const OrganizationMembershipRoles = ["admin"] as const;
 
 export type OrganizationMembershipRole = (typeof OrganizationMembershipRoles)[number];
 
