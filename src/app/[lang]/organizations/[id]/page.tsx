@@ -1,4 +1,4 @@
-import { OrganizationExploreOthers } from "@/components/organizations";
+import { OrganizationExploreOthers, OrganizationOpen } from "@/components/organizations";
 import { OrganizationActionsSmall } from "@/components/organizations/actions";
 import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
@@ -7,6 +7,9 @@ import { TagBigComponent } from "@/components/tags";
 import { BackButton } from "@/components/ui/back-button";
 import { Button } from "@/components/ui/button";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
+
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 const getOrg = async (id: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id, { next: { revalidate: 60 } });
@@ -35,7 +38,10 @@ export default async function Page({ params }: { params: { id: string } }) {
             {org.attributes.name}
           </h1>
           <h2 className="text-xl font-bold leading-tight tracking-tighter md:text-3xl lg:text-4xl lg:leading-[1.1]">
-            Asesoría en <span className="font-light">{org.attributes.city}</span>
+            Asesoría en <span className="font-light">{org.attributes.city}</span>.{" "}
+            <span className="font-light">
+              <OrganizationOpen org={org} />
+            </span>
           </h2>
         </div>
       </div>

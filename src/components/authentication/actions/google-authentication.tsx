@@ -38,8 +38,8 @@ export const GoogleCallback = () => {
     callbackMutation(window.location.search).unwrap().then(() => {
       const state = s.get('state');
       if (state && localStorage.getItem(state)) {
-        localStorage.removeItem(state);
         r.replace(localStorage.getItem(state) ?? '/dashboard');
+        localStorage.removeItem(state);
       } else {
         r.replace('/dashboard');
       }

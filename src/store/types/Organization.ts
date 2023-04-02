@@ -161,6 +161,9 @@ export interface OrganizationAttributes {
     rating: number;
     reviews: GoogleReview[];
   }
+  nearest_open_time: string;
+  open: boolean;
+  near_close: boolean;
   settings?: {
     hireable: boolean;
   }

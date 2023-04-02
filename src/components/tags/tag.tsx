@@ -1,15 +1,29 @@
+import { cva } from "class-variance-authority";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
-export const TagComponent = ({ tag }: { tag: string }) => {
+const tagVariants = cva(
+  "rounded-full border",
+  {
+    variants: {
+      active: {
+        true:
+          "border-blue-700 bg-blue-400 text-blue-800 dark:border-blue-200",
+        false:
+          "border-blue-700 text-blue-800 dark:border-blue-200",
+      },
+    },
+    defaultVariants: {
+      active: false,
+    },
+  }
+)
 
-
-  return (
-    <Button variant="ghost" className="rounded-full border border-blue-700 text-blue-800 dark:border-blue-200">
-      {tag}
-    </Button>
-  )
-
-}
+export const TagComponent = ({ tag, active }: { tag: string, active?: boolean }) => (
+  <Button variant="ghost" className={cn(tagVariants({ active }))}>
+    {tag}
+  </Button>
+)
 
 export const TagBigComponent = ({ tag }: { tag: string }) => {
 
