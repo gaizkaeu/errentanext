@@ -9,6 +9,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import Link from "next/link"
 import { useState } from "react";
+import { SignUpForm } from "./sign-up-form";
 
 const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
   const [loading, setLoading] = useState(false);
@@ -117,6 +118,8 @@ const RecognizedAccount = (props: {
 export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
 
   const [recognized, setRecognized] = useState(false);
+  const [first_recognized, setFirstRecognized] = useState(false);
+  const [email, setEmail] = useState<string | undefined>(undefined);
   const t = useTranslations();
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
@@ -127,6 +130,7 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
     helpers: FormikHelpers<any>
   ) => {
     setError(undefined);
+    setEmail(values.login);
     loginMutation(values)
       .unwrap()
       .then((response) => {
@@ -138,6 +142,7 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
       })
       .catch((error) => {
         setError(error.data.error);
+        setFirstRecognized(true);
         helpers.setErrors({ login: error.data["field-error"][1] });
       });
 
@@ -158,10 +163,10 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
       });
   };
 
-  return (
+  return !first_recognized ? (
     <Formik onSubmit={recognized ? login : handleRecognize} initialValues={{ login: "", password: undefined } as SessionCreationData}>
       {({ isSubmitting, values }) => (
-      <Form className="mt-8 space-y-6" action="#" method="POST">
+      <Form className="space-y-2" action="#" method="POST">
         <input type="hidden" name="remember" defaultValue="true" />
         {error && <div>{error}</div>}
         {success && <div>{success}</div>}
@@ -192,5 +197,5 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
       </Form>
       )}
     </Formik>
-  );
+  ) : <SignUpForm afterLogin={afterLogin} initialEmail={email} />;
 }

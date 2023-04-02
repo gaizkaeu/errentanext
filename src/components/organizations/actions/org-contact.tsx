@@ -2,36 +2,40 @@
 import { Button } from "@/components/ui/button"
 import { Organization } from "@/store/types/Organization";
 import { useAhoy } from "@/components/providers";
-import Modal from "@/components/ui/modal-card";
 import { useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { GoogleSignInButton, SignInForm } from "@/components/authentication";
 
 const ContactButton = (props: { org: Organization }) => {
 
-  const [open, setOpen] = useState(false);
   const { ahoy } = useAhoy();
 
   return (
-    <>
-
-    <Modal showModal={open} setShowModal={setOpen}>
-      <div className="inline-block max-h-[calc(100vh-150px)] w-full max-w-screen-xl transform overflow-scroll bg-gray-50
-        align-middle shadow-xl scrollbar-hide sm:rounded-2xl sm:border sm:border-gray-200">
-        <p>eso es una prueba</p>
-      <button
-          className="group sticky top-4 right-4 z-30 float-right hidden rounded-full p-3 transition-all duration-75 hover:bg-gray-100 focus:outline-none active:scale-75 sm:block"
-          autoFocus={false}
-        >
-          salir
-        </button>
-      </div>
-    </Modal>
-    <div>
-      <Button variant="ghost" onClick={() => setOpen(true)}className="rounded-full border border-blue-700 text-blue-800 dark:border-blue-200">
-        Quiero contactar ahora
-      </Button>
-      <p className="text-xs text-blue-800 text-center dark:text-white">Respuesta en {"<"} 2 minutos</p>
-    </div>
-    </>
+    <Dialog>
+      <DialogTrigger asChild>
+        <div>
+        <Button variant="ghost" className="rounded-full border border-blue-700 text-blue-800 dark:border-blue-200">
+          Quiero contactar ahora
+        </Button>
+        <p className="text-xs text-blue-800 text-center dark:text-white">Respuesta en {"<"} 2 minutos</p>
+        </div>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Contactar con {props.org.attributes.name}</DialogTitle>
+          <DialogDescription>
+            Respuesta medía en {"<"} <span className="relative">2<span className="animate-ping inline-flex absolute h-5 w-5 inset-x-0 rounded-full bg-green-500 opacity-75" /> </span>minutos
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Para continuar necesitamos información adicional.
+          </p>
+          <GoogleSignInButton redirectUrl="/dashboard" />
+          <SignInForm afterLogin={() => {}}/>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 

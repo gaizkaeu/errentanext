@@ -157,10 +157,13 @@ export interface OrganizationAttributes {
   logo: string;
   created_at: string;
   visible: boolean;
+  google_place_details?: {
+    rating: number;
+    reviews: GoogleReview[];
+  }
   settings?: {
     hireable: boolean;
   }
-  skills_verified: VerifiedTag[];
   skill_list: string[];
 }
 
@@ -229,6 +232,16 @@ export interface Review {
     lawyer?: BaseRelation<LawyerRelation>;
   };
   characteristics: ReviewCharacteristics;
+}
+
+export interface GoogleReview {
+  author_name: string;
+  author_url: string;
+  language: string;
+  profile_photo_url: string;
+  rating: number;
+  relative_time_description: string;
+  text: string;
 }
 
 export interface OrganizationReviews {

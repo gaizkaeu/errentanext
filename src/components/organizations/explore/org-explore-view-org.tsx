@@ -6,6 +6,7 @@ import { OrganizationActionsSmall } from "../actions";
 import { ReviewComponentInline, ReviewsSummary } from "@/components/reviews";
 import { useKeepSearchParams } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { OrganizationReviews } from "../org-review";
 
 export const OrgViewExplore = (props: { org: Organization, reviews: Review[] }) => {
 
@@ -51,6 +52,7 @@ export const OrgViewExplore = (props: { org: Organization, reviews: Review[] }) 
             <ReviewComponentInline review={i} key={index} />
           )
         })}
+        <OrganizationReviews reviews={reviews} org={org} />
       </section>
     </div>
   );

@@ -4,7 +4,6 @@ import { TagComponent } from "./tag";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useKeepSearchParams } from "@/lib/utils";
-import { CheckBadgeIcon } from "@heroicons/react/24/outline";
 import { useGetTagsQuery } from "@/store/endpoints/organizations";
 
 export const FRAMER_MOTION_LIST_ITEM_VARIANTS = {
@@ -53,11 +52,11 @@ const AnimatedTag = ({ tag }: { tag: Tag }) => {
       animate={{ x: "0%" }}
       whileTap={{ scale: 0.9 }}
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.01 }}
       onTap={handleClick}
     >
 
-      <TagComponent tag={tag} />
+      <TagComponent tag={tag.attributes.name} />
     </motion.div>
   );
 } 

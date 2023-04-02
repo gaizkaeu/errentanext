@@ -1,14 +1,20 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useGetGoogleAuthUrlMutation, useGoogleCallbackMutation } from "@/store/endpoints/authentication";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export const GoogleSignInButton = () => {
+export const GoogleSignInButton = (props: {redirectUrl?: string}) => {
   const [googleUrl] = useGetGoogleAuthUrlMutation();
 
   const handleGoogleUrl = async () => {
     const response = await googleUrl().unwrap();
+    const url = new URL(response.authorize_url);
+    if (props.redirectUrl) {
+      const state = url.searchParams.get('state');
+      console.log(state);
+      localStorage.setItem(state ?? '', props.redirectUrl);
+    }
     if (response.authorize_url) {
       window.location.href = response.authorize_url;
     }
@@ -26,10 +32,17 @@ export const GoogleCallback = () => {
 
   const [callbackMutation] = useGoogleCallbackMutation();
   const r = useRouter();
+  const s = useSearchParams();
 
   useEffect(() => {
     callbackMutation(window.location.search).unwrap().then(() => {
-      r.replace('/dashboard');
+      const state = s.get('state');
+      if (state && localStorage.getItem(state)) {
+        localStorage.removeItem(state);
+        r.replace(localStorage.getItem(state) ?? '/dashboard');
+      } else {
+        r.replace('/dashboard');
+      }
     });
   }, [])
 
