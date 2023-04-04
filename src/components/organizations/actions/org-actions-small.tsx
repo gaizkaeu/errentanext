@@ -14,7 +14,6 @@ export const OrganizationActionsSmall = (props: { org: Organization }) => {
 
   return (
     <div className="flex gap-4 place-content-center flex-wrap">
-      <ContactButton org={org} />
       <div className="max-md:w-full flex place-content-center gap-4">
       <a href={`tel:${org.attributes.phone}`} onClick={() => ahoy.track("org_call", {org_id: props.org.id})}>
         <ActionButton label="Llamar">

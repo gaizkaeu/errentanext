@@ -15,6 +15,7 @@ interface GoogleMapProps {
   center?: google.maps.LatLngLiteral;
   bounds?: google.maps.LatLngBoundsLiteral;
   zoom?: number;
+  gesture?: string;
   setCenter?: (center: google.maps.LatLngLiteral) => void;
   setBounds?: (bounds: google.maps.LatLngBoundsLiteral) => void;
   setZoom?: (zoom: number) => void;
@@ -31,7 +32,7 @@ export function GoogleMap(props: GoogleMapProps) {
   );
 }
 
-export function Map({ children, center, setCenter, setBounds, bounds, setZoom, zoom}: GoogleMapProps) {
+export function Map({ gesture, children, center, setCenter, setBounds, bounds, setZoom, zoom}: GoogleMapProps) {
   const googlemap = useRef(null);
   const [map, setMap] = useState<google.maps.Map>();
   const s = useTheme();
@@ -41,7 +42,7 @@ export function Map({ children, center, setCenter, setBounds, bounds, setZoom, z
     if (!googlemap.current) return;
     let mapinstance = new google.maps.Map(googlemap.current, {
       disableDoubleClickZoom: false,
-      gestureHandling: 'greedy',
+      gestureHandling: gesture ?? "greedy",
       mapId: s.theme == "dark" ? "5d1dd36635803eed" : "d4895c37d1e0542d",
       disableDefaultUI: true,
       center: center,

@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </h2>
         </div>
       </div>
-      <Tabs defaultValue="call" className="w-full max-w-sm mx-auto">
+      <Tabs defaultValue="call" className="w-full max-w-sm mx-auto mt-2">
         <TabsList>
           <TabsTrigger value="call">
             <div>

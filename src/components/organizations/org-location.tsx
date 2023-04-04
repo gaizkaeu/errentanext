@@ -7,7 +7,7 @@ import { OrganizationMarker } from './map';
 export function OrganizationLocation(props: {org: Organization}) {
 
     return (
-    <GoogleMap center={{
+    <GoogleMap gesture="none" center={{
         lat: props.org.attributes.latitude,
         lng: props.org.attributes.longitude
     }} zoom={8}>

@@ -8,9 +8,9 @@ const tagVariants = cva(
     variants: {
       active: {
         true:
-          "border-blue-700 bg-blue-400 text-blue-800 dark:border-blue-200",
+          "bg-blue-400 text-blue-800 dark:border-blue-200",
         false:
-          "border-blue-700 text-blue-800 dark:border-blue-200",
+          "bg-blue-200 dark:bg-midnight-800 text-blue-800 dark:border-blue-200",
       },
     },
     defaultVariants: {
@@ -24,14 +24,3 @@ export const TagComponent = ({ tag, active }: { tag: string, active?: boolean })
     {tag}
   </Button>
 )
-
-export const TagBigComponent = ({ tag }: { tag: string }) => {
-
-  return (
-    <div className="h-24 lg:h-32 px-4 bg-blue-200 rounded-lg">
-      <div className="flex flex-col justify-center items-center h-full">
-        <div className="text-2xl  text-blue-800">{tag}</div>
-      </div>
-    </div>
-  )
-}
