@@ -168,6 +168,9 @@ export interface OrganizationAttributes {
     hireable: boolean;
   }
   skill_list: string[];
+  company_target_list: string[];
+  service_list: string[];
+  
 }
 
 export interface Organization {

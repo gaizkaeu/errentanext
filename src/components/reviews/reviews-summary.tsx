@@ -10,7 +10,7 @@ export const ReviewsSummary = (props: { reviews: OrganizationReviews }) => {
 
   return (
     <div>
-      <div className="flex items-center mt-4 gap-4 p-3">
+      <div className="flex items-center mt-4 w-full gap-4 p-3">
         <div className="text-center">
           <p className="text-3xl font-semibold">
             {total === 0 ? (
@@ -25,7 +25,7 @@ export const ReviewsSummary = (props: { reviews: OrganizationReviews }) => {
               <span className="text-slate-500 dark:text-slate-400">({total})</span>
             )}
         </div>
-        <div className="flex-1 flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-2 ">
           <Progress value={(props.reviews.five_star_count * 100) / total} />
           <Progress value={(props.reviews.four_star_count * 100) / total} />
           <Progress value={(props.reviews.three_star_count * 100) / total} />

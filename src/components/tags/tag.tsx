@@ -1,6 +1,7 @@
 import { cva } from "class-variance-authority";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 const tagVariants = cva(
   "rounded-full border",
@@ -23,4 +24,11 @@ export const TagComponent = ({ tag, active }: { tag: string, active?: boolean })
   <Button variant="ghost" className={cn(tagVariants({ active }))}>
     {tag}
   </Button>
+)
+
+export const TagBadge = ({ tag }: { tag: string }) => (
+  <p className="bg-green-200 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
+    <CheckIcon className="w-4 text-green-600 h-4 inline-block mr-1" />
+    {tag}
+  </p>
 )
