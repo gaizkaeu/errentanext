@@ -1,1 +1,0 @@
-export { IndexTaxIncomes } from './tax-index'

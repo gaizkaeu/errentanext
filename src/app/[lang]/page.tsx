@@ -6,10 +6,13 @@ import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
 import queryString from "query-string";
 
+export const dynamicParams = true // true | false,
 export const revalidate = true
+export const dynamic = 'force-dynamic'
+
 
 const getOrgs = async (params?: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "", { next: { revalidate: 60 } });
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "", { next: { revalidate: 1 } });
   const data = await res.json();
   return data;
 };
@@ -21,6 +24,7 @@ export default async function IndexPage({
 }) {
 
   const orgs = await getOrgs(queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" }));
+
 
   return (
     <>

@@ -4,7 +4,7 @@ import { TagComponent } from "./tag";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useKeepSearchParams } from "@/lib/utils";
-import { useGetTagsQuery } from "@/store/endpoints/organizations";
+import { useGetSkillsTagsQuery } from "@/store/endpoints/organizations";
 
 export const FRAMER_MOTION_LIST_ITEM_VARIANTS = {
   hidden: { scale: 0.8, opacity: 0 },
@@ -12,7 +12,7 @@ export const FRAMER_MOTION_LIST_ITEM_VARIANTS = {
 };
 
 export const TagList = () => {
-  const { data } = useGetTagsQuery();
+  const { data } = useGetSkillsTagsQuery({});
 
   return data ? (
     <motion.div

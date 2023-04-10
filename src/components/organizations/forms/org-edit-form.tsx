@@ -35,9 +35,17 @@ export const OrganizationEditForm = (props: { organization: Organization }) => {
                 <InputField name="name" />
                 {/* <TextAreaField name="description" label="Descripción" /> */}
               </FormSection>
-              <FormSection title="Etiquetas" description="Etiquetas de tu asesoría." note={"Solo se verificarán las que coincidan con la de tus abogados."}>
+              <FormSection title="Etiquetas" description="Etiquetas de tu asesoría." note={""}>
                 <Label htmlFor="skill_list">Especialidades</Label>
                 <TagsField name="skill_list"  />
+              </FormSection>
+              <FormSection title="Target" description="Que tipo de compañias quieres" note={"Solo se verificarán las que coincidan con la de tus abogados."}>
+                <Label htmlFor="company_target_list">Tipos</Label>
+                <TagsField name="company_target_list"  />
+              </FormSection>
+              <FormSection title="Servicios" description="Servicios que ofreces" note={""}>
+                <Label htmlFor="service_list">servicios</Label>
+                <TagsField name="service_list"  />
               </FormSection>
               <FormSection title="Contacto" description="Métodos de contacto para tus clientes." note="Mantén la información actualizada">
                 <Label htmlFor="website">Página web</Label>

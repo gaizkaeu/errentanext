@@ -166,12 +166,25 @@ const organizationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponseList<OrganizationStats>) =>
         response.data,
     }),
-    getTags: build.query<
+  getSkillsTags: build.query<
     Tag[],
-    void
+    Record<string, string>
   >({
-    query: (id) => ({
-      url: 'tags',
+    query: (data) => ({
+      url: 'skills_tags',
+      params: data,
+      method: "get",
+    }),
+    transformResponse: (response: BaseQueryResponseList<Tag>) =>
+      response.data,
+  }),
+  getServiceTags: build.query<
+    Tag[],
+    Record<string, string>
+  >({
+    query: (data) => ({
+      url: 'services_tags',
+      params: data,
       method: "get",
     }),
     transformResponse: (response: BaseQueryResponseList<Tag>) =>
@@ -329,7 +342,7 @@ export const {
   useCreateOrganizationMutation,
   useGetOrganizationLawyersQuery,
   useGetOrganizationTransactionsQuery,
-  useGetTagsQuery,
+  useGetSkillsTagsQuery,
   useCreateOrganizationJoinRequestMutation,
   useGetOrganizationMembershipsQuery,
   useCreateOrganizationInvitationMutation,
@@ -338,6 +351,7 @@ export const {
   useUpdateOrganizationInvitationMutation,
   useDeleteOrganizationMembershipMutation,
   useGetOrganizationInvitationQuery,
+  useGetServiceTagsQuery,
   useLazyGetOrganizationInvitationQuery,
   useAcceptOrganizationInvitationMutation
 } = organizationsApi;
