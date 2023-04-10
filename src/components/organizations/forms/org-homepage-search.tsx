@@ -10,7 +10,7 @@ export const OrgHomepageSearch = () => {
   const [searchParams, setSearchParams] = useSearch(true);
 
   useEffect(() => {
-    fetch("http://ip-api.com/json/").then((res) => res.json()).then((data) => {
+    fetch("https://api.ipgeolocation.io/ipgeo?apiKey=3b0a7d4a0d7d4ce18632bbfa46321c99").then((res) => res.json()).then((data) => {
       setSearchParams({ 'q[near_by]': data.city })
     });
   }, []);
