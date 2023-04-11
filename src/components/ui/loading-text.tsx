@@ -1,13 +1,11 @@
 "use client";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export const LoadingText = (props: { messages?: string[] }) => {
   const [messageIndex, setMessageIndex] = useState(0);
-  const t = useTranslations();
   const messages = props.messages ?? [
-    t("global.loading"),
-    t("global.loading2"),
+    "Cargando",
+    "No deber´ia tardar mucho"
   ];
 
   useEffect(() => {

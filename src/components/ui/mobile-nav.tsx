@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Link } from "next-intl"
+import Link from "next/link"
 import { Bars3Icon } from "@heroicons/react/24/outline"
 
 export function MobileNav() {

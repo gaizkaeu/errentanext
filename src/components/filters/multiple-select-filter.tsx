@@ -4,7 +4,6 @@ import Select, { MultiValue } from "react-select";
 import { BaseTooltip, SearchContext, TooltipContentBase } from ".";
 import { Key } from "./select-filter";
 import { Button } from "../ui/button";
-import { useTranslations } from "next-intl";
 
 export const MultipleSelectFilter = (props: {
   title: string;
@@ -26,7 +25,6 @@ export const SelectConfiguration = (props: {
   keys: Key[];
 }) => {
   const { searchParams, setSearchParams } = useContext(SearchContext);
-  const t = useTranslations();
 
   const updateSearchValue = (value: MultiValue<Key>) => {
     if (value == null) {
@@ -61,7 +59,7 @@ export const SelectConfiguration = (props: {
         ></Select>
         {props.key_name in searchParams && (
           <Button onClick={clear} size="sm" color="error">
-            {t("global.disable")}
+            Deshabilitar
           </Button>
         )}
       </div>

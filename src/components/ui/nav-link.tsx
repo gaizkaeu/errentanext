@@ -1,10 +1,10 @@
 'use client';
 
-import { Link } from 'next-intl';
-import { usePathname } from 'next-intl/client';
+import Link from "next/link"
 import { Button as ShadCNButton, ButtonProps, buttonVariants } from './button';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { usePathname } from "next/navigation";
 
 
 

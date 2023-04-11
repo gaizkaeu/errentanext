@@ -6,7 +6,6 @@ import { useRequestEmailAuthMutation, useWebAuthnAuthMutation } from "@/store/en
 import { useLoginAccountMutation } from "@/store/endpoints/userAccounts";
 import { SessionCreationData } from "@/store/types/User";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useTranslations } from "next-intl";
 import Link from "next/link"
 import { useState } from "react";
 import { SignUpForm } from "./sign-up-form";
@@ -14,7 +13,6 @@ import { SignUpForm } from "./sign-up-form";
 const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const t = useTranslations();
   const [loginWebAuthnRequest, { isError, isUninitialized }] =
     useWebAuthnAuthMutation();
 
@@ -56,15 +54,14 @@ const WebAuthnAuth = (props: { login: string; afterLogin: () => void }) => {
         }}
       >
         {isUninitialized || loading
-          ? t("authentication.webauthn.login.title")
-          : t("global.error")}
+          ? "Certificado"
+          : "Error"}
       </Button>
     </>
   );
 };
 
 const EmailAuth = (props: { login: string }) => {
-  const t = useTranslations();
   const [loginEmailRequest, { isError, isUninitialized, error }] =
     useRequestEmailAuthMutation();
 
@@ -81,10 +78,10 @@ const EmailAuth = (props: { login: string }) => {
         }}
       >
         {isUninitialized
-          ? t("authentication.email-link.title")
+          ? "Email Auth"
           : isError
-          ? t("global.error")
-          : t("authentication.email-link.sent")}
+          ? "Error"
+          : "Enviado"}
       </Button>
     </>
   );
@@ -120,7 +117,6 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
   const [recognized, setRecognized] = useState(false);
   const [first_recognized, setFirstRecognized] = useState(false);
   const [email, setEmail] = useState<string | undefined>(undefined);
-  const t = useTranslations();
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [loginMutation] = useLoginAccountMutation();
@@ -191,7 +187,7 @@ export const SignInForm = ({afterLogin} : {afterLogin: () => void}) => {
             disabled={isSubmitting}
             className="group relative flex w-full justify-center"
           >
-            {recognized ? t("authentication.signIn") : t("global.continue")}
+            {recognized ? "Inciar sesion" : "Continuar"}
           </Button>
         </div>
       </Form>

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import Select from "react-select";
 import { BaseTooltip, SearchContext, TooltipContentBase } from ".";
 import { Button } from "../ui/button";
-import { useTranslations } from "next-intl";
 
 export interface Key {
   label: string;
@@ -28,7 +27,6 @@ export const SelectConfiguration = (props: {
   key_name: string;
   keys: Key[];
 }) => {
-  const t = useTranslations();
   const { searchParams, setSearchParams } = useContext(SearchContext);
 
   const updateSearchValue = (value: Key | null) => {
@@ -56,7 +54,7 @@ export const SelectConfiguration = (props: {
         <Select onChange={updateSearchValue} options={props.keys}></Select>
         {props.key_name in searchParams && (
           <Button onClick={clear} size="sm" color="error">
-            {t("global.disable")}
+            Deshabilitar
           </Button>
         )}
       </div>

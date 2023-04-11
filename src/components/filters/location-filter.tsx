@@ -6,9 +6,8 @@ import GooglePlacesAutocomplete, {
 } from "react-google-places-autocomplete";
 import { BaseTooltip, SearchContext, TooltipContentBase } from ".";
 import { Button } from "../ui/button";
-import { useTranslations } from "next-intl";
 import { LoadingText } from "../ui/loading-text";
-import { MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 
 export const LocationFilter = () => {
   const { searchParams } = useContext(SearchContext);
@@ -30,7 +29,6 @@ export const LocationFilter = () => {
 export const LocationConfiguration = () => {
   const { searchParams, setSearchParams } = useContext(SearchContext);
   const [available, setAvailable] = useState(false);
-  const t = useTranslations()
 
   const updateSearchValue = (value: any) => {
     if (value.value.place_id) {
@@ -105,7 +103,7 @@ export const LocationConfiguration = () => {
           <div>
             {searchParams["coordinates[status]"] ? (
               <Button onClick={handleLocationDisable} color="error" size="sm">
-                {t("global.disable")}
+                Deshabilitar
               </Button>
             ) : searchParams["coordinates[status]"] === "loading" ? (
               <LoadingText />

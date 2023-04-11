@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { BrandTitle } from "../brand"
-import { Link } from "next-intl"
+import Link from "next/link"
 
 export function MainNav() {
   return (

@@ -1,7 +1,7 @@
 "use client"
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"
 import { Button } from "./button"
-import { Link } from "next-intl"
+import Link from "next/link"
 
 export const BackButton = (props: { href: string }) => {
 

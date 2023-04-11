@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-intl"
+import Link from "next/link"
 import { OrganizationLineItem } from "../org-line-item"
 import { Organization } from "@/store/types/Organization"
 import { useAhoy } from "@/components/providers"

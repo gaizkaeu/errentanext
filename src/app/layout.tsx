@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 
 import './globals/styles.css'
 import { Footer } from '@/components/ui/side-footer';
-import { NextIntlClientProvider } from 'next-intl';
 
 // export async function generateStaticParams() {
 //   return [{ lang: 'es' }, { lang: 'en' }];
@@ -17,12 +16,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  let messages;
-  try {
-    messages = (await import(`../../dictionaries/es.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+
 
   return (
     <html lang="es">
@@ -36,7 +30,6 @@ export default async function RootLayout({
             " bg-white font-sans text-slate-900 antialiased dark:bg-black dark:text-slate-50"
           )}>
         <Providers>
-        <NextIntlClientProvider locale="es" messages={messages}>
           <div className="flex flex-col">
             <SiteHeader />
             <div className='min-h-screen'>
@@ -44,7 +37,6 @@ export default async function RootLayout({
             </div>
             <Footer />
           </div>
-        </NextIntlClientProvider>
         </Providers>
       </body>
     </html>

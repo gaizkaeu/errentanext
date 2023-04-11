@@ -4,12 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useMfaOTPAuthMutation } from "@/store/endpoints/authentication";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export const OTPForm = ({onSuccess} : {onSuccess: () => void}) => {
   const [error, setError] = useState<string | undefined>(undefined);
-  const t = useTranslations();
   const [optMutation] = useMfaOTPAuthMutation();
 
   const handleSubmit = (
@@ -33,7 +31,7 @@ export const OTPForm = ({onSuccess} : {onSuccess: () => void}) => {
       <Form>
         {error}
         <br />
-        <Label htmlFor="otp">{t("authentication.mfa.otp")}</Label>
+        <Label htmlFor="otp">OTP</Label>
         <InputField
           type="text"
           name="otp"

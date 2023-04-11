@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "next-intl"
+import Link from "next/link"
 import { HeadingText } from "./heading-text"
 import { Button } from "../ui/button"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
