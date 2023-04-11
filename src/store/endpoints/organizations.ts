@@ -107,6 +107,17 @@ const organizationsApi = api.injectEndpoints({
       }),
       invalidatesTags: (result) => [{ type: "Organization", id: result?.id }],
     }),
+    updateOrganizationLogo: build.mutation<
+      Organization,
+      {id: string; logo: any}
+    >({
+      query: (data) => ({
+        url: `organization-manage/${data.id}`,
+        method: "put",
+        body: data.logo,
+      }),
+      invalidatesTags: (result) => [{ type: "Organization", id: result?.id }],
+    }),
     createOrganization: build.mutation<
       Organization,
       Partial<OrganizationAttributes>
@@ -352,6 +363,7 @@ export const {
   useDeleteOrganizationMembershipMutation,
   useGetOrganizationInvitationQuery,
   useGetServiceTagsQuery,
+  useUpdateOrganizationLogoMutation,
   useLazyGetOrganizationInvitationQuery,
   useAcceptOrganizationInvitationMutation
 } = organizationsApi;

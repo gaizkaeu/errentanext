@@ -154,7 +154,7 @@ export interface OrganizationAttributes {
   app_fee?: number;
   distance?: number;
   subscription_id: string;
-  logo: string;
+  logo_url: string;
   created_at: string;
   visible: boolean;
   google_place_details?: {

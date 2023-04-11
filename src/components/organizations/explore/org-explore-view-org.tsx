@@ -46,7 +46,7 @@ export const OrgViewExplore = (props: { org: Organization, reviews: Review[] }) 
         <p className="text-xl font-bold leading-tight tracking-tighter">
           Reseñas
         </p>
-        <ReviewsSummary reviews={org.attributes.ratings} />
+        <ReviewsSummary org={org} />
         {reviews.map((i, index) => {
           return (
             <ReviewComponentInline review={i} key={index} />

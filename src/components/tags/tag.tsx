@@ -27,8 +27,7 @@ export const TagComponent = ({ tag, active }: { tag: string, active?: boolean })
 )
 
 export const TagBadge = ({ tag }: { tag: string }) => (
-  <p className="bg-green-200 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
-    <CheckIcon className="w-4 text-green-600 h-4 inline-block mr-1" />
+  <p className="bg-slate-50 dark:bg-midnight-700 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
     {tag}
   </p>
 )

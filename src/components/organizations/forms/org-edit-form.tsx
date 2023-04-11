@@ -6,11 +6,13 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { Label } from "@/components/ui/label";
 import { InputField, TagsField } from "@/components/fields";
 import { FormSection } from "@/components/ui/form-section";
+import { OrganizationEditProfileImage } from "./org-edit-profile-image";
 
 export const OrganizationEditForm = (props: { organization: Organization }) => {
   const [mutation] = useUpdateOrganizationByIdMutation();
 
   const onSubmit = (values: Partial<OrganizationAttributes>, helpers: FormikHelpers<OrganizationAttributes>) => {
+    console.log(values)
     if (props.organization) {
       mutation({ id: props.organization.id, ...values }).unwrap().then(() => {
         helpers.setSubmitting(false);
@@ -30,10 +32,13 @@ export const OrganizationEditForm = (props: { organization: Organization }) => {
         {({ isSubmitting }) => (
           <Form>
             <div className="grid grid-cols-1 space-y-3">
-              <FormSection title="General" description="Información sobre tu asesoría" note="Se conciso y claro.">
+              <FormSection title="General" description="Información sobre tu asesoría" note="Se conciso y claro." save={true}>
                 <Label htmlFor="name">Nombre</Label>
                 <InputField name="name" />
-                {/* <TextAreaField name="description" label="Descripción" /> */}
+                <Label htmlFor="description">Descripción</Label>
+                <InputField name="description" />
+                <Label>Logo</Label>
+                <OrganizationEditProfileImage organization={props.organization} />
               </FormSection>
               <FormSection title="Etiquetas" description="Etiquetas de tu asesoría." note={""}>
                 <Label htmlFor="skill_list">Especialidades</Label>

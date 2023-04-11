@@ -16,13 +16,13 @@ export default async function Head({ params }: { params: { id: string } })  {
       <meta name="description" content={org?.attributes?.description} />
       <meta property="og:title" content={org?.attributes?.name + ' - ERRENTA.EUS'} />
       <meta property="og:description" content={org?.attributes?.description} />
-      <meta property="og:image" content={org?.attributes?.logo} />
+      <meta property="og:image" content={org?.attributes?.logo_url} />
       <meta property="og:url" content={'https://errenta.eus/organizations/' + org?.id} />
       
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={org?.attributes?.name + ' - ERRENTA.EUS'} />
       <meta name="twitter:description" content={org?.attributes?.description} />
-      <meta name="twitter:image" content={org?.attributes?.logo} />
+      <meta name="twitter:image" content={org?.attributes?.logo_url} />
       <meta name="twitter:url" content={'https://errenta.eus/organizations/' + org?.id} />
 
       <meta name="robots" content="index, follow" />
