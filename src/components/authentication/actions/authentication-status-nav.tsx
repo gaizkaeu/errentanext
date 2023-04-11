@@ -4,7 +4,7 @@ import { useAuth } from "@/components/providers/authProvider";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { BuildingOfficeIcon, UserGroupIcon, UserIcon } from "@heroicons/react/24/outline";
-import { Link } from "next-intl";
+import Link from "next/link";
 
 const AuthenticationStatusNav = () => {
 

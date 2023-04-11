@@ -1,7 +1,7 @@
 import { OrganizationExplore } from "@/components/organizations/explore";
 import { OrganizationList } from "@/components/organizations/lists/org-list-explore";
 import { Button } from "@/components/ui/button";
-import { Link } from "next-intl";
+import Link from "next/link";
 import queryString from "query-string";
 import { Suspense } from "react";
 

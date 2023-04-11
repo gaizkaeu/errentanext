@@ -1,7 +1,7 @@
 import { BottomSheetComponent, MapComponent, OrgListExploreMap, OrgViewExplore, OrganizationActionsSmall } from "@/components/organizations";
 import { Button } from "@/components/ui/button";
 import { Organization, Review } from "@/store/types/Organization";
-import { Link } from "next-intl";
+import Link from "next/link";
 import queryString from "query-string";
 
 export const dynamic = 'force-dynamic'

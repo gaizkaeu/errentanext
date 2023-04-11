@@ -1,4 +1,4 @@
-import { Link } from "next-intl";
+import Link from "next/link";
 
 const Footer = () => {
   return (

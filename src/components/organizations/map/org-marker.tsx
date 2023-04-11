@@ -4,7 +4,7 @@ import { Organization } from "@/store/types/Organization";
 import { cva } from "class-variance-authority";
 import { cn, useKeepSearchParams } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Link } from "next-intl";
+import Link from "next/link";
 import { useAhoy } from "@/components/providers";
 import { OrganizationBadge } from "../org-badge";
 

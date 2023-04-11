@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ArrowUpRightIcon, GlobeAltIcon, PaperAirplaneIcon, QuestionMarkCircleIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline";
 import { cva } from "class-variance-authority";
-import { Link } from "next-intl";
+import Link from "next/link";
 
 export const DashGridActions = () => {
 

@@ -1,7 +1,7 @@
 "use client";
 import { useGetOrganizationsManageQuery } from "@/store/endpoints/organizations"
 import { OrganizationCard } from "../org-card";
-import { Link } from "next-intl";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { OrganizationManageBadgeRoles } from "./org-manage-roles-badges";
 import { XMarkIcon } from "@heroicons/react/24/outline";

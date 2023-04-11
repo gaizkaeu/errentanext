@@ -3,7 +3,7 @@ import { OrgHomepageSearch, OrganizationCard } from "@/components/organizations"
 import { TagList } from "@/components/tags";
 import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";
-import { Link } from "next-intl";
+import Link from "next/link";
 import queryString from "query-string";
 import { Suspense } from "react";
 

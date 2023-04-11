@@ -1,7 +1,7 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
 import { Organization, Review } from "@/store/types/Organization";
-import { Link } from "next-intl";
+import Link from "next/link";
 import { OrganizationActionsSmall } from "../actions";
 import { ReviewComponentInline, ReviewsSummary } from "@/components/reviews";
 import { useKeepSearchParams } from "@/lib/utils";
