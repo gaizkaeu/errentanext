@@ -3,6 +3,7 @@ import { OrganizationList } from "@/components/organizations/lists/org-list-expl
 import { Button } from "@/components/ui/button";
 import { Link } from "next-intl";
 import queryString from "query-string";
+import { Suspense } from "react";
 
 export const dynamicParams = true // true | false,
 export const revalidate = true
@@ -33,7 +34,9 @@ export default async function OrganizationIndexPage({
           </h3>
         </div>
         <div className="space-y-3">
-          <OrganizationExplore />
+          <Suspense>
+            <OrganizationExplore />
+          </Suspense>
           <div className="grid grid-cols-1 gap-4">
             {orgs && (
               <OrganizationList orgs={orgs.data} />

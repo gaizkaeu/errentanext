@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";
 import { Link } from "next-intl";
 import queryString from "query-string";
+import { Suspense } from "react";
 
 export const dynamicParams = true // true | false,
 export const revalidate = true
@@ -38,7 +39,9 @@ export default async function IndexPage({
             <h3 className="text-2xl whitespace-nowrap font-light leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
               Asesorías en
             </h3>
-            <OrgHomepageSearch />
+            <Suspense>
+              <OrgHomepageSearch />
+            </Suspense>
           </div>
           <TagList />
           <br />
