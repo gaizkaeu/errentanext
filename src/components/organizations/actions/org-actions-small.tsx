@@ -4,7 +4,6 @@ import { Organization } from "@/store/types/Organization";
 import { GlobeEuropeAfricaIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 import { useAhoy } from "@/components/providers";
-import { ContactButton } from "./org-contact";
 
 export const OrganizationActionsSmall = (props: { org: Organization }) => {
 

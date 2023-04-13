@@ -1,10 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button"
-import { Organization } from "@/store/types/Organization";
-import { useAhoy } from "@/components/providers";
 import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { GoogleSignInButton, SignInForm } from "@/components/authentication";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { SignInForm } from "@/components/authentication";
 import { useAuth } from "@/components/providers/authProvider";
 import { useRouter } from "next/navigation";
 
@@ -22,10 +20,12 @@ const SignInModal = () => {
 
   return (
     <>
-    <Button onClick={() => setOpen(true)}>
-      Iniciar sesión con ERRENTA
-    </Button>
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={setOpen} >
+      <DialogTrigger>
+        <Button className="w-full">
+          Iniciar sesión con ERRENTA
+        </Button>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Iniciar sesión</DialogTitle>

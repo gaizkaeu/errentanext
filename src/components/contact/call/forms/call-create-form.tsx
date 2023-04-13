@@ -11,13 +11,15 @@ import { Textarea } from "@/components/ui/text-area";
 import { Button } from "@/components/ui/button";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { useLocalizedMoment } from "@/lib/utils";
+import { useAuth } from "@/components/providers/authProvider";
 
 export const CallCreateForm = (props: { org: Organization }) => {
 
   const s = useLocalizedMoment();
+  const { currentUser } = useAuth();
 
 
-  return (
+  return currentUser ? (
     <Formik initialValues={{ org_id: props.org.id, phone_number: "", call_at: "", interested_in: [] }} onSubmit={() => { }}>
       <Form>
         <div className="flex flex-col gap-4">
@@ -66,5 +68,5 @@ export const CallCreateForm = (props: { org: Organization }) => {
         <Button type="submit" className="w-full">Enviar</Button>
       </Form>
     </Formik>
-  )
+  ) : <></>
 }

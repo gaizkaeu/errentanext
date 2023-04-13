@@ -15,7 +15,7 @@ export const OrganizationExploreOthers = (props: { org: Organization }) => {
   return (
     <div>
       <p className="text-2xl font-bold leading-tight tracking-tighter">
-        Asesorías similares - <span className="font-light">{props.org.attributes.name}</span>.
+        Asesorías similares.
       </p>
       <OrganizationListInline orgs={data ?? []} place="recommendation" meta_ind_click={
         {

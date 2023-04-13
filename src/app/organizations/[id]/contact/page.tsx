@@ -22,9 +22,6 @@ export default async function Page({ params }: { params: { id: string } }) {
           </h1>
           <h2 className="text-xl font-bold leading-tight tracking-tighter md:text-3xl lg:text-4xl lg:leading-[1.1]">
             Asesoría en <span className="font-light">{org.attributes.city}</span>.{" "}
-            <span className="font-light">
-              <OrganizationOpen org={org} />
-            </span>
           </h2>
         </div>
       </div>
