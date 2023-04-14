@@ -3,7 +3,7 @@ import { PhoneField } from "@/components/fields";
 import { FormSection } from "@/components/ui/form-section";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Organization } from "@/store/types/Organization";
-import { Form, Formik } from "formik"
+import { Form, Formik, FormikHelpers } from "formik"
 
 import 'react-phone-number-input/style.css'
 import { SkillSelectField } from "../../shared";
@@ -12,15 +12,31 @@ import { Button } from "@/components/ui/button";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { useLocalizedMoment } from "@/lib/utils";
 import { useAuth } from "@/components/providers/authProvider";
+import { Call, CallAttributes } from "@/store/types/Call";
+import { useCreateCallMutationMutation } from "@/store/endpoints/calls";
+import { useState } from "react";
 
 export const CallCreateForm = (props: { org: Organization }) => {
 
   const s = useLocalizedMoment();
+  const [mutation] = useCreateCallMutationMutation();
+  const [call, setCall] = useState<Call | null>(null);
   const { currentUser } = useAuth();
+
+  const onSubmit = (values: CallAttributes, helpers: FormikHelpers<any>) => {
+
+    mutation(values).unwrap().then((call) => {
+      setCall(call);
+    }).catch((err) => {
+      helpers.setErrors(err.data);
+    });
+
+  }
 
 
   return currentUser ? (
-    <Formik initialValues={{ org_id: props.org.id, phone_number: "", call_at: "", interested_in: [] }} onSubmit={() => { }}>
+    call ? <CallCreated call={call} /> : (
+    <Formik initialValues={{ organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
       <Form>
         <div className="flex flex-col gap-4">
           <FormSection title="¿Cuál es tu número de teléfono?" description={""} note={"Asegurate de no equivocarte"}>
@@ -68,5 +84,13 @@ export const CallCreateForm = (props: { org: Organization }) => {
         <Button type="submit" className="w-full">Enviar</Button>
       </Form>
     </Formik>
+    )
   ) : <></>
+}
+
+const CallCreated = (props: { call: Call }) => {
+
+  return (
+    <p>hecho!</p>
+  )
 }

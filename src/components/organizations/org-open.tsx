@@ -1,8 +1,27 @@
 "use client";
-import { useLocalizedMoment } from "@/lib/utils";
+import { cn, useLocalizedMoment } from "@/lib/utils";
 import { useGetOrganizationByIdQuery } from "@/store/endpoints/organizations";
-import { Organization } from "@/store/types/Organization";
+import { cva } from "class-variance-authority";
 import { motion } from "framer-motion";
+
+const bannerVariants = cva(
+  "top-20 h-16 z-50 w-full grid grid-cols-1",
+  {
+    variants: {
+      variant: {
+        open:
+          "bg-green-600",
+        near_close:
+          "bg-yellow-600",
+        closed:
+          "bg-red-600",
+      },
+    },
+    defaultVariants: {
+      variant: "open",
+    },
+  }
+)
 
 export const OrganizationOpen = (props: { org_id: string }) => {
   const { currentData } = useGetOrganizationByIdQuery(props.org_id);
@@ -18,15 +37,17 @@ export const OrganizationOpen = (props: { org_id: string }) => {
   //   return <>Abre {s(props.org.attributes.nearest_open_time).calendar()}.</>
   // }
 
-  return (
+  return currentData ? (
     <motion.div 
     initial={{ y: -100 }}
     animate={{ y: 0 }}
-
-    className="top-20 h-16 z-50 bg-green-600 w-full grid grid-cols-1">
-      <p className="text-white text-2xl font-bold my-auto text-center">Abierto ahora.</p>
-      
+    className={cn(bannerVariants({ 
+      variant: currentData.attributes.open ? currentData.attributes.near_close ? "near_close" : "open" : "closed",
+     }))}>
+      <p className="text-white text-center font-bold text-xl my-auto">
+     {currentData.attributes.open ? currentData.attributes.near_close ? "Cierra en menos de 30 minutos." : "Abierto ahora." : `Abre ${s(currentData.attributes.nearest_open_time).calendar()}.`}
+      </p>
     </motion.div>
-  )
+  ) : <></>
 
 }

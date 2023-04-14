@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
         <br />
         <div className="grid grid-cols-1 md:grid-cols-7 gap-3 max-w-7xl mx-auto">
-          <div className="flex flex-col max-w-5xl col-span-5 mx-auto">
+          <div className="flex flex-col max-w-5xl col-span-5">
             <section>
               <div className="flex max-md:flex-col gap-3">
                 <div className="bg-slate-50 rounded-lg w-32 h-32 mx-auto">

@@ -1,12 +1,11 @@
 export interface Call {
   id: string;
-  type: "appointment";
+  type: "call";
   attributes: CallAttributes
 }
 
 export interface CallAttributes {
   phone_number: string,
-  call_at: string,
-  interest_in: string,
-  message?: string,
+  call_time: string,
+  organization_id: string,
 }
