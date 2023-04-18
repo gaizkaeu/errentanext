@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 import Popover from "../ui/popover-card";
 
 export { TextFilter } from "./text-filter";
-export { LocationFilter } from "./location-filter";
+// export { LocationFilter } from "./location-filter";
 
 interface SearchContextProps {
   searchParams: any;
