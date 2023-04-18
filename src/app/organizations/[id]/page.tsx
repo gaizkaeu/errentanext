@@ -7,7 +7,6 @@ import { OrganizationReviews } from "@/components/organizations/org-review";
 import { ReviewsSummary } from "@/components/reviews";
 import { TagBadge } from "@/components/tags";
 import { BackButton } from "@/components/ui/back-button";
-import { Button } from "@/components/ui/button";
 
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
@@ -23,6 +22,13 @@ const getOrgReview = async (id: string) => {
   const data = await res.json();
   return data.data;
 };
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const org = await getOrg(params.id);
+  return {
+    title: org.attributes.name,
+  };
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
   const orgProm = getOrg(params.id);

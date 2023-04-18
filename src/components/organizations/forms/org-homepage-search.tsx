@@ -1,6 +1,6 @@
 "use client";
 import { SearchBar } from '@/components/filters';
-import { LocationConfiguration } from '@/components/filters/location-filter';
+// import { LocationConfiguration } from '@/components/filters/location-filter';
 import Popover from '@/components/ui/popover-card';
 import { useSearch } from '@/lib/utils';
 import { useEffect, useState } from 'react';
@@ -19,7 +19,8 @@ export const OrgHomepageSearch = () => {
     <div>
       <SearchBar searchParams={searchParams} setSearchParams={setSearchParams}>
         <Popover content={
-          <LocationConfiguration />
+          // <LocationConfiguration />
+          <></>
         }
           openPopover={focused}
           setOpenPopover={setFocused}
