@@ -55,13 +55,14 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { cva } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
+import { cn, useLocalizedMoment } from '@/lib/utils';
 import { ArrowRightOnRectangleIcon, ArrowUpRightIcon, ChatBubbleBottomCenterIcon, GlobeAltIcon, MapPinIcon, PhoneArrowDownLeftIcon, PhoneArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { Organization } from '@/store/types/Organization';
 import { GeneralCard, GeneralCardContent, GeneralCardHeading } from '../ui/card';
 
 export const OrganizationOpen = (props: { org: Organization }) => {
   const [showHours, setShowHours] = useState(false);
+  const s = useLocalizedMoment();
   const { org } = props;
 
   const cardCn = "h-56 flex-shrink-0";
@@ -69,11 +70,9 @@ export const OrganizationOpen = (props: { org: Organization }) => {
 
   return (
     <>
-      <GeneralCard variant="open" className={cardCn}>
-        <p className="text-white text-xl font-bold mb-2">Abierto ahora.</p>
-        <p className="text-white text-sm">
-          Hasta las 23:00
-        </p>
+      <GeneralCard variant={org.attributes.open ? "open" : org.attributes.near_close ? "near_close" : "close"} className={cardCn}>
+        {org.attributes.open ? (org.attributes.near_close ? <p className="text-white text-xl font-bold mb-2">Cierra en menos de 30 minutos.</p> : <p className="text-white text-xl font-bold mb-2">Abierto ahora.</p>) 
+          : (<p className="text-white text-xl font-bold mb-2">Abre {s(org.attributes.nearest_open_time).fromNow()}.</p>)}
       </GeneralCard>
       <GeneralCard variant="slate" className={cardCn}>
         <GeneralCardHeading>

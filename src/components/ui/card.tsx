@@ -10,7 +10,8 @@ const cardVariants = cva(
       variant: {
         open: "bg-gradient-to-r from-green-500 to-green-600",
         slate: "text-black select-none bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none dark:from-midnight-800 dark:to-midnight-800 dark:text-white focus:shadow-md",
-        red: "bg-red-100 text-red-700",
+        close: "bg-gradient-to-r from-red-700 to-red-600",
+        near_close: "bg-gradient-to-r from-orange-600 to-orange-500",
         purple: "bg-purple-100 text-purple-700"
       },
     }
