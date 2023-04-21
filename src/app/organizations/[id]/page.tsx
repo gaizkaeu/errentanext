@@ -1,7 +1,7 @@
 import { CallCreateForm } from "@/components/contact";
 import { ContactSignInComponent } from "@/components/contact/forms";
 import { OrganizationExploreOthers, OrganizationOpen } from "@/components/organizations";
-import { OrgContactButton, OrganizationActionsSmall } from "@/components/organizations/actions";
+import { OrganizationActionsSmall } from "@/components/organizations/actions";
 import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
 import { ReviewsSummary } from "@/components/reviews";

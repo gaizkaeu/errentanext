@@ -1,9 +1,8 @@
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
-import { LawyerProfile } from "../types/LawyerProfile";
+import { CalculationManage, CalculatorManage } from "../types/Calculator";
 import { Organization, OrganizationAttributes, OrganizationInvitation, OrganizationInvitationAttributes, OrganizationMembership, OrganizationMembershipAttributes, OrganizationStats, Review, StripeSubscription, processOrganization } from "../types/Organization";
 import { Tag } from "../types/Tag";
-import { Transaction } from "../types/Transaction";
 
 
 const transformResponse = (response: BaseQueryResponse<Organization>) => {
@@ -201,28 +200,30 @@ const organizationsApi = api.injectEndpoints({
     transformResponse: (response: BaseQueryResponseList<Tag>) =>
       response.data,
   }),
-    getOrganizationLawyers: build.query<
-      LawyerProfile[],
+    getOrganizationCalculators: build.query<
+      CalculatorManage[],
       { id: string; filters: Record<string, string> }
     >({
       query: (id) => ({
-        url: `organization-manage/${id.id}/lawyer_profiles`,
+        url: `organization-manage/${id.id}/calculators`,
         method: "get",
         params: id.filters,
       }),
-      transformResponse: (response: BaseQueryResponseList<LawyerProfile>) =>
+      providesTags: () => [{ type: "CalculatorManage", id: "LIST" }],
+      transformResponse: (response: BaseQueryResponseList<CalculatorManage>) =>
         response.data,
     }),
-    getOrganizationTransactions: build.query<
-      Transaction[],
-      { id: string; filters: Record<string, string> }
+    getOrganizationCalculatorsCalculations: build.query<
+      CalculationManage[],
+      { id: string; calcr_id: string; filters: Record<string, string> }
     >({
       query: (id) => ({
-        url: `organization-manage/${id.id}/transactions`,
+        url: `organization-manage/${id.id}/calculators/${id.calcr_id}/calculations`,
         method: "get",
         params: id.filters,
       }),
-      transformResponse: (response: BaseQueryResponseList<Transaction>) =>
+      providesTags: () => [{ type: "CalculationManage", id: "LIST" }],
+      transformResponse: (response: BaseQueryResponseList<CalculationManage>) =>
         response.data,
     }),
     getOrganizationMemberships: build.query<
@@ -351,8 +352,6 @@ export const {
   useLazyGetSubscriptionPaymentUrlQuery,
   useGetSubscriptionOverviewQuery,
   useCreateOrganizationMutation,
-  useGetOrganizationLawyersQuery,
-  useGetOrganizationTransactionsQuery,
   useGetSkillsTagsQuery,
   useCreateOrganizationJoinRequestMutation,
   useGetOrganizationMembershipsQuery,
@@ -365,5 +364,7 @@ export const {
   useGetServiceTagsQuery,
   useUpdateOrganizationLogoMutation,
   useLazyGetOrganizationInvitationQuery,
-  useAcceptOrganizationInvitationMutation
+  useAcceptOrganizationInvitationMutation,
+  useGetOrganizationCalculatorsQuery,
+  useGetOrganizationCalculatorsCalculationsQuery,
 } = organizationsApi;

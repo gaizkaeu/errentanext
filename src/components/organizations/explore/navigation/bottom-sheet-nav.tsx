@@ -26,12 +26,11 @@ export function BottomSheetComponent(props: { children: JSX.Element }) {
       className='z-20'
       defaultSnap={({ maxHeight }) => maxHeight / 5}
       snapPoints={({ maxHeight }) => [
-        maxHeight * 0.85,
+        maxHeight - 64,
         maxHeight * 0.15
       ]}
-      expandOnContentDrag={true}
     >
-      <div className='dark:bg-slate-900'>
+      <div className='dark:bg-black'>
         {props.children}
       </div>
     </BottomSheet>

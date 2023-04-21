@@ -1,12 +1,6 @@
 import { BottomSheetComponent, MapComponent, OrgListExploreMap, OrgViewExplore, OrganizationActionsSmall } from "@/components/organizations";
-import { Button } from "@/components/ui/button";
 import { Organization, Review } from "@/store/types/Organization";
-import Link from "next/link";
 import queryString from "query-string";
-
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true // true | false,
-export const revalidate = true
 
 const getOrgs = async (params?: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations?" + params ?? "", { next: { revalidate: 60 } });
@@ -56,15 +50,6 @@ export default async function OrganizationIndexPage({
             )}
           </BottomSheetComponent>
           <div className="relative col-span-7 lg:col-span-5">
-            <div className='absolute inset-x-0 top-2 z-10'>
-              <div className='w-fit mx-auto'>
-                <Link href="/organizations">
-                  <Button>
-                    Modo lista
-                  </Button>
-                </Link>
-              </div>
-            </div>
             <div className='absolute lg:top-28 xl:top-32 2xl:top-38 left-4 z-10 h-screen'>
               {org && reviews && (
                 <div className="animate-in slide-in-from-left h-4/6 bg-white dark:bg-black  w-80 xl:w-96 2xl:w-[28rem] z-50 rounded-xl shadow-xl max-lg:hidden overflow-y-scroll">

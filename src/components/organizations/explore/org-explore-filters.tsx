@@ -18,7 +18,7 @@ const searchComponent = cva(
     variants: {
       status: {
         focused:
-          "fixed bg-slate-50 dark:bg-midnight-800 top-20 left-0 right-0 rounded-b-2xl z-50 shadow-md",
+          "fixed bg-slate-50 dark:bg-midnight-800 top-0 left-0 right-0 rounded-b-2xl z-50 shadow-md",
         disabled:
           "",
       },
@@ -78,6 +78,7 @@ export const OrganizationExplore = () => {
                 <motion.div
                   initial="collapsed"
                   animate="expanded"
+                  className="max-w-md mx-auto"
                   variants={variants}
                   transition={{ duration: 0.2 }}
                 >
@@ -90,6 +91,15 @@ export const OrganizationExplore = () => {
                           {skill.attributes.name}
                         </CommandItem>))}
                     </CommandGroup>
+                    <CommandGroup heading="Ubicación">
+                      <CommandItem>
+                        Madrid
+                      </CommandItem>
+                      <CommandItem>
+                        Barcelona
+                      </CommandItem>
+                    </CommandGroup>
+
                   </Command.List>
 
                 </motion.div>

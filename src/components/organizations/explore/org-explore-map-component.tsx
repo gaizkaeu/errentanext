@@ -40,15 +40,19 @@ export const MapComponent = (props: { orgs: Organization[] }) => {
       return;
     }
 
-    r.replace(`/organizations/map?${g({
-      'bounds[east]': bounds.east,
-      'bounds[north]': bounds.north,
-      'bounds[south]': bounds.south,
-      'bounds[west]': bounds.west,
-      'center[lat]': center.lat,
-      'center[lng]': center.lng,
-      'zoom': zoom
-    })}`)
+    window.history.pushState(
+      {},
+      '',
+      window.location.pathname + '?' + g({
+        'bounds[east]': bounds.east,
+        'bounds[north]': bounds.north,
+        'bounds[south]': bounds.south,
+        'bounds[west]': bounds.west,
+        'center[lat]': center.lat,
+        'center[lng]': center.lng,
+        'zoom': zoom
+      })
+    );
 
   }, [bounds, zoom, center])
 

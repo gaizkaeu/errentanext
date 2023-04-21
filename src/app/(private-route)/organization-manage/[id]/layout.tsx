@@ -47,12 +47,21 @@ export default async function RootLayout({
     ]
   },
   {
-    title: "Suscripción",
-    links: [{
-      text: "Información",
-      href: `/organization-manage/${params.id}/subscription`,
-    }]
-  }
+    title: "Calculadores",
+    links: [
+      {
+        text: "Lista",
+        href: `/organization-manage/${params.id}/calculators`,
+      }
+    ]
+  },
+  // {
+  //   title: "Suscripción",
+  //   links: [{
+  //     text: "Información",
+  //     href: `/organization-manage/${params.id}/subscription`,
+  //   }]
+  // }
 ]
 
   return (

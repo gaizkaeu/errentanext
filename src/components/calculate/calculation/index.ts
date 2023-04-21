@@ -1,0 +1,1 @@
+export { CalculationManageComponent } from './calculation-component'

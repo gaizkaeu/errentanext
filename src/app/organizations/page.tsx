@@ -1,6 +1,7 @@
 import { OrganizationExplore } from "@/components/organizations/explore";
 import { OrganizationList } from "@/components/organizations/lists/org-list-explore";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 import Link from "next/link";
 import queryString from "query-string";
 import { Suspense } from "react";
@@ -14,6 +15,11 @@ const getOrgs = async (params?: string) => {
   const data = await res.json();
   return data;
 };
+
+export const metadata: Metadata = {
+  title: "BUSCADOR",
+  description: "Encuentra tu asesoría de confianza.",
+}
 
 export default async function OrganizationIndexPage({
   searchParams,

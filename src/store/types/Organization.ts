@@ -1,6 +1,5 @@
 import { round } from "lodash";
 import { BaseRelation, ClientRelation, LawyerRelation } from ".";
-import { TaxIncomeRelation } from "./TaxIncome";
 import { Tag, VerifiedTag } from "./Tag";
 
 export interface StripeSubscription {
@@ -234,8 +233,6 @@ export interface Review {
   relationships: {
     organization: BaseRelation<OrganizationRelation>;
     user?: BaseRelation<ClientRelation>;
-    tax_income?: BaseRelation<TaxIncomeRelation>;
-    lawyer?: BaseRelation<LawyerRelation>;
   };
   characteristics: ReviewCharacteristics;
 }
