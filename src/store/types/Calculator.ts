@@ -38,6 +38,9 @@ export interface CalculatorAttributes {
   topic_name: string;
   calculation_topic_id: string;
   organization_id: string;
+  colors: string;
+  description: string;
+  estimated_time: number;
 
   questions: Question[];
 }

@@ -1,23 +1,26 @@
 "use client";
 import { Button } from "@/components/ui/button"
-import { useLocalizedMoment } from "@/lib/utils"
+import { cn, useLocalizedMoment } from "@/lib/utils"
 import { useGetOrganizationCalculatorsCalculationsQuery } from "@/store/endpoints/organizations"
-import { CalculatorManage } from "@/store/types/Calculator"
-import { ArchiveBoxIcon, ArrowTopRightOnSquareIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
+import { Calculator, CalculatorManage } from "@/store/types/Calculator"
+import { ArchiveBoxIcon, ArrowTopRightOnSquareIcon, ChevronDownIcon, ClockIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { CalculationManageComponent } from "../calculation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalculatorGraphComponent } from "./calculator-graph";
 import { CalculatorClassifications } from "./calculator-classifications";
+import { CalculationCreateForm } from "../calculation/forms";
+import { GeneralCard, GeneralCardContent, GeneralCardHeading } from "@/components/ui/card";
 
 export const CalculatorManageComponent = (props: { calculator: CalculatorManage }) => {
-
   const { calculator } = props
   const [selected, setSelected] = useState(false)
 
-  const { data } = useGetOrganizationCalculatorsCalculationsQuery({ id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: {
-    'q[train_with_eq]': 'true',
-  } }, {
+  const { data } = useGetOrganizationCalculatorsCalculationsQuery({
+    id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: {
+      'q[train_with_eq]': 'true',
+    }
+  }, {
     skip: !selected,
   })
 
@@ -90,29 +93,56 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
           </div>
           {selected && (
             <Tabs defaultValue="account">
-            <TabsList>
-              <TabsTrigger value="account">Cálculos realizados</TabsTrigger>
-              <TabsTrigger value="classifications">Clasificaciones</TabsTrigger>
-              <TabsTrigger value="password">Grafo</TabsTrigger>
-            </TabsList>
-            <TabsContent value="account">
-              <div>
-                {data?.map((item) => (
-                  <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
-                ))}
+              <TabsList>
+                <TabsTrigger value="account">Cálculos realizados</TabsTrigger>
+                <TabsTrigger value="classifications">Clasificaciones</TabsTrigger>
+                <TabsTrigger value="password">Grafo</TabsTrigger>
+              </TabsList>
+              <TabsContent value="account">
+                <div>
+                  <CalculationCreateForm calculator={calculator} org_id={calculator.attributes.organization_id} />
+                  {data?.map((item) => (
+                    <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
+                  ))}
                 </div>
-            </TabsContent>
-            <TabsContent value="classifications">
-              <CalculatorClassifications calculator={calculator} />
-            </TabsContent>
-            <TabsContent value="password">
-              <CalculatorGraphComponent dot={calculator.attributes.dot_visualization} />
-            </TabsContent>
-  
-          </Tabs>
+              </TabsContent>
+              <TabsContent value="classifications">
+                <CalculatorClassifications calculator={calculator} />
+              </TabsContent>
+              <TabsContent value="password">
+                <CalculatorGraphComponent dot={calculator.attributes.dot_visualization} />
+              </TabsContent>
+
+            </Tabs>
           )}
         </div>
       </div>
     </div>
   )
+}
+
+export const CalculatorComponent = ({ calculator }: { calculator: Calculator }) => {
+
+  return (
+    <GeneralCard className={cn(calculator.attributes.colors, "w-72")}>
+      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></div>
+      <GeneralCardHeading className="text-white">
+        <div className="mb-2 mt-4 text-lg font-medium">
+          {calculator.attributes.topic_name}
+        </div>
+      </GeneralCardHeading>
+      <GeneralCardContent className="text-white">
+        <p className="text-sm leading-tight">
+          {calculator.attributes.description}
+        </p>
+        <p className="flex items-center mt-3" title="Estimated time">
+          <ClockIcon className="icon h-4 w-4 flex-shrink-0" />
+          <span className="text-xs  ml-2" title="Estimated time">
+            {calculator.attributes.estimated_time} minutos
+          </span>
+        </p>
+      </GeneralCardContent>
+    </GeneralCard>
+  )
+
 }

@@ -18,3 +18,10 @@ export const CalculationField = (props: { question: Question }) => {
       return <></>
   }
 }
+
+export const ClassificationSelectField = (props: { classifications: {[key:string]: string}}) => {
+
+  return (
+    <SelectUniqueField name="output[classification]" options={Object.keys(props.classifications)} />
+  )
+}

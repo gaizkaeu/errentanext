@@ -45,6 +45,19 @@ const calculationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
         response.data,
     }),
+    createCalculationManage: build.mutation<
+    CalculationManage,
+    { calcr_id: string; org_id: string & Partial<CalculationManageAttributes> }
+  >({
+    query: (id) => ({
+      url: `organization-manage/${id.org_id}/calculators/${id.calcr_id}/calculations/`,
+      method: "post",
+      body: id,
+    }),
+    invalidatesTags: (result) => ["CalculationManage"],
+    transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
+      response.data,
+  }),
 
   }),
   overrideExisting: false,
@@ -56,4 +69,5 @@ export const {
   useGetCalculatorManageQuery,
   useGetCalculationQuery,
   useUpdateCalculationManageMutation,
+  useCreateCalculationManageMutation
 } = calculationsApi;

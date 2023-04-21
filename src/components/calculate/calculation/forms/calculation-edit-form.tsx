@@ -1,9 +1,8 @@
 "use client";
-import { InputField, SelectUniqueField } from "@/components/fields";
+import { SelectUniqueField } from "@/components/fields";
 import { Button } from "@/components/ui/button";
 import { useGetCalculatorManageQuery, useUpdateCalculationManageMutation } from "@/store/endpoints/calculations";
 import { CalculationManage } from "@/store/types/Calculator";
-import EquationEditor from "equation-editor-react";
 import { Form, Formik } from "formik";
 import { CalculationField } from "./calculation-field";
 

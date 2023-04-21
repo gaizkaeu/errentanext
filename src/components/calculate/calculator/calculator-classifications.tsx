@@ -4,10 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalculatorManage } from "@/store/types/Calculator";
 import { CodeBracketSquareIcon } from "@heroicons/react/24/outline";
-import EquationEditor from "equation-editor-react";
+import { useEffect, useState } from "react";
+import { CalculatorEquation } from "./calculator-equation";
 
 export const CalculatorClassifications = (props: { calculator: CalculatorManage }) => {
   const { calculator } = props;
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof(window) !== "undefined") {
+      setReady(true);
+    }
+  }, [])
 
   return (
     <div>
@@ -35,12 +43,9 @@ export const CalculatorClassifications = (props: { calculator: CalculatorManage 
       {Object.entries(calculator.attributes.classifications).map(([key, value]) => (
         <div className="" key={key}>
           <p className="text-xs  underline uppercase">{key}</p>
-          <EquationEditor
-            value={value}
-            onChange={() => { }}
-            autoCommands="pi theta sqrt sum prod alpha beta gamma rho"
-            autoOperatorNames="sin cos tan"
-          />
+          {ready &&
+            <CalculatorEquation equation={value} />
+          }
         </div>
       ))}
     </div>

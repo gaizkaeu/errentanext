@@ -1,15 +1,14 @@
+import { CalculatorComponent } from "@/components/calculate";
 import { CallCreateForm } from "@/components/contact";
 import { ContactSignInComponent } from "@/components/contact/forms";
-import { OrganizationExploreOthers, OrganizationOpen } from "@/components/organizations";
-import { OrganizationActionsSmall } from "@/components/organizations/actions";
-import { OrganizationLocation } from "@/components/organizations/org-location";
+import { OrganizationOpen } from "@/components/organizations";
+// import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
 import { ReviewsSummary } from "@/components/reviews";
 import { TagBadge } from "@/components/tags";
 import { BackButton } from "@/components/ui/back-button";
-
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+import { GeneralCard } from "@/components/ui/card";
+import Link from "next/link";
 
 const getOrg = async (id: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id, { next: { revalidate: 60 } });
@@ -23,6 +22,13 @@ const getOrgReview = async (id: string) => {
   return data.data;
 };
 
+const getOrgCalculators = async (id: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id + "/calculators", { next: { revalidate: 60 } });
+  const data = await res.json();
+  return data.data;
+};
+
+
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const org = await getOrg(params.id);
   return {
@@ -33,14 +39,14 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 export default async function Page({ params }: { params: { id: string } }) {
   const orgProm = getOrg(params.id);
   const reviewProm = getOrgReview(params.id);
+  const calculatorsProm = getOrgCalculators(params.id);
 
-  const [org, reviews] = await Promise.all([orgProm, reviewProm]);
+  const [org, reviews, calculators] = await Promise.all([orgProm, reviewProm, calculatorsProm]);
 
   return org && (
     <>
-      <OrganizationOpen org_id={org.id} />
-      <div className="w-full md:p-4 p-1">
-        <div className="flex items-center gap-4">
+      <div className="w-full md:p-1">
+        <div className="flex items-center gap-4 p-1">
           <BackButton href="/organizations" />
           <div>
             <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
@@ -52,31 +58,36 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <br />
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-3 max-w-7xl mx-auto">
-          <div className="flex flex-col max-w-5xl col-span-5">
-            <section>
-              <div className="flex max-md:flex-col gap-3">
-                <div className="bg-slate-50 rounded-lg w-32 h-32 mx-auto">
-                  <img alt="Logo" src={org.attributes.logo_url} className="rounded-lg m-auto h-[128px]" width="128px" height="128px" />
-                </div>
-                <div className="flex-1">
-                  <blockquote className="text-sm italic font-semibold text-gray-900 dark:text-white">
-                    <svg aria-hidden="true" className="w-10 h-10 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" /></svg>
-                    <p>{org.attributes.description}</p>
-                  </blockquote>
-                  <br />
-                  <OrganizationActionsSmall org={org} />
-                </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-3 md:p-1 mx-auto">
+          <div className="flex flex-col col-span-5">
+            <section className="flex gap-2 overflow-x-auto">
+              <div className="w-1 visible md:hidden"></div>
+              <OrganizationOpen org={org} />
+              <div className="w-1 visible md:hidden"></div>
+            </section>
+            <br />
+            <h3 className="text-2xl font-semibold">Calcular un presupuesto <span className="font-light">online</span>.</h3>
+            <section className="flex gap-2 overflow-x-auto">
+              <div className="w-1 visible md:hidden"></div>
+              {calculators.map((calculator: any) => (
+                <Link href={`/organizations/${org.id}/calculate/${calculator.id}/0`} key={calculator.id}>
+                  <CalculatorComponent key={calculator.id} calculator={calculator} />
+                </Link>
+              ))}
+              <div className="w-1 visible md:hidden"></div>
             </section>
             <br />
             <section>
-              <div className="w-fit mx-auto">
-                <ContactSignInComponent org={org} />
-              </div>
+              <GeneralCard variant="slate" className="h-fit">
+                <svg aria-hidden="true" className="hidden md:visible w-10 h-10 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" /></svg>
+                <p className="text-xl font-bold mb-2">De {org.attributes.name}</p>
+                <p className="text-sm">
+                  {org.attributes.description}
+                </p>
+              </GeneralCard>
             </section>
             <br />
-            <section>
+            <section className="max-md:p-1">
               <div className="grid grid-cols-1 md:grid-cols-7 space-y-3">
                 <div className="md:col-span-2">
                   <h4 className="text-2xl font-semibold">Reseñas</h4>
@@ -96,17 +107,9 @@ export default async function Page({ params }: { params: { id: string } }) {
               </div>
             </section>
             <br />
-            <section className="h-[20rem]">
-              <OrganizationLocation org={org} />
-            </section>
-            <br />
-            <section>
-            </section>
           </div>
           <div className="max-md:hidden col-span-2">
             <CallCreateForm org={org} />
-            <br />
-            <OrganizationExploreOthers org={org} />
           </div>
         </div>
       </div>

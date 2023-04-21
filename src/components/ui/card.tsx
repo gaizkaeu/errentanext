@@ -1,6 +1,74 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { VariantProps, cva } from "class-variance-authority";
+
+const cardVariants = cva(
+  "h-64 bg-gradient-to-r rounded-lg flex select-none flex-col p-6 no-underline outline-none focus:shadow-md hover:rounded-md transition-all",
+  {
+    variants: {
+      variant: {
+        open: "bg-gradient-to-r from-green-500 to-green-600",
+        slate: "text-black select-none bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none dark:from-midnight-800 dark:to-midnight-700 dark:text-white focus:shadow-md",
+        red: "bg-red-100 text-red-700",
+        purple: "bg-purple-100 text-purple-700"
+      },
+    }
+  });
+
+  export interface GeneralCardProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardVariants> {}
+
+const GeneralCard = React.forwardRef<
+  HTMLDivElement,
+  GeneralCardProps
+>(({ className, variant, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      cardVariants({
+        variant
+      }),
+      className
+    )}
+    {...props}
+  />
+))
+
+GeneralCard.displayName = "Card"
+
+const GeneralCardHeading = React.forwardRef<
+  HTMLDivElement,
+  GeneralCardProps
+>(({ className, variant, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "h-24 flex flex-col justify-end",
+      className
+    )}
+    {...props}
+  />
+))
+
+GeneralCardHeading.displayName = "GeneralCardHeading"
+
+const GeneralCardContent = React.forwardRef<
+  HTMLDivElement,
+  GeneralCardProps
+>(({ className, variant, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex flex-col justify-end",
+      className
+    )}
+    {...props}
+  />
+))
+
+GeneralCardContent.displayName = "GeneralCardContent"
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -76,4 +144,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, GeneralCard, GeneralCardHeading, GeneralCardContent}

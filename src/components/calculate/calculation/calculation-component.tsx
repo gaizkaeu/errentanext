@@ -4,7 +4,6 @@ import { useLocalizedMoment } from "@/lib/utils";
 import { CalculationManage } from "@/store/types/Calculator";
 import { BanknotesIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { CalculationEditButton } from "./actions";
-import { Organization } from "@/store/types/Organization";
 
 export const CalculationManageComponent = ({ calculation, org_id }: { calculation: CalculationManage, org_id: string }) => {
 
