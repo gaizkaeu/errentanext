@@ -2,7 +2,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Organization, Review } from "@/store/types/Organization";
 import Link from "next/link";
-import { OrganizationActionsSmall } from "../actions";
 import { ReviewComponentInline, ReviewsSummary } from "@/components/reviews";
 import { useKeepSearchParams } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -31,10 +30,6 @@ export const OrgViewExplore = (props: { org: Organization, reviews: Review[] }) 
           </Link>
         </div>
       </div>
-      <Separator />
-      <section>
-        <OrganizationActionsSmall org={org} />
-      </section>
       <Separator />
       <section>
         <p className="text-xl font-bold leading-tight tracking-tighter">
