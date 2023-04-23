@@ -36,13 +36,12 @@ export const CallCreateForm = (props: { org: Organization }) => {
 
   return currentUser ? (
     call ? <CallCreated call={call} /> : (
-    <Formik initialValues={{ organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
-      <Form>
-        <div className="flex flex-col gap-4">
-          <FormSection title="¿Cuál es tu número de teléfono?" description={""} note={"Asegurate de no equivocarte"}>
+      <Formik initialValues={{ organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
+        <Form>
+          <div className="flex flex-col gap-4">
+            <p className="text-lg font-semibold">¿Cuál es tu número de teléfono?</p>
             <PhoneField name="phone" />
-          </FormSection>
-          <FormSection title="¿Cuándo quieres que te llamemos?" description={""} note={"Asegurate de no equivocarte"}>
+            <p className="text-lg font-semibold">¿Cuándo quieres que te llamemos?</p>
             <Tabs defaultValue="now">
               <TabsList>
                 <TabsTrigger value="now">
@@ -73,17 +72,14 @@ export const CallCreateForm = (props: { org: Organization }) => {
                 <p>Te llamaremos más tarde</p>
               </TabsContent>
             </Tabs>
-          </FormSection>
-          <FormSection title="¿Sobre que necesitas ayuda?" description={""} note={""}>
+            <p className="text-lg font-semibold">Información adicional</p>
             <SkillSelectField name="skill_list" skill_list={props.org.attributes.skill_list} />
-            <br />
             <Textarea name="message" placeholder="Escribe un mensaje opcional" />
-          </FormSection>
-        </div>
-        <br />
-        <Button type="submit" className="w-full">Enviar</Button>
-      </Form>
-    </Formik>
+          </div>
+          <br />
+          <Button type="submit" className="w-full">Enviar</Button>
+        </Form>
+      </Formik>
     )
   ) : <></>
 }

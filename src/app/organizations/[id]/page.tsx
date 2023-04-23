@@ -64,6 +64,9 @@ export default async function Page({ params }: { params: { id: string } }) {
               <OrganizationOpen org={org} />
               <div className="w-1 visible md:hidden"></div>
             </section>
+            <p className="text-gray-500 dark:text-gray-400 text-sm ml-2">
+              ¡Desliza!
+            </p>
             <br />
             <h3 className="text-2xl font-semibold">Calcular un presupuesto <span className="font-light">online</span>.</h3>
             <section className="flex gap-2 overflow-x-auto">
@@ -76,7 +79,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               <div className="w-1 visible md:hidden"></div>
             </section>
             <br />
-            <div className="md:hidden">
+            <div className="md:hidden bg-slate-50 dark:bg-midnight-800 rounded-md p-4">
               <ContactSignInComponent org={org} />
             </div>
             <br />
@@ -112,7 +115,9 @@ export default async function Page({ params }: { params: { id: string } }) {
             <br />
           </div>
           <div className="max-md:hidden col-span-2">
-            <ContactSignInComponent org={org} />
+            <div className="bg-slate-50 dark:bg-midnight-800 rounded-md p-4">
+              <ContactSignInComponent org={org} />
+            </div>
           </div>
         </div>
       </div>

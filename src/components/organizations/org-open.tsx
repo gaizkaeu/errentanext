@@ -70,9 +70,10 @@ export const OrganizationOpen = (props: { org: Organization }) => {
 
   return (
     <>
-      <GeneralCard variant={org.attributes.open ? "open" : org.attributes.near_close ? "near_close" : "close"} className={cardCn}>
-        {org.attributes.open ? (org.attributes.near_close ? <p className="text-white text-xl font-bold mb-2">Cierra en menos de 30 minutos.</p> : <p className="text-white text-xl font-bold mb-2">Abierto ahora.</p>) 
-          : (<p className="text-white text-xl font-bold mb-2">Abre {s(org.attributes.nearest_open_time).fromNow()}.</p>)}
+      <GeneralCard variant={org.attributes.near_close ? "near_close" : org.attributes.open ? "open" : "close"} className={cardCn}>
+        {org.attributes.open ? (org.attributes.near_close ? <p className="text-white text-xl font-bold mb-1">Cierra en menos de 30 minutos.</p> : <p className="text-white text-xl font-bold mb-1">Abierto ahora.</p>) 
+          : (<p className="text-white text-xl font-bold mb-1">Abre {s(org.attributes.nearest_open_time).fromNow()}.</p>)}
+          <OpenCloseHours org={org} />
       </GeneralCard>
       <GeneralCard variant="slate" className={cardCn}>
         <GeneralCardHeading>
@@ -81,15 +82,15 @@ export const OrganizationOpen = (props: { org: Organization }) => {
         </GeneralCardHeading>
         <GeneralCardContent>
           <p className="text-sm">
-            De Google
+            Google
           </p>
           <p className="text-md font-bold">
             {org.attributes.google_place_details?.rating} <span className="text-sm font-light">/ 5</span>
           </p>
           <p className="text-sm">
-            De ERRENTA.EUS
+            ERRENTA.EUS
           </p>
-          <p className="text-md">
+          <p className="text-md font-bold">
             {org.attributes.ratings.average} <span className="text-sm font-light">/ 5</span>
           </p>
         </GeneralCardContent>
@@ -131,3 +132,44 @@ export const OrganizationOpen = (props: { org: Organization }) => {
   );
 };
 
+const OpenCloseHours = (props: { org: Organization }) => {
+  const { org } = props;
+  const s = useLocalizedMoment();
+
+  const getName = (day: string) => {
+    switch (day) {
+      case "monday":
+        return "Lunes";
+      case "tuesday":
+        return "Martes";
+      case "wednesday":
+        return "Miércoles";
+      case "thursday":
+        return "Jueves";
+      case "friday":
+        return "Viernes";
+      case "saturday":
+        return "Sábado";
+      case "sunday":
+        return "Domingo";
+    }
+  };
+
+  const names = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as const;
+
+  return (
+    <>
+      {names.map((day, i) => (
+        <p className="text-white text-sm" key={i}>{getName(day)}: {" "}
+        {org.attributes.open_close_hours[day] && org.attributes.open_close_hours[day]?.open !== 'closed' ?
+        <>
+        {
+          s.utc(org.attributes.open_close_hours[day].open, "HH:mm").local().format("HH:mm")
+        } - {s.utc(org.attributes.open_close_hours[day].close, "HH:mm").local().format("HH:mm")}
+        </> : "Cerrado"}
+        
+        </p>
+      ))}
+    </>
+  );
+};

@@ -156,6 +156,15 @@ export interface OrganizationAttributes {
   logo_url: string;
   created_at: string;
   visible: boolean;
+  open_close_hours: {
+    monday: OpenClose;
+    tuesday: OpenClose;
+    wednesday: OpenClose;
+    thursday: OpenClose;
+    friday: OpenClose;
+    saturday: OpenClose;
+    sunday: OpenClose;
+  }
   google_place_details?: {
     rating: number;
     reviews: GoogleReview[];
@@ -170,6 +179,11 @@ export interface OrganizationAttributes {
   company_target_list: string[];
   service_list: string[];
   
+}
+
+export type OpenClose = {
+  open: string;
+  close: string;
 }
 
 export interface Organization {

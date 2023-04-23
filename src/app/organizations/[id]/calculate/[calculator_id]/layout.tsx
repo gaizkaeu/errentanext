@@ -36,17 +36,6 @@ export default async function Page({ params, children }: { params: { id: string,
         </div>
         <br />
         <CalculateComponent calculator={calculator} org_id={params.id}>
-          {/* {calculator.attributes.questions.map((question) => {
-            switch (question.field_type) {
-              case "input":
-                return <InputComponent {...question} />
-              case "select_unique":
-                return <SelectUniqueComponent {...question} />
-              default:
-                return <></>
-            }
-            })
-          } */}
           {children}
         </CalculateComponent>
       </div>

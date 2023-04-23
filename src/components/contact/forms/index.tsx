@@ -13,7 +13,7 @@ export const ContactSignInComponent = (props: { org: Organization }) => {
   return (
     <div className="relative">
       {!currentUser ? (
-        <div className="grid grid-cols-1 space-y-3 gap-3 inset-x-0 bg-gray-50 dark:bg-midnight-700 p-2 shadow-md rounded-lg">
+        <div className="grid grid-cols-1 space-y-3 gap-3 inset-x-0">
           <div className="grid grid-cols-1 my-auto gap-3">
             <p className="text-center text-sm text-gray-500 dark:text-gray-400">Contacta con {props.org.attributes.name} o calcula un presupuesto.</p>
             <GoogleSignInButton redirectUrl={`/organizations/${props.org.id}`} />
@@ -25,9 +25,7 @@ export const ContactSignInComponent = (props: { org: Organization }) => {
           </div>
         </div>
       ) : (
-        <div className="max-md:hidden">
-          <CallCreateForm org={props.org} />
-        </div>
+        <CallCreateForm org={props.org} />
       )}
     </div>
 
