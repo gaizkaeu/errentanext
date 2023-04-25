@@ -1,6 +1,6 @@
 import { api } from "../api";
 import { BaseQueryResponse } from "../types";
-import { Calculation, CalculationAttributes, CalculationManage, CalculationManageAttributes, Calculator, CalculatorManage } from "../types/Calculator";
+import { Calculation, CalculationAttributes, CalculationManage, CalculationManageAttributes, Calculator, CalculatorManage, CalculatorManageAttributes } from "../types/Calculator";
 
 
 const calculationsApi = api.injectEndpoints({
@@ -32,6 +32,19 @@ const calculationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponse<CalculatorManage>) =>
         response.data,
     }),
+    updateCalculatorManage: build.mutation<
+      CalculatorManage,
+      { calculator_id: string; org_id: string & Partial<CalculatorManageAttributes> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}`,
+        method: "put",
+        body: id
+      }),
+      invalidatesTags: (result) => ["CalculatorManage"],
+      transformResponse: (response: BaseQueryResponse<CalculatorManage>) =>
+        response.data,
+    }),
     updateCalculationManage: build.mutation<
       CalculationManage,
       { calcr_id: string; org_id: string, calcn_id: string & Partial<CalculationManageAttributes> }
@@ -47,10 +60,10 @@ const calculationsApi = api.injectEndpoints({
     }),
     createCalculationManage: build.mutation<
     CalculationManage,
-    { calcr_id: string; org_id: string & Partial<CalculationManageAttributes> }
+    { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
   >({
     query: (id) => ({
-      url: `organization-manage/${id.org_id}/calculators/${id.calcr_id}/calculations/`,
+      url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/`,
       method: "post",
       body: id,
     }),
@@ -58,6 +71,16 @@ const calculationsApi = api.injectEndpoints({
     transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
       response.data,
   }),
+  createCalculationManagePreview: build.query<
+  { [key: string]: number },
+  { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
+>({
+  query: (id) => ({
+    url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/preview`,
+    method: "post",
+    body: id,
+  }),
+}),
 
   }),
   overrideExisting: false,
@@ -69,5 +92,8 @@ export const {
   useGetCalculatorManageQuery,
   useGetCalculationQuery,
   useUpdateCalculationManageMutation,
-  useCreateCalculationManageMutation
+  useCreateCalculationManageMutation,
+  useCreateCalculationManagePreviewQuery,
+  useLazyCreateCalculationManagePreviewQuery,
+  useUpdateCalculatorManageMutation,
 } = calculationsApi;

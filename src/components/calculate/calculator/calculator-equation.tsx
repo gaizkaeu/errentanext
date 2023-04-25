@@ -1,22 +1,28 @@
 "use client";
 
+import { useField } from "formik";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const EquationEditor = dynamic(() => import('equation-editor-react'), {
   ssr: false,
 })
 
-export const CalculatorEquation = ({ equation }: { equation: string }) => {
+export const CalculatorEquation = ({ equation, name }: { equation: string, name: string }) => {
 
   const [equationState, setEquation] = useState<string>(equation);
+  const [field, meta, helpers] = useField(name);
+
+  useEffect(() => {
+    helpers.setValue(equationState);
+  }, [equationState])
 
   return (
     <EquationEditor
-    value={equationState}
-    onChange={setEquation}
-    autoCommands="pi theta sqrt sum prod alpha beta gamma rho"
-    autoOperatorNames="sin cos tan"
-  />
+      value={equationState}
+      onChange={setEquation}
+      autoCommands="pi"
+      autoOperatorNames="cos"
+    />
   )
 }

@@ -23,7 +23,7 @@ export const CalculationManageComponent = ({ calculation, org_id }: { calculatio
                 <Button variant="destructive" className="w-5 h-5 rounded-full p-0">
                   <XCircleIcon className="h-4 w-4" />
                 </Button>
-              </div> 
+              </div>
               <div className="ml-8 space-y-2">
                 <div className="flex flex-col gap-2 md:flex-row md:gap-4 md:items-center">
                   <div className="flex items-center text-slate-400 min-w-0">
@@ -34,31 +34,33 @@ export const CalculationManageComponent = ({ calculation, org_id }: { calculatio
                       </span>
                     </p>
                   </div>
-                  <div className="flex items-center min-w-0">
-                    <p className="flex items-center" title="Git ref">
-                      {calculation.attributes.stale_calculation ? (
-                        <Badge variant="outline" className="dark:text-white">
-                          Stale v{calculation.attributes.calculator_version}
-                        </Badge>
-                      ) : (
-                        <Badge variant="outline" className="border-green-500 text-green-500">
-                          LATEST
-                        </Badge>
-                      )}
-                    </p>
-                  </div>
+                  {!calculation.attributes.train_with && (
+                    <div className="flex items-center min-w-0">
+                      <p className="flex items-center" title="Git ref">
+                        {calculation.attributes.stale_calculation ? (
+                          <Badge variant="outline" className="dark:text-white">
+                            Stale v{calculation.attributes.calculator_version}
+                          </Badge>
+                        ) : (
+                          <Badge variant="outline" className="border-green-500 text-green-500">
+                            LATEST
+                          </Badge>
+                        )}
+                      </p>
+                    </div>
+                  )}
                   <div className="flex items-center text-slate-400 min-w-0">
                     <p className="flex items-center" title="Git ref">
                       {calculation.attributes.train_with ? (
                         <>
-                        <span className="text-xs text-green-500 font-bold ml-2" title="Git ref">
-                          Train data
-                        </span>
-                        {!calculation.attributes.eligible_for_training && (
-                          <Badge variant="destructive" className="ml-3">
-                            INVALID
-                          </Badge>
-                        )}
+                          <span className="text-xs text-green-500 font-bold ml-2" title="Git ref">
+                            Train data
+                          </span>
+                          {!calculation.attributes.eligible_for_training && (
+                            <Badge variant="destructive" className="ml-3">
+                              INVALID
+                            </Badge>
+                          )}
                         </>
                       ) : (
                         <span className="text-xs text-slate-500 ml-2" title="Git ref">

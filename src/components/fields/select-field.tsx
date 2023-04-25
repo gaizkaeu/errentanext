@@ -3,7 +3,7 @@ import { at } from "lodash";
 import { useField } from "formik";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 
-export function SelectUniqueField(props: { name: string; options: string[] }) {
+export function SelectUniqueField(props: { name: string; options: [string, string][] }) {
   const { name, ...rest } = props;
   const [field, meta, helpers] = useField({
     name: name,
@@ -31,7 +31,7 @@ export function SelectUniqueField(props: { name: string; options: string[] }) {
   }
 
   return (
-    <div className="grid w-full items-center gap-1.5">
+    <div className="grid items-center gap-1.5">
       <Select onValueChange={onChange} defaultValue={field.value}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Selecciona uno" />
@@ -39,8 +39,8 @@ export function SelectUniqueField(props: { name: string; options: string[] }) {
         <SelectContent>
           <SelectGroup>
             {props.options.map((option) => (
-              <SelectItem key={option} value={option}>
-                <SelectLabel>{option}</SelectLabel>
+              <SelectItem key={option[1]} value={option[1]}>
+                <SelectLabel>{option[0]}</SelectLabel>
               </SelectItem>
             ))}
           </SelectGroup>

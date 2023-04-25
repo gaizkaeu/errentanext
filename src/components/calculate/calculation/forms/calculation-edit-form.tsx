@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useGetCalculatorManageQuery, useUpdateCalculationManageMutation } from "@/store/endpoints/calculations";
 import { CalculationManage } from "@/store/types/Calculator";
 import { Form, Formik } from "formik";
-import { CalculationField } from "./calculation-field";
+import { CalculationField, ClassificationSelectField } from "./calculation-field";
+import { Preview } from "./calculation-preview";
 
 export const CalculationEditForm = (props: { calculation: CalculationManage, org_id: string }) => {
 
@@ -29,7 +30,7 @@ export const CalculationEditForm = (props: { calculation: CalculationManage, org
       {({values}) => (
       <Form>
 
-        <p className="text-lg leading-6 font-medium text-gray-900">
+        <p className="text-lg leading-6 font-medium">
           Input Variables
         </p>
 
@@ -41,11 +42,13 @@ export const CalculationEditForm = (props: { calculation: CalculationManage, org
           ))}
         </div>
 
-        <p className="text-lg leading-6 font-medium text-gray-900 mt-5">
+        <p className="text-lg leading-6 font-medium mt-5">
           Clasificación
         </p>
-
-        <SelectUniqueField name="output[classification]" options={Object.keys(data?.attributes.classifications ?? {})} />
+        <div className="flex gap-3">
+          <ClassificationSelectField classifications={data?.attributes.classifications ?? {}} />
+          <Preview calculator_id={props.calculation.attributes.calculator_id} org_id={props.org_id} />
+        </div>
 
         <Button type="submit" className="mt-5">Guardar</Button>
       </Form>

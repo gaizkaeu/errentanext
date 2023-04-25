@@ -6,16 +6,27 @@ import { CalculatorManage } from "@/store/types/Calculator";
 import { CodeBracketSquareIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { CalculatorEquation } from "./calculator-equation";
+import { Form, Formik } from "formik";
+import { useUpdateCalculatorManageMutation } from "@/store/endpoints/calculations";
 
 export const CalculatorClassifications = (props: { calculator: CalculatorManage }) => {
   const { calculator } = props;
   const [ready, setReady] = useState(false);
+  const [mutation] = useUpdateCalculatorManageMutation()
 
   useEffect(() => {
-    if (typeof(window) !== "undefined") {
+    if (typeof (window) !== "undefined") {
       setReady(true);
     }
   }, [])
+
+  const onSubmit = (values: any) => {
+    mutation({
+      calculator_id: calculator.id,
+      org_id: calculator.attributes.organization_id,
+      ...values
+    })
+  }
 
   return (
     <div>
@@ -36,18 +47,22 @@ export const CalculatorClassifications = (props: { calculator: CalculatorManage 
                 </Badge>
               </div>
             ))}
-
           </PopoverContent>
         </Popover>
       </div>
-      {Object.entries(calculator.attributes.classifications).map(([key, value]) => (
-        <div className="" key={key}>
-          <p className="text-xs  underline uppercase">{key}</p>
-          {ready &&
-            <CalculatorEquation equation={value} />
-          }
-        </div>
-      ))}
+      <Formik initialValues={{}} onSubmit={onSubmit}>
+        <Form>
+          {Object.entries(calculator.attributes.classifications).map(([key, value]) => (
+            <div className="" key={key}>
+              <p className="text-xs  underline uppercase">{key}</p>
+              {ready &&
+                <CalculatorEquation equation={value} name={`classifications[${key}]`} />
+              }
+            </div>
+          ))}
+          <Button type="submit" className="mt-5">Guardar</Button>
+        </Form>
+      </Formik>
     </div>
   )
 }

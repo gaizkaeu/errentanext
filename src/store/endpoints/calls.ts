@@ -1,5 +1,6 @@
 import { api } from "../api";
-import { Call, CallAttributes } from "../types/Call";
+import { BaseQueryResponseList } from "../types";
+import { Call, CallAttributes, CallManage } from "../types/Call";
 
 const callsApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -13,11 +14,23 @@ const callsApi = api.injectEndpoints({
         body: body
       }),
     }),
-
+    getCallsManage: build.query<
+      CallManage[],
+      { org_id: string; }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calls`,
+        method: "get",
+      }),
+      providesTags: (result) => [{ type: "CallManage", id: "LIST" }],
+      transformResponse: (response: BaseQueryResponseList<CallManage>) =>
+        response.data,
+    }),
   }),
   overrideExisting: false,
 });
 
 export const {
-  useCreateCallMutationMutation
+  useCreateCallMutationMutation,
+  useGetCallsManageQuery,
 } = callsApi;

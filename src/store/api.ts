@@ -28,7 +28,8 @@ export const api = createApi({
     "OrganizationInvitation",
     "OrganizationMembership",
     "CalculationManage",
-    "CalculatorManage"
+    "CalculatorManage",
+    "CallManage",
   ],
   endpoints: (build) => ({
     getOrganizations: build.query<Organization[], Record<string, string | string[] | number>>({

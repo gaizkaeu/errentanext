@@ -15,7 +15,7 @@ export const InputComponent = (props: QuestionInput) => {
 export const SelectUniqueComponent = (props: QuestionSelectUnique) => {
   return (
     <>
-      <SelectUniqueField name={`input[${props.name}`} options={props.options} />
+      <SelectUniqueField name={`input[${props.name}`} options={props.options.map((v) => [v,v])} />
     </>
   )
 }

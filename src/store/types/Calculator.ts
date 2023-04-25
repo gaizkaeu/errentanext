@@ -24,7 +24,7 @@ export interface CalculatorManage {
 
 export interface CalculationAttributes {
   input: {
-    [key: string]: string;
+    [key: string]: string | number | boolean;
   }
   output: {
     classification: string;
@@ -49,8 +49,8 @@ export interface CalculatorManageAttributes extends CalculatorAttributes {
   classifications: {
     [key: string]: string;
   }
-  correct_rate: number;
   sample_count: number;
+  calculator_status: "live" | "training" | "error" | "disabled" | "waiting_for_training"
   exposed_variables_formatted: {
     [key: string]: string;
   },
@@ -78,9 +78,14 @@ export interface QuestionInput extends IQuestion {
   field_type: "input";
 }
 
+export interface QuestionBoolean extends IQuestion {
+  field_type: "boolean";
+}
+
+
 export interface QuestionSelectUnique extends IQuestion {
   field_type: "select_unique";
   options: string[];
 }
 
-export type Question = QuestionInput | QuestionSelectUnique;
+export type Question = QuestionInput | QuestionSelectUnique | QuestionBoolean;
