@@ -1,7 +1,6 @@
 import { CalculatorComponent } from "@/components/calculate";
 import { ContactSignInComponent } from "@/components/contact/forms";
 import { OrganizationOpen } from "@/components/organizations";
-// import { OrganizationLocation } from "@/components/organizations/org-location";
 import { OrganizationReviews } from "@/components/organizations/org-review";
 import { ReviewsSummary } from "@/components/reviews";
 import { TagBadge } from "@/components/tags";
@@ -115,7 +114,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <br />
           </div>
           <div className="max-md:hidden col-span-2">
-            <div className="bg-slate-50 dark:bg-midnight-800 rounded-md p-4">
+            <div className="bg-slate-50 dark:bg-midnight-800 rounded-md p-4 sticky top-20">
               <ContactSignInComponent org={org} />
             </div>
           </div>

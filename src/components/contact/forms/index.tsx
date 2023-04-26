@@ -9,7 +9,6 @@ export const ContactSignInComponent = (props: { org: Organization }) => {
 
   const { currentUser } = useAuth();
 
-
   return (
     <div className="relative">
       {!currentUser ? (

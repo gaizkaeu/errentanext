@@ -46,5 +46,4 @@ export const ReviewsSummary = (props: { org: Organization }) => {
 
     </div>
   )
-
 }

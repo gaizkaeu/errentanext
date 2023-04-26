@@ -1,1 +1,2 @@
-export {CalculatorManageComponent, CalculatorComponent } from "./calculator-component";
+export {CalculatorManageComponent } from "./calculator-component";
+export { CalculatorComponent } from "./org-calculator-component";

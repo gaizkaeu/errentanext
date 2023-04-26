@@ -68,14 +68,26 @@ export interface CalculationManageAttributes extends CalculationAttributes {
   eligible_for_training: boolean;
 }
 
+export type PredictionAttributes = PredictionAttribute[];
+
+export interface PredictionAttribute {
+  name: string;
+  type: "string" | "integer" | "boolean";
+  var_type: "continuous" | "discrete";
+  question: Question 
+}
+
 export interface IQuestion {
   name: string;
   title: string;
+  label: string;
   value?: string;
 }
 
 export interface QuestionInput extends IQuestion {
   field_type: "input";
+  placeholder?: string;
+  default_value?: string;
 }
 
 export interface QuestionBoolean extends IQuestion {

@@ -1,7 +1,6 @@
 import { cva } from "class-variance-authority";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { CheckIcon } from "@heroicons/react/24/outline";
 
 const tagVariants = cva(
   "rounded-full border",
