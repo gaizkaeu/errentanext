@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button"
 import { useLocalizedMoment } from "@/lib/utils"
 import { useGetOrganizationCalculatorsCalculationsQuery } from "@/store/endpoints/organizations"
 import { CalculatorManage } from "@/store/types/Calculator"
-import { ArchiveBoxIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
+import { ArchiveBoxIcon, ChevronDownIcon, PlayIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { CalculationManageComponent } from "../calculation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalculatorGraphComponent } from "./calculator-graph";
 import { CalculatorClassifications } from "./calculator-classifications";
 import { CalculationManageCreateForm } from "../calculation/forms/calculation-create-form";
+import { useTrainCalculatorManageMutation } from "@/store/endpoints/calculations";
 
 export const CalculatorManageComponent = (props: { calculator: CalculatorManage }) => {
   const { calculator } = props
@@ -21,6 +22,7 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
     }
   }, {
     skip: !selected,
+    pollingInterval: 10000,
   })
 
   const s = useLocalizedMoment();
@@ -97,6 +99,7 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
               </TabsList>
               <TabsContent value="train">
                 <div>
+                  <TrainButton calculator={calculator} />
                   <CalculationManageCreateForm calculator={calculator} org_id={calculator.attributes.organization_id} />
                   {data?.map((item) => (
                     <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
@@ -118,3 +121,13 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
   )
 }
 
+const TrainButton = ({ calculator }: {calculator: CalculatorManage}) => {
+  const [mutation] = useTrainCalculatorManageMutation()
+
+  return (
+    <Button onClick={() => mutation({calculator_id: calculator.id, org_id: calculator.attributes.organization_id})} variant="outline" className="flex items-center gap-2">
+      <PlayIcon className="h-4 w-4" />
+      <span>Entrenar</span>
+    </Button>
+  )
+}

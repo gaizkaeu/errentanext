@@ -5,7 +5,9 @@ import { useGetOrganizationCalculatorsQuery } from "@/store/endpoints/organizati
 
 export default function Page({ params }: { params: { id: string } }) {
 
-  const { data } = useGetOrganizationCalculatorsQuery({ id: params.id, filters: {} });
+  const { data } = useGetOrganizationCalculatorsQuery({ id: params.id, filters: {} }, {
+    pollingInterval: 10000,
+  });
 
   return (
     <div className="w-full">

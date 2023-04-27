@@ -45,6 +45,19 @@ const calculationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponse<CalculatorManage>) =>
         response.data,
     }),
+    trainCalculatorManage: build.mutation<
+      CalculatorManage,
+      { calculator_id: string; org_id: string }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/train`,
+        method: "post",
+        body: id
+      }),
+      invalidatesTags: (result) => ["CalculatorManage"],
+      transformResponse: (response: BaseQueryResponse<CalculatorManage>) =>
+        response.data,
+    }),
     updateCalculationManage: build.mutation<
       CalculationManage,
       { calcr_id: string; org_id: string, calcn_id: string & Partial<CalculationManageAttributes> }
@@ -96,4 +109,5 @@ export const {
   useCreateCalculationManagePreviewQuery,
   useLazyCreateCalculationManagePreviewQuery,
   useUpdateCalculatorManageMutation,
+  useTrainCalculatorManageMutation
 } = calculationsApi;
