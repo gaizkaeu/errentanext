@@ -1,5 +1,5 @@
 import { useLocalizedMoment } from '@/lib/utils';
-import { ArrowUpRightIcon, ChatBubbleBottomCenterIcon, GlobeAltIcon, MapPinIcon, PhoneArrowDownLeftIcon, PhoneArrowUpRightIcon } from '@heroicons/react/24/outline';
+import { ArrowUpRightIcon, ChatBubbleBottomCenterIcon, MapPinIcon, PhoneArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { Organization } from '@/store/types/Organization';
 import { GeneralCard, GeneralCardContent, GeneralCardHeading } from '../ui/card';
 
