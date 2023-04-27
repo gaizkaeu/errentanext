@@ -33,8 +33,12 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
             <div className="flex flex-col gap-2 flex-1">
               <div className="flex items-center gap-4">
                 <div className="inline-block w-fit">
-                {calculator.attributes.calculator_status === "live" && (
+                {calculator.attributes.calculator_status === "live" ? (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    {calculator.attributes.calculator_status}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600">
                     {calculator.attributes.calculator_status}
                   </span>
                 )}
