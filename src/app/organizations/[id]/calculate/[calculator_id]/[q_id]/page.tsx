@@ -1,4 +1,5 @@
 import { InputComponent, SelectUniqueComponent } from "@/components/calculate";
+import { CalculationField } from "@/components/calculate/calculation/forms";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Calculator } from "@/store/types/Calculator";
@@ -26,16 +27,9 @@ export default async function Page({ params }: { params: { id: string, calculato
         <br />
 
         <div className="mx-auto">
-          {calculator.attributes.questions.map((question) => {
-            switch (question.field_type) {
-              case "input":
-                return <InputComponent {...question} />
-              case "select_unique":
-                return <SelectUniqueComponent {...question} />
-              default:
-                return <></>
-            }
-          })[parseInt(params.q_id)]
+          {calculator.attributes.questions.map((question) => (
+            <CalculationField question={question} key={question.name} />
+          ))[parseInt(params.q_id)]
           }
         </div>
 
