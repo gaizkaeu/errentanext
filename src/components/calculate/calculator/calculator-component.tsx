@@ -11,19 +11,12 @@ import { CalculatorGraphComponent } from "./calculator-graph";
 import { CalculatorClassifications } from "./calculator-classifications";
 import { CalculationManageCreateForm } from "../calculation/forms/calculation-create-form";
 import { useTrainCalculatorManageMutation } from "@/store/endpoints/calculations";
+import { Badge } from "@/components/ui/badge";
 
 export const CalculatorManageComponent = (props: { calculator: CalculatorManage }) => {
   const { calculator } = props
   const [selected, setSelected] = useState(false)
 
-  const { data } = useGetOrganizationCalculatorsCalculationsQuery({
-    id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: {
-      'q[train_with_eq]': 'true',
-    }
-  }, {
-    skip: !selected,
-    pollingInterval: 10000,
-  })
 
   const s = useLocalizedMoment();
 
@@ -70,6 +63,11 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
                       </span>
                     </p>
                   </div>
+                  <div className="flex items-center text-slate-400 min-w-0">
+                    <Badge>
+                      v{calculator.attributes.version}  
+                    </Badge> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,15 +93,13 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
                 <TabsTrigger value="train">Entrenamiento</TabsTrigger>
                 <TabsTrigger value="classifications">Clasificaciones</TabsTrigger>
                 <TabsTrigger value="graph">Grafo</TabsTrigger>
-                <TabsTrigger value="password">Cálculos realizados</TabsTrigger>
+                <TabsTrigger value="calculations">Cálculos realizados</TabsTrigger>
               </TabsList>
               <TabsContent value="train">
                 <div>
                   <TrainButton calculator={calculator} />
                   <CalculationManageCreateForm calculator={calculator} org_id={calculator.attributes.organization_id} />
-                  {data?.map((item) => (
-                    <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
-                  ))}
+                  <Data calculator={calculator} train={true} />
                 </div>
               </TabsContent>
               <TabsContent value="classifications">
@@ -112,7 +108,9 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
               <TabsContent value="graph">
                 <CalculatorGraphComponent dot={calculator.attributes.dot_visualization} />
               </TabsContent>
-
+              <TabsContent value="calculations">
+                <Data calculator={calculator} train={false} />
+              </TabsContent>
             </Tabs>
           )}
         </div>
@@ -122,12 +120,31 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
 }
 
 const TrainButton = ({ calculator }: {calculator: CalculatorManage}) => {
-  const [mutation] = useTrainCalculatorManageMutation()
+  const [mutation, {isLoading}] = useTrainCalculatorManageMutation()
 
   return (
-    <Button onClick={() => mutation({calculator_id: calculator.id, org_id: calculator.attributes.organization_id})} variant="outline" className="flex items-center gap-2">
+    <Button disabled={isLoading} onClick={() => mutation({calculator_id: calculator.id, org_id: calculator.attributes.organization_id})} variant="outline" className="flex items-center gap-2">
       <PlayIcon className="h-4 w-4" />
       <span>Entrenar</span>
     </Button>
   )
+}
+
+const Data = ({ calculator, train }: {calculator: CalculatorManage, train: boolean}) => {
+  const { data } = useGetOrganizationCalculatorsCalculationsQuery({
+    id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: {
+      'q[train_with_eq]': train ? 'true' : 'false',
+    }
+  }, {
+    pollingInterval: 10000,
+  })
+
+  return (
+    <div>
+    {data?.map((item) => (
+      <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
+    ))}
+  </div>
+  )
+
 }
