@@ -30,6 +30,7 @@ export const api = createApi({
     "CalculationManage",
     "CalculatorManage",
     "CallManage",
+    "Calculation"
   ],
   endpoints: (build) => ({
     getOrganizations: build.query<Organization[], Record<string, string | string[] | number>>({

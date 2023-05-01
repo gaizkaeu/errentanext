@@ -175,7 +175,7 @@ export interface OrganizationAttributes {
   settings?: {
     hireable: boolean;
   }
-  skill_list: string[];
+  skill_list?: string[];
   company_target_list: string[];
   service_list: string[];
   

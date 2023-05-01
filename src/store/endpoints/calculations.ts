@@ -1,23 +1,30 @@
 import { api } from "../api";
 import { BaseQueryResponse } from "../types";
-import { Calculation, CalculationAttributes, CalculationManage, CalculationManageAttributes, Calculator, CalculatorManage, CalculatorManageAttributes } from "../types/Calculator";
+import { BulkCalculation, Calculation, CalculationAttributes, CalculationManage, CalculationManageAttributes, Calculator, CalculatorManage, CalculatorManageAttributes } from "../types/Calculator";
 
 
 const calculationsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getCalculator: build.query<Calculator, {org_id: string, calcr_id: string}>({
+    getCalculator: build.query<Calculator, { org_id: string, calcr_id: string }>({
       query: (data) => ({ url: `organizations/${data.org_id}/calculators/${data.calcr_id}`, method: "get" }),
       transformResponse: (response: BaseQueryResponse<Calculator>) =>
         response.data,
     }),
-    createCalculation: build.mutation<Calculation, Partial<CalculationAttributes> & {calculator_id: string}>({
+    createCalculation: build.mutation<Calculation, Partial<CalculationAttributes> & { calculator_id: string }>({
       query: (data) => ({ url: `calculations`, method: "post", body: data }),
       transformResponse: (response: BaseQueryResponse<Calculation>) =>
         response.data,
     }),
     getCalculation: build.query<Calculation, string>({
       query: (data) => ({ url: `calculations/${data}`, method: "get" }),
+      providesTags: (result) => [{ type: "Calculation", id: result?.id }],
       transformResponse: (response: BaseQueryResponse<Calculation>) =>
+        response.data,
+    }),
+    getCalculationManage: build.query<CalculationManage, {org_id: string, calcn_id: string}>({
+      query: (data) => ({ url: `organization-manage/${data.org_id}/${data.calcn_id}`, method: "get" }),
+      providesTags: (result) => [{ type: "Calculation", id: result?.id }],
+      transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
         response.data,
     }),
     getCalculatorManage: build.query<
@@ -72,29 +79,51 @@ const calculationsApi = api.injectEndpoints({
         response.data,
     }),
     createCalculationManage: build.mutation<
-    CalculationManage,
-    { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
-  >({
-    query: (id) => ({
-      url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/`,
-      method: "post",
-      body: id,
+      CalculationManage,
+      { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/`,
+        method: "post",
+        body: id,
+      }),
+      invalidatesTags: (result) => ["CalculationManage"],
+      transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
+        response.data,
     }),
-    invalidatesTags: (result) => ["CalculationManage"],
-    transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
-      response.data,
-  }),
-  createCalculationManagePreview: build.query<
-  { [key: string]: number },
-  { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
->({
-  query: (id) => ({
-    url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/preview`,
-    method: "post",
-    body: id,
-  }),
-}),
-
+    createCalculationManagePreview: build.query<
+      { [key: string]: number },
+      { calculator_id: string; org_id: string & Partial<CalculationManageAttributes> }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/preview`,
+        method: "post",
+        body: id,
+      }),
+    }),
+    getBulkCalculation: build.query<
+      BulkCalculation,
+      string
+    >({
+      query: (id) => ({
+        url: `bulk-calculations/${id}`,
+        method: "get",
+      }),
+      transformResponse: (response: BaseQueryResponse<BulkCalculation>) =>
+        response.data,
+    }),
+    createBulkFromCalculation: build.mutation<
+      BulkCalculation,
+      string
+    >({
+      query: (id) => ({
+        url: `calculations/${id}/bulk`,
+        method: "post",
+      }),
+      invalidatesTags: (result) => ["Calculation"],
+      transformResponse: (response: BaseQueryResponse<BulkCalculation>) =>
+        response.data,
+    }),
   }),
   overrideExisting: false,
 });
@@ -109,5 +138,8 @@ export const {
   useCreateCalculationManagePreviewQuery,
   useLazyCreateCalculationManagePreviewQuery,
   useUpdateCalculatorManageMutation,
-  useTrainCalculatorManageMutation
+  useTrainCalculatorManageMutation,
+  useGetBulkCalculationQuery,
+  useCreateBulkFromCalculationMutation,
+  useGetCalculationManageQuery,
 } = calculationsApi;

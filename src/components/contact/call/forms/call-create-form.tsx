@@ -1,6 +1,5 @@
 "use client";
 import { PhoneField } from "@/components/fields";
-import { FormSection } from "@/components/ui/form-section";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Organization } from "@/store/types/Organization";
 import { Form, Formik, FormikHelpers } from "formik"
@@ -15,8 +14,18 @@ import { useAuth } from "@/components/providers/authProvider";
 import { Call, CallAttributes } from "@/store/types/Call";
 import { useCreateCallMutationMutation } from "@/store/endpoints/calls";
 import { useState } from "react";
+import { useGetCalculationQuery } from "@/store/endpoints/calculations";
+import { CalculationComponent } from "@/components/calculate";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useGetOrganizationByIdQuery } from "@/store/endpoints/organizations";
 
-export const CallCreateForm = (props: { org: Organization }) => {
+export const CallCreateFormWrapper = (props: { org_id: string, calc_id: string }) => {
+  const {data} = useGetOrganizationByIdQuery(props.org_id);
+
+  return data ? <CallCreateForm org={data} calc_id={props.calc_id} /> : <Skeleton />
+}
+
+export const CallCreateForm = (props: { org: Organization, calc_id?: string }) => {
 
   const s = useLocalizedMoment();
   const [mutation] = useCreateCallMutationMutation();
@@ -36,7 +45,8 @@ export const CallCreateForm = (props: { org: Organization }) => {
 
   return currentUser ? (
     call ? <CallCreated call={call} /> : (
-      <Formik initialValues={{ organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
+      <Formik initialValues={{ calculation_id: props.calc_id, organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
+        {({values}) => (
         <Form>
           <div className="flex flex-col gap-4">
             <p className="text-lg font-semibold">¿Cuál es tu número de teléfono?</p>
@@ -73,12 +83,17 @@ export const CallCreateForm = (props: { org: Organization }) => {
               </TabsContent>
             </Tabs>
             <p className="text-lg font-semibold">Información adicional</p>
-            <SkillSelectField name="skill_list" skill_list={props.org.attributes.skill_list} />
+            {values.calculation_id ? (
+              <Calculation calc_id={values.calculation_id} />
+            ) : (
+              <SkillSelectField name="skill_list" skill_list={props.org.attributes.skill_list ?? []} />
+            )}
             <Textarea name="message" placeholder="Escribe un mensaje opcional" />
           </div>
           <br />
           <Button type="submit" className="w-full">Enviar</Button>
         </Form>
+        )}
       </Formik>
     )
   ) : <></>
@@ -89,4 +104,14 @@ const CallCreated = (props: { call: Call }) => {
   return (
     <p>hecho!</p>
   )
+}
+
+const Calculation = (props: { calc_id: string }) => {
+
+  const {data} = useGetCalculationQuery(props.calc_id);
+
+  return data ?
+    <CalculationComponent calcn={data} />
+  : 
+    <Skeleton className="w-full h-96" />
 }

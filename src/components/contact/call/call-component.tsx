@@ -26,7 +26,7 @@ export const CallManageComponent = (props: { call: CallManage }) => {
             </div>
           </div>
         }
-        expandedContent={
+        expandedcontent={
           <CallManageExpandedComponent call={call} />
         } 
       >

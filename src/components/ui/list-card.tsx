@@ -46,7 +46,7 @@ const ListCard = React.forwardRef<
 
 const ListCardHeading = React.forwardRef<
   HTMLDivElement,
-  GeneralCardProps & { rightContent?: React.ReactNode, expandedContent?: React.ReactNode }
+  GeneralCardProps & { rightContent?: React.ReactNode, expandedcontent?: React.ReactNode }
 >(({ className, variant, children, ...props }, ref) => {
 
   const [selected, setSelected] = React.useContext(SelectedContext)
@@ -70,7 +70,7 @@ const ListCardHeading = React.forwardRef<
           <ChevronDownIcon className="h-4 w-4" />
         </Button>
       </div>
-      {selected && props.expandedContent}
+      {selected && props.expandedcontent}
     </div>
   )
 })

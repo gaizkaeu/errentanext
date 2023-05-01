@@ -1,3 +1,5 @@
+import { CalculationManage, CalculationManageAttributes } from "./Calculator";
+
 export interface Call {
   id: string;
   type: "call";
@@ -20,6 +22,8 @@ export interface CallManageAttributes extends CallAttributes {
   first_name: string,
   last_name: string,
   phone_number: string,
+  calculation_id?:string,
+  calculation?: CalculationManage,
   created_at: string,
   call_time: string,
   successful: boolean,

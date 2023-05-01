@@ -1,3 +1,8 @@
+import { Organization } from "./Organization";
+
+export type BulkCalculation = Calculation[]
+
+
 export interface Calculation {
   id: string;
   type: "calculation";
@@ -29,7 +34,10 @@ export interface CalculationAttributes {
   output: {
     classification: string;
   }
+  organization: Organization,
   predicted_at: string;
+  name: string;
+  bulk_calculation_id: string;
   calculator_id: string;
   price_result: number;
 }
