@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { useLocalizedMoment } from "@/lib/utils"
 import { useMemo } from "react"
 
-export const CallTimeComponent = (props: { call_time: string }) => {
+export const CallTimeComponent = (props: { call_time: string | Date }) => {
 
   const s = useLocalizedMoment()
 

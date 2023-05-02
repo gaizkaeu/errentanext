@@ -1,5 +1,5 @@
 "use client";
-import { PhoneField } from "@/components/fields";
+import { CalendarDatePickerField, PhoneField } from "@/components/fields";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Organization } from "@/store/types/Organization";
 import { Form, Formik, FormikHelpers } from "formik"
@@ -17,13 +17,7 @@ import { useState } from "react";
 import { useGetCalculationQuery } from "@/store/endpoints/calculations";
 import { CalculationComponent } from "@/components/calculate";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetOrganizationByIdQuery } from "@/store/endpoints/organizations";
 
-export const CallCreateFormWrapper = (props: { org_id: string, calc_id: string }) => {
-  const {data} = useGetOrganizationByIdQuery(props.org_id);
-
-  return data ? <CallCreateForm org={data} calc_id={props.calc_id} /> : <Skeleton />
-}
 
 export const CallCreateForm = (props: { org: Organization, calc_id?: string }) => {
 
@@ -45,20 +39,20 @@ export const CallCreateForm = (props: { org: Organization, calc_id?: string }) =
 
   return currentUser ? (
     call ? <CallCreated call={call} /> : (
-      <Formik initialValues={{ calculation_id: props.calc_id, organization_id: props.org.id, phone_number: "", call_time: "", interested_in: [] }} onSubmit={onSubmit}>
+      <Formik initialValues={{ calculation_id: props.calc_id, call_time: new Date(), organization_id: props.org.id, phone_number: "", interested_in: [] }} onSubmit={onSubmit}>
         {({values}) => (
         <Form>
           <div className="flex flex-col gap-4">
             <p className="text-lg font-semibold">¿Cuál es tu número de teléfono?</p>
-            <PhoneField name="phone" />
+            <PhoneField name="phone_number" />
             <p className="text-lg font-semibold">¿Cuándo quieres que te llamemos?</p>
             <Tabs defaultValue="now">
               <TabsList>
                 <TabsTrigger value="now">
-                  <p>Ahora</p>
+                  <p>Lo antes posible</p>
                 </TabsTrigger>
                 <TabsTrigger value="later">
-                  <p>Más tarde</p>
+                  <p>Seleccionar fecha</p>
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="now">
@@ -79,7 +73,8 @@ export const CallCreateForm = (props: { org: Organization, calc_id?: string }) =
                 )}
               </TabsContent>
               <TabsContent value="later">
-                <p>Te llamaremos más tarde</p>
+                <p>Escoge que día quieres que te llamemos.</p>
+                <CalendarDatePickerField name="call_time1" />
               </TabsContent>
             </Tabs>
             <p className="text-lg font-semibold">Información adicional</p>

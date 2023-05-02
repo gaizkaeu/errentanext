@@ -51,7 +51,7 @@ export const SelectConfiguration = (props: {
         <Select
           isMulti
           defaultValue={searchParams[props.key_name]?.map((d: any) => ({
-            label: d,
+            label: props.keys.find((k) => k.value === d)?.label,
             value: d,
           }))}
           onChange={updateSearchValue}

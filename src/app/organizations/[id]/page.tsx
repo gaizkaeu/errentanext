@@ -1,11 +1,11 @@
-import { CalculatorComponent } from "@/components/calculate";
-import { ContactSignInComponent } from "@/components/contact/forms";
+import { CalculatorComponent } from "@/components/calculate/calculator/org-calculator-component";
 import { OrganizationOpen } from "@/components/organizations";
 import { OrganizationReviews } from "@/components/organizations/org-review";
 import { ReviewsSummary } from "@/components/reviews";
 import { TagBadge } from "@/components/tags";
 import { BackButton } from "@/components/ui/back-button";
 import { GeneralCard } from "@/components/ui/card";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const getOrg = async (id: string) => {
@@ -33,6 +33,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     title: org.attributes.name,
   };
 }
+
+const ContactSignInComponent = dynamic(() =>
+  import('@/components/contact/forms'), 
+  {loading: () => <p>Loading...</p>}
+)
 
 export default async function Page({ params }: { params: { id: string } }) {
   const orgProm = getOrg(params.id);

@@ -1,6 +1,6 @@
+"use client";
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
 import { VariantProps, cva } from "class-variance-authority";
 import { useState } from "react";
 import { Button } from "./button";

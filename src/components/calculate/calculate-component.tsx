@@ -1,6 +1,6 @@
 "use client";
 
-export { CalculationComponent } from "./calculation-component";
+export { CalculationComponent } from "./calculation/user-calculation-component";
 
 
 import { useCreateCalculationMutation } from "@/store/endpoints/calculations";

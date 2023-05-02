@@ -1,7 +1,7 @@
-import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { VariantProps, cva } from "class-variance-authority";
+import React from "react";
 
 const cardVariants = cva(
   "h-64 bg-gradient-to-r rounded-lg flex select-none flex-col p-6 no-underline outline-none focus:shadow-md hover:rounded-md transition-all",

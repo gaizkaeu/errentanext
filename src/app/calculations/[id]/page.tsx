@@ -93,7 +93,7 @@ export default function Page({ params }: { params: { id: string } }) {
 const ClickalbeCalculation = ({ calc, featured, setSelected }: { calc: Calculation, featured: boolean, setSelected: (arg: Calculation) => void }) => {
   return (
     <div onClick={() => setSelected(calc)} className="group cursor-pointer hover:scale-95 transform-gpu transition-transform ease-out duration-200 focus-within:border-purple-400 focus-within:ring focus-within:ring-purple-300">
-      <CalculationComponent calcn={calc} feature={featured} />
+      <CalculationComponent calcn={calc} feature={featured} clickable={true} />
     </div>
   )
 }

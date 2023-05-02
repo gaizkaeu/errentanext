@@ -30,3 +30,4 @@ export const ContactSignInComponent = (props: { org: Organization, clcn_id?: str
 
   )
 }
+export default ContactSignInComponent;

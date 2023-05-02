@@ -1,8 +1,8 @@
-import { OrganizationBadge } from "../organizations/org-badge";
+import { OrganizationBadge } from "../../organizations/org-badge";
 import { Calculation } from "@/store/types/Calculator";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../../ui/skeleton";
 
-export const CalculationComponent = (props: { calcn: Calculation, feature?: boolean }) => {
+export const CalculationComponent = (props: { calcn: Calculation, feature?: boolean, clickable?: boolean }) => {
 
   const { calcn, feature } = props
   const { organization } = calcn.attributes
@@ -13,6 +13,7 @@ export const CalculationComponent = (props: { calcn: Calculation, feature?: bool
       <div className="flex items-center group-hover:opacity-50 flex-1">
         <div className="flex-1">
           <h2 className="text-2xl font-bold">{organization.attributes.name}.</h2>
+          {props.clickable && <p>Haz click para continuar</p>}
           <OrganizationBadge org={organization} />
         </div>
         {calcn.attributes.price_result ? (

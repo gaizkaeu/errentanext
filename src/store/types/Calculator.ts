@@ -73,6 +73,7 @@ export interface CalculationManageAttributes extends CalculationAttributes {
   calculator_version: number;
   stale_calculation: boolean;
   questions: Question[];
+  created_at: string;
   eligible_for_training: boolean;
 }
 
