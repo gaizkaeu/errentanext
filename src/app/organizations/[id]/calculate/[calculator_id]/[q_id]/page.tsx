@@ -1,4 +1,3 @@
-import { InputComponent, SelectUniqueComponent } from "@/components/calculate";
 import { CalculationField } from "@/components/calculate/calculation/forms";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -17,21 +16,18 @@ export default async function Page({ params }: { params: { id: string, calculato
 
   return calculator && (
     <>
-
       <Progress value={(parseInt(params.q_id) / calculator.attributes.questions.length) * 100} />
 
       <br />
       <div className="mx-auto flex flex-col max-w-xl">
-        <h3 className="text-2xl font-bold">{calculator.attributes.questions[parseInt(params.q_id)].title}</h3>
+        <h3 className="text-2xl font-bold text-center">{calculator.attributes.questions[parseInt(params.q_id)].title}</h3>
 
         <br />
 
-        <div className="mx-auto">
-          {calculator.attributes.questions.map((question) => (
-            <CalculationField question={question} key={question.name} />
-          ))[parseInt(params.q_id)]
-          }
-        </div>
+        {calculator.attributes.questions.map((question) => (
+          <CalculationField question={question} key={question.name} />
+        ))[parseInt(params.q_id)]
+        }
 
         <br />
 
@@ -44,9 +40,11 @@ export default async function Page({ params }: { params: { id: string, calculato
           </div>
         ) : (
           <div className="flex gap-3">
-            <Link href={`/organizations/${params.id}/calculate/${params.calculator_id}/${parseInt(params.q_id) - 1}`}>
-              <Button >Anterior</Button>
-            </Link>
+            {params.q_id !== "0" && (
+              <Link href={`/organizations/${params.id}/calculate/${params.calculator_id}/${parseInt(params.q_id) - 1}`}>
+                <Button >Anterior</Button>
+              </Link>
+            )}
             <Link href={`/organizations/${params.id}/calculate/${params.calculator_id}/${parseInt(params.q_id) + 1}`}>
               <Button>Siguiente</Button>
             </Link>

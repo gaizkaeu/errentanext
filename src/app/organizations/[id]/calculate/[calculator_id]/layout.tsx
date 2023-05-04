@@ -1,7 +1,7 @@
-import { CalculateComponent, InputComponent, SelectUniqueComponent } from "@/components/calculate";
+import { CalculateComponent } from "@/components/calculate";
+import { OrgViewExplore } from "@/components/organizations";
 import { Calculator } from "@/store/types/Calculator";
 import { Organization } from "@/store/types/Organization";
-import Link from "next/link";
 
 const getOrg = async (id: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/organizations/" + id, { next: { revalidate: 60 } });
@@ -23,21 +23,19 @@ export default async function Page({ params, children }: { params: { id: string,
 
   return org && (
     <>
-      <div className="w-full md:p-4 p-1">
-        <div className="flex items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
-              {org.attributes.name}
-            </h1>
-            <h2 className="text-xl font-bold leading-tight tracking-tighter md:text-3xl lg:text-4xl lg:leading-[1.1]">
-              Asesoría en <span className="font-light">{org.attributes.city}</span>.{" "}
-            </h2>
-          </div>
+      <div className="flex flex-col md:p-4 p-1 h-full max-w-xl space-y-2 mx-auto">
+        <div className="bg-slate-100 rounded-lg p-2 dark:bg-midnight-700 md:h-4/6">
+          <CalculateComponent calculator={calculator} org_id={params.id}>
+            {children}
+          </CalculateComponent>
         </div>
-        <br />
-        <CalculateComponent calculator={calculator} org_id={params.id}>
-          {children}
-        </CalculateComponent>
+        <div className="from-fuchsia-600 to-pink-600 text-white bg-gradient-to-r rounded-lg p-3 max-md:w-full">
+          <h2 className="text-2xl font-bold"><span className="font-light">Calculando</span> {calculator.attributes.topic_name}</h2>
+          <OrgViewExplore org={org} />
+        </div>
+        <div className="w-full p-3 rounded-lg dark:bg-midnight-700 bg-slate-100 mt-2">
+          <h4 className="text-2xl font-bold">Como protegemos <span className="font-light">tus datos</span>.</h4>
+        </div>
       </div>
     </>
   );

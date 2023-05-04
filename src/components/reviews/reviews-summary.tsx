@@ -12,7 +12,7 @@ export const ReviewsSummary = (props: { org: Organization }) => {
   }, [props])
 
   return (
-    <div className="p-2">
+    <div className="p-2 bg-white rounded-lg dark:bg-midnight-700">
       <div className="flex items-center mt-4 w-full gap-4 p-3">
         <div className="text-center">
           <p className="text-3xl font-semibold">

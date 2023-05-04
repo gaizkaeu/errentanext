@@ -19,7 +19,6 @@ export const OrgViewExplore = (props: { org: Organization, reviews?: Review[] })
           </p>
         </div>
       </div>
-      <Separator />
       <section>
         <p className="text-xl font-bold leading-tight tracking-tighter">
           Reseñas

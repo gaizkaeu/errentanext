@@ -34,7 +34,7 @@ export const CalculationManageCreateForm = (props: { calculator: CalculatorManag
         <div className="mt-5 grid grid-cols-3 gap-3">
           {props.calculator.attributes.questions.map((question) => (
             <div key={question.name}>
-              <CalculationField question={question} />
+              <CalculationField question={question} manage={true} />
             </div>
           ))}
         </div>

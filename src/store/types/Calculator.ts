@@ -109,4 +109,13 @@ export interface QuestionSelectUnique extends IQuestion {
   options: string[];
 }
 
-export type Question = QuestionInput | QuestionSelectUnique | QuestionBoolean;
+export interface QuestionInputWithDefaults extends IQuestion {
+  field_type: "input_with_defaults";
+  options: {
+    key: string;
+    value: string;
+  }[];
+  placeholder?: string;
+}
+
+export type Question = QuestionInput | QuestionSelectUnique | QuestionBoolean | QuestionInputWithDefaults;
