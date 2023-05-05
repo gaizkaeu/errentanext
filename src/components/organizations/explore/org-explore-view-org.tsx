@@ -8,7 +8,7 @@ export const OrgViewExplore = (props: { org: Organization, reviews?: Review[] })
   const { org, reviews } = props;
 
   return (
-    <div className="p-3 grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <div className="flex">
         <div className="flex-1">
           <p className="text-2xl font-bold leading-tight tracking-tighter">

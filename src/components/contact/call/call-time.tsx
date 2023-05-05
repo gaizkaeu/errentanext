@@ -23,7 +23,7 @@ export const CallTimeComponent = (props: { call_time: string | Date }) => {
   // i want to get different colors for different time periods
 
     return (
-      <Badge>{callTime.format("DD/MM/YYYY HH:mm")}</Badge>
+      <Badge>{callTime.format("DD/MM/YYYY")}</Badge>
     )
 
 

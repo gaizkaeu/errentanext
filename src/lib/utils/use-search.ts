@@ -11,14 +11,19 @@ interface Params {
   [key: string]: any;
 }
 
-const useSearch = (serverRedirect: boolean): [Params, (params: Params) => void] => {
+const useSearch = (serverRedirect: boolean, defaultParams?: Params): [Params, (params: Params) => void] => {
   const [searchParams, setSearchParams] = useState<Params>({});
   const s = useSearchParams();
   const r = useRouter();
 
   useEffect(() => {
+    if (s.toString() === '' && defaultParams) {
+      setRansackSearchParams(defaultParams);
+      return;
+    }
     setSearchParams(queryString.parse(s.toString()));
   }, [s]);
+
 
   const setRansackSearchParams = (params: Params) => {
     const newSearchParams: Params = { ...searchParams, ...params };

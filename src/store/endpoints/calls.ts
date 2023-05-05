@@ -1,5 +1,6 @@
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
+import { CalculatorManageAttributes } from "../types/Calculator";
 import { Call, CallAttributes, CallManage, CallManageAttributes } from "../types/Call";
 
 const callsApi = api.injectEndpoints({

@@ -74,7 +74,7 @@ export const CallCreateForm = (props: { org: Organization, calc_id?: string }) =
               </TabsContent>
               <TabsContent value="later">
                 <p>Escoge que día quieres que te llamemos.</p>
-                <CalendarDatePickerField name="call_time1" />
+                <CalendarDatePickerField name="call_time" />
               </TabsContent>
             </Tabs>
             <p className="text-lg font-semibold">Información adicional</p>

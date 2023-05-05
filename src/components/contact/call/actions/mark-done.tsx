@@ -7,7 +7,8 @@ export const MarkAsDone = ({call}: {call: CallManage}) => {
   const [mutation] = useUpdateCallManageMutation();
 
   const markAsDone = () => {
-    mutation({call_id: call.id, org_id: call.attributes.organization_id })
+    const values = { successful: true }
+    mutation({call_id: call.id, org_id: call.attributes.organization_id, ...values })
   }
 
   return (

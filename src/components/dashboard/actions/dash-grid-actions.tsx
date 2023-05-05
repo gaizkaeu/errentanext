@@ -9,7 +9,7 @@ export const DashGridActions = () => {
     <div className="bg-slate-50 dark:bg-midnight-800 rounded-xl overflow-hidden">
       <div className="grid lg:grid-cols-2 grid-cols-1 divide-x dark:border-midnight-700">
         <div className="grid grid-cols-1 divide-y dark:border-midnight-700">
-          <Action title="Mis declaraciones" color="yellow" description="Ver todas mis declaraciones." href="/tax_incomes" >
+          <Action title="Mis presupuestos" color="yellow" description="Ver todos mis presupuestos." href="/tax_incomes" >
             <PaperAirplaneIcon className="h-8" />
           </Action>
           <Action title="Explorar organizacaciones" color="green" description="Encuentra todas las asesorías disponibles por tu zona." href="" >

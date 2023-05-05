@@ -4,9 +4,9 @@ import { useField } from "formik";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const EquationEditor = dynamic(() => import('equation-editor-react'), {
-  ssr: false,
-})
+// const EquationEditor = dynamic(() => import('equation-editor-react'), {
+//   ssr: false,
+// })
 
 export const CalculatorEquation = ({ equation, name }: { equation: string, name: string }) => {
 
@@ -18,11 +18,12 @@ export const CalculatorEquation = ({ equation, name }: { equation: string, name:
   }, [equationState])
 
   return (
-    <EquationEditor
-      value={equationState}
-      onChange={setEquation}
-      autoCommands="pi"
-      autoOperatorNames="cos"
-    />
+    // <EquationEditor
+    //   value={equationState}
+    //   onChange={setEquation}
+    //   autoCommands="pi"
+    //   autoOperatorNames="cos"
+    // />
+    <p>asd</p>
   )
 }

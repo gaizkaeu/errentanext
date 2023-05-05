@@ -20,8 +20,8 @@ export const CalculationField = (props: { question: Question, manage?: boolean }
         {!props.manage && <BooleanInput {...props.question} />}
         {props.manage && (
           <>
-            <Label htmlFor={props.question.label}>{props.question.label}</Label>
-            <InputField name={`input[${props.question.name}]`} />
+            <Label htmlFor={props.question.title}>{props.question.title}</Label>
+            <SelectUniqueField name={`input[${props.question.name}]`} options={[["Si", "true"], ["No", "false"]]} />
           </>
           )
         }

@@ -35,6 +35,10 @@ export default async function RootLayout({
         text: "Ajustes",
         href: `/organization-manage/${params.id}/settings`,
       },
+      {
+        text: "Horario",
+        href: `/organization-manage/${params.id}/open-close`,
+      },
     ]
   },
   {

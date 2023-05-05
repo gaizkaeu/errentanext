@@ -3,6 +3,7 @@ import { PhoneIcon } from "@heroicons/react/24/outline";
 import { CallTimeComponent } from "./call-time";
 import { CallManageExpandedComponent } from "./call-expanded-component";
 import { ListCard, ListCardHeading, ListCardHeadingElement } from "@/components/ui/list-card";
+import { Badge } from "@/components/ui/badge";
 
 export const CallManageComponent = (props: { call: CallManage }) => {
   const { call } = props;
@@ -15,12 +16,9 @@ export const CallManageComponent = (props: { call: CallManage }) => {
             <div className="flex items-center text-slate-400 min-w-0">
               <p className="flex items-center" title="Branch">
                 {call.attributes.successful ? (
-                  <p>Realizada</p>
+                  <Badge>Realizada</Badge>
                 ) : (
-                  <span className="text-xs text-slate-500 ml-2" title="Branch">
-                    Programada para {" "}
-                    <CallTimeComponent call_time={call.attributes.call_time} />
-                  </span>
+                  <CallTimeComponent call_time={call.attributes.call_time} />
                 )}
               </p>
             </div>
