@@ -25,12 +25,12 @@ export const NumericInputWDefaults = (props: QuestionInputWithDefaults) => {
           </div>
         )}
         {props.options.map((option) => (
-          <Button type="submit"  key={option.value} onClick={() => helpers.setValue(option.value)} className={`w-full ${field.value === option.value && "bg-green-500 dark:bg-green-500"}`}>
+          <Button type="submit"  key={option.value} onClick={() => helpers.setValue(option.value)} className={`w-full ${field.value === option.value && "bg-green-500 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-700"}`}>
             {option.key}
           </Button>
         ))}
         {field.value && props.options.find((v) => v.value === field.value) === undefined && (
-          <Button type="button" className="w-full bg-green-500 dark:bg-green-500">
+          <Button type="button" className="w-full bg-green-500 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-700">
             Otro - {field.value} 
           </Button>
         )}

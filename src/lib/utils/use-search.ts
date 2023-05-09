@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-interface RansackSearchParams {
-  serverRedirect: boolean;
-}
 
 interface Params {
   [key: string]: any;

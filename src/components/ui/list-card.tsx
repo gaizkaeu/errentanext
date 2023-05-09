@@ -37,7 +37,7 @@ const ListCard = React.forwardRef<
     <SelectedContext.Provider value={[selected, setSelected]}>
       <div
         ref={ref}
-        className={"divide-y-slate-200 mt-4 mb-4 divide-y rounded border border-slate-200 dark:border-midnight-700 bg-slate-50 dark:bg-midnight-800 transition-all ease-in " + (selected ? "bg-slate-100 dark:bg-midnight-900" : "") + " " + className}
+        className={"divide-y-slate-200 mt-4 mb-4 divide-y rounded-lg border  bg-slate-100 dark:bg-midnight-800 transition-all ease-in " + (selected ? "bg-slate-100 dark:bg-midnight-900" : "") + " " + className}
         {...props}
       />
     </SelectedContext.Provider>

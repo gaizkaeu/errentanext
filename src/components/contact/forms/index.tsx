@@ -5,7 +5,7 @@ import { GoogleSignInButton, SignInModal } from "@/components/authentication";
 import { SignUpForm } from "@/components/authentication/forms/sign-up-form";
 import { CallCreateForm } from "../call";
 
-export const ContactSignInComponent = (props: { org: Organization, clcn_id?: string }) => {
+export const ContactSignInComponent = (props: { org: Organization, clcn_id?: string, children?: JSX.Element }) => {
 
   const { currentUser } = useAuth();
 
@@ -15,7 +15,7 @@ export const ContactSignInComponent = (props: { org: Organization, clcn_id?: str
         <div className="grid grid-cols-1 space-y-3 gap-3 inset-x-0">
           <div className="grid grid-cols-1 my-auto gap-3">
             <p className="text-center text-sm text-gray-500 dark:text-gray-400">Contacta con {props.org.attributes.name} o calcula un presupuesto.</p>
-            <GoogleSignInButton redirectUrl={`/organizations/${props.org.id}`} />
+            <GoogleSignInButton redirectUrl={ typeof window !== "undefined" ? window.location.pathname : "/organizations/"} />
             <SignInModal />
           </div>
           <div>
@@ -24,7 +24,9 @@ export const ContactSignInComponent = (props: { org: Organization, clcn_id?: str
           </div>
         </div>
       ) : (
+        props.children ? props.children : (
         <CallCreateForm org={props.org} calc_id={props.clcn_id} />
+        )
       )}
     </div>
 

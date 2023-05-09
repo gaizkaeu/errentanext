@@ -52,13 +52,13 @@ export const BaseTooltip = (props: {
       openPopover={openPopover}
       setOpenPopover={setOpenPopover}
     >
-      <button onClick={() => setOpenPopover(!openPopover)} className="flex text-md font-medium mr-2 px-2 py-2 border border-gray-400 p-8 rounded-xl border-dashed gap-2 items-center">
+      <button onClick={() => setOpenPopover(!openPopover)} className="flex text-md font-medium mr-2 px-1 py-1 border border-gray-400 p-8 rounded-xl border-dashed gap-2 items-center">
         {props.active ? (
           <span className="flex w-3 h-3 bg-green-600 rounded-full"></span>
         ) : (
           <PlusCircleIcon className="w-6 h-6 text-gray-400" />
         )}
-        <span className="whitespace-nowrap">{props.title}</span>
+        <span className="whitespace-nowrap capitalize">{props.title}</span>
       </button>
     </Popover>
   );
@@ -70,8 +70,8 @@ export const TooltipContentBase = (props: {
 }) => {
 
   return (
-    <div className="w-full p-2 max-md:h-64">
-      <p className="text-md font-medium text-gray-900 dark:text-white">{props.title}</p>
+    <div className="w-full p-2 max-md:h-[calc(100vh_-_7rem)]">
+      <p className="text-lg uppercase font-bold max-md:text-2xl">FILTRAR POR <br className="md:hidden" /> <span className="font-light">{props.title}</span></p>
       {props.children}
     </div>
   );

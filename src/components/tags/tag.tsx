@@ -3,14 +3,14 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 
 const tagVariants = cva(
-  "rounded-full border",
+  "rounded-full uppercase",
   {
     variants: {
       active: {
         true:
           "bg-blue-400 text-blue-800 dark:border-blue-200",
         false:
-          "bg-blue-200 dark:bg-midnight-800 text-blue-800 dark:border-blue-200",
+          "bg-slate-100 text-slate-900 dark:bg-midnight-700 dark:text-slate-100 dark:border-midnight-700",
       },
     },
     defaultVariants: {

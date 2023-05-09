@@ -1,9 +1,6 @@
 "use client";
-import { useUpdateOrganizationByIdMutation, useUpdateOrganizationLogoMutation } from "@/store/endpoints/organizations";
-import { Organization, OrganizationAttributes } from "@/store/types/Organization";
-import { FormSection } from "@/components/ui/form-section";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
+import { useUpdateOrganizationLogoMutation } from "@/store/endpoints/organizations";
+import { Organization } from "@/store/types/Organization";
 
 export const OrganizationEditProfileImage = (props: { organization: Organization }) => {
   const [mutation] = useUpdateOrganizationLogoMutation();
