@@ -1,42 +1,30 @@
-"use client";
-import { Button } from "@/components/ui/button"
 import { useLocalizedMoment } from "@/lib/utils"
-import { useGetOrganizationCalculatorsCalculationsQuery } from "@/store/endpoints/organizations"
 import { CalculatorManage } from "@/store/types/Calculator"
-import { ArchiveBoxIcon, ChevronDownIcon, PlayIcon } from "@heroicons/react/24/outline"
-import { useState } from "react"
-import { CalculationManageComponent } from "../calculation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalculatorGraphComponent } from "./calculator-graph";
-import { CalculatorClassifications } from "./calculator-classifications";
-import { CalculationManageCreateForm } from "../calculation/forms/calculation-create-form";
-import { useTrainCalculatorManageMutation } from "@/store/endpoints/calculations";
+import { ArchiveBoxIcon, PlayIcon } from "@heroicons/react/24/outline"
 import { Badge } from "@/components/ui/badge";
 
 export const CalculatorManageComponent = (props: { calculator: CalculatorManage }) => {
   const { calculator } = props
-  const [selected, setSelected] = useState(false)
-
 
   const s = useLocalizedMoment();
 
   return (
     <div className="divide-y-slate-200 mt-4 mb-4 divide-y rounded border border-slate-200 dark:border-midnight-700">
-      <div className={`flex flex-col divide-y transition-all ease-in ${!selected && "hover:bg-slate-50 dark:hover:bg-midnight-800"}`}>
+      <div className="flex flex-col divide-y transition-all ease-in">
         <div className="border-l-2 border-transparent my-1 mx-1 px-3">
           <div className="flex flex-col md:flex-row md:justify-between py-3">
             <div className="flex flex-col gap-2 flex-1">
               <div className="flex items-center gap-4">
                 <div className="inline-block w-fit">
-                {calculator.attributes.calculator_status === "live" ? (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    {calculator.attributes.calculator_status}
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600">
-                    {calculator.attributes.calculator_status}
-                  </span>
-                )}
+                  {calculator.attributes.calculator_status === "live" ? (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      {calculator.attributes.calculator_status}
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600">
+                      {calculator.attributes.calculator_status}
+                    </span>
+                  )}
                 </div>
                 <p className="text-sm line-clamp-3">
                   {calculator.attributes.topic_name}
@@ -65,8 +53,8 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
                   </div>
                   <div className="flex items-center text-slate-400 min-w-0">
                     <Badge>
-                      v{calculator.attributes.version}  
-                    </Badge> 
+                      v{calculator.attributes.version}
+                    </Badge>
                   </div>
                 </div>
               </div>
@@ -82,69 +70,10 @@ export const CalculatorManageComponent = (props: { calculator: CalculatorManage 
                   </span>
                 </p>
               </div>
-              <Button variant="outline" className="w-5 h-5 rounded-full p-0 self-end" onClick={() => setSelected(!selected)}>
-                <ChevronDownIcon className="h-4 w-4" />
-              </Button>
             </div>
           </div>
-          {selected && (
-            <Tabs defaultValue="train">
-              <TabsList>
-                <TabsTrigger value="train">Entrenamiento</TabsTrigger>
-                <TabsTrigger value="classifications">Clasificaciones</TabsTrigger>
-                <TabsTrigger value="graph">Grafo</TabsTrigger>
-                <TabsTrigger value="calculations">Cálculos realizados</TabsTrigger>
-              </TabsList>
-              <TabsContent value="train">
-                <div>
-                  <TrainButton calculator={calculator} />
-                  <CalculationManageCreateForm calculator={calculator} org_id={calculator.attributes.organization_id} />
-                  <Data calculator={calculator} train={true} />
-                </div>
-              </TabsContent>
-              <TabsContent value="classifications">
-                <CalculatorClassifications calculator={calculator} />
-              </TabsContent>
-              <TabsContent value="graph">
-                <CalculatorGraphComponent dot={calculator.attributes.dot_visualization} />
-              </TabsContent>
-              <TabsContent value="calculations">
-                <Data calculator={calculator} train={false} />
-              </TabsContent>
-            </Tabs>
-          )}
         </div>
       </div>
     </div>
   )
-}
-
-const TrainButton = ({ calculator }: {calculator: CalculatorManage}) => {
-  const [mutation, {isLoading}] = useTrainCalculatorManageMutation()
-
-  return (
-    <Button disabled={isLoading} onClick={() => mutation({calculator_id: calculator.id, org_id: calculator.attributes.organization_id})} variant="outline" className="flex items-center gap-2">
-      <PlayIcon className="h-4 w-4" />
-      <span>Entrenar</span>
-    </Button>
-  )
-}
-
-const Data = ({ calculator, train }: {calculator: CalculatorManage, train: boolean}) => {
-  const { data } = useGetOrganizationCalculatorsCalculationsQuery({
-    id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: {
-      'q[train_with_eq]': train ? 'true' : 'false',
-    }
-  }, {
-    pollingInterval: 10000,
-  })
-
-  return (
-    <div>
-    {data?.map((item) => (
-      <CalculationManageComponent key={item.id} calculation={item} org_id={calculator.attributes.organization_id} />
-    ))}
-  </div>
-  )
-
 }
