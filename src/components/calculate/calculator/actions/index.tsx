@@ -23,7 +23,7 @@ export const TrainButton = ({ calculator }: { calculator: CalculatorManage }) =>
 
 export const Data = ({ calculator }: { calculator: CalculatorManage }) => {
 
-  const [s, setS] = useSearch(false, { 'q[train_with_in]': true }); 
+  const [s, setS] = useSearch(false, { 'q[train_with_in]': ['true'] }); 
 
   const { data } = useGetOrganizationCalculatorsCalculationsQuery({
     id: calculator.attributes.organization_id, calcr_id: calculator.id, filters: s
@@ -36,7 +36,7 @@ export const Data = ({ calculator }: { calculator: CalculatorManage }) => {
       {data && (
         <DataTable columns={columns} data={data.map((d) => d.attributes)}>
           <SearchBar searchParams={s} setSearchParams={setS}>
-            <MultipleSelectFilter key_name="q[train_with_in]" title="Entrenamiento" keys={[{label: 'realizada', value: 'true'}, {label: 'pendiente', value: 'false'}]} />
+            <MultipleSelectFilter key_name="q[train_with_in]" title="Entrenamiento" keys={[{label: 'Si', value: 'true'}, {label: 'No', value: 'false'}]} />
           </SearchBar>
         </DataTable>
       )}

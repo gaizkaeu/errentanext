@@ -14,9 +14,9 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE + "/api/v1",
     credentials: "include",
-    // paramsSerializer(params) {
-    //   return queryString.stringify(params, { arrayFormat: "bracket" });
-    // },
+    paramsSerializer(params) {
+      return queryString.stringify(params, { arrayFormat: "bracket" });
+    },
   }),
   tagTypes: [
     "Organization",

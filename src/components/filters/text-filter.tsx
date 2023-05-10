@@ -8,7 +8,7 @@ export const TextFilter = (props: { title: string; key_name: string }) => {
   const { searchParams } = useContext(SearchContext);
 
   return (
-    <BaseTooltip title={props.title} active={props.key_name in searchParams}>
+    <BaseTooltip title={props.title} active={props.key_name in searchParams} selectedValues={searchParams[props.key_name]}>
       <TextConfiguration {...props} />
     </BaseTooltip>
   );
@@ -22,7 +22,6 @@ export const TextConfiguration = (props: {
 
   const updateSearchValue = debounce((value: string) => {
     if (value === "") {
-      clear();
       return;
     }
     setSearchParams({
@@ -31,13 +30,6 @@ export const TextConfiguration = (props: {
     });
   }, 500);
 
-  const clear = () => {
-    setSearchParams((current: any) => {
-      const cp = { ...current };
-      delete cp[props.key_name];
-      return cp;
-    });
-  };
 
   return (
     <TooltipContentBase title={props.title}>

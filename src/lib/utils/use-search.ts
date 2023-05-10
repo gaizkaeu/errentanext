@@ -18,13 +18,13 @@ const useSearch = (serverRedirect: boolean, defaultParams?: Params): [Params, (p
       setRansackSearchParams(defaultParams);
       return;
     }
-    setSearchParams(queryString.parse(s.toString()));
+    setSearchParams(queryString.parse(s.toString(),  {arrayFormat: 'bracket'}));
   }, [s]);
 
 
   const setRansackSearchParams = (params: Params) => {
     const newSearchParams: Params = { ...searchParams, ...params };
-    const queryStringParams = queryString.stringify(newSearchParams);
+    const queryStringParams = queryString.stringify(newSearchParams, {arrayFormat: 'bracket'});
     setSearchParams(newSearchParams);
 
     if (serverRedirect) {

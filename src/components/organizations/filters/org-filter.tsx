@@ -36,19 +36,18 @@ export const OrgConfiguration = (props: {
         [props.key_name]: newValue.value,
         [`${props.key_name}_title`]: newValue.label,
       });
-    } else
-      clear()
+    }
   };
 
 
-  const clear = () => {
-    setSearchParams((current: any) => {
-      const cp = { ...current };
-      delete cp[props.key_name];
-      delete cp[`${props.key_name}_title`];
-      return cp;
-    });
-  };
+  // const clear = () => {
+  //   setSearchParams((current: any) => {
+  //     const cp = { ...current };
+  //     delete cp[props.key_name];
+  //     delete cp[`${props.key_name}_title`];
+  //     return cp;
+  //   });
+  // };
 
   return (
     <TooltipContentBase title={props.title}>
@@ -56,7 +55,6 @@ export const OrgConfiguration = (props: {
         loadOptions={handleOnSearch}
         defaultValue={{value: searchParams[props.key_name], label: searchParams[`${props.key_name}_title`]}}
         isClearable
-        onChange={onSelect}
       />
     </TooltipContentBase>
   );

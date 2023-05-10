@@ -30,7 +30,7 @@ export default async function OrganizationIndexPage({
 
   return (
     <div className="flex w-full sm:px-6 lg:px-8 mt-3 md:mt-12">
-      <div className="lg:mx-auto max-w-xl w-full space-y-2">
+      <div className="lg:mx-auto w-full space-y-2">
         <div className="flex items-center gap-2 px-4">
           <h2 className="text-2xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
             Explorar
@@ -43,7 +43,7 @@ export default async function OrganizationIndexPage({
           <Suspense>
             <OrganizationExplore />
           </Suspense>
-          <div className="grid grid-cols-1 gap-4 px-4">
+          <div className="grid grid-cols-1 gap-4 px-4 max-w-xl mx-auto">
             {orgs && (
               <OrganizationList orgs={orgs.data} />
             )}

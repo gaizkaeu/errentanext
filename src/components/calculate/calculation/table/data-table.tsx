@@ -77,7 +77,7 @@ export function DataTable<TData, TValue>({
         </div>
         <DataTableViewOptions table={table} />
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border dark:border-midnight-700">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

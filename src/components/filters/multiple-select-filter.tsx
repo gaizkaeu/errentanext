@@ -1,9 +1,7 @@
 "use client";
-import { useContext } from "react";
-import Select, { MultiValue } from "react-select";
+import { useContext, useEffect } from "react";
 import { BaseTooltip, SearchContext, TooltipContentBase } from ".";
 import { Key } from "./select-filter";
-import { Button } from "../ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "../ui/command";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
@@ -13,11 +11,15 @@ export const MultipleSelectFilter = (props: {
   key_name: string;
   keys: Key[];
 }) => {
-  const { searchParams } = useContext(SearchContext);
+  const { searchParams, setSearchParams } = useContext(SearchContext);
+
+  const setSelected = (value: string[]) => {
+    setSearchParams({ ...searchParams, [props.key_name]: value });
+  };
 
   return (
-    <BaseTooltip title={props.title} active={props.key_name in searchParams}>
-      <SelectConfiguration {...props} />
+    <BaseTooltip title={props.title} active={props.key_name in searchParams} selectedValues={props.key_name in searchParams ? props.keys.filter((d) => searchParams[props.key_name]?.includes(d.value)).map((d) => d.label) : []}>
+      <SelectConfiguration {...props} selected={searchParams[props.key_name] as string[] | undefined} setSelected={setSelected} />
     </BaseTooltip>
   );
 };
@@ -26,27 +28,15 @@ export const SelectConfiguration = (props: {
   title: string;
   key_name: string;
   keys: Key[];
+  selected: string[] | undefined;
+  setSelected: (value: string[]) => void;
 }) => {
-  const { searchParams, setSearchParams } = useContext(SearchContext);
 
-  const updateSearchValue = (value: MultiValue<Key>) => {
-    if (value == null) {
-      clear();
-      return;
-    }
-    setSearchParams({
-      ...searchParams,
-      [props.key_name]: value.map((d) => d.value),
-    });
-  };
+  const { selected, setSelected } = props;
 
-  const clear = () => {
-    setSearchParams((current: any) => {
-      const cp = { ...current };
-      delete cp[props.key_name];
-      return cp;
-    });
-  };
+  useEffect(() => {
+    console.log(selected)
+  }, [selected])
 
   return (
     <TooltipContentBase title={props.title}>
@@ -57,15 +47,15 @@ export const SelectConfiguration = (props: {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup>
               {props.keys.map((option) => {
-                const isSelected = searchParams[props.key_name]?.includes(option.value);
+                const isSelected = selected?.includes(option.value) ?? false;
                 return (
                   <CommandItem
-                    key={option.value}
+                    key={`${props.title}-option-${option.value}`}
                     onSelect={() => {
                       if (isSelected) {
-
+                        setSelected(selected?.filter((v) => v !== option.value) ?? []);
                       } else {
-                        searchParams[props.key_name] = [...searchParams[props.key_name], option.value];
+                        setSelected([...selected ?? [], option.value]);
                       }
                     }}
                   >
@@ -79,9 +69,9 @@ export const SelectConfiguration = (props: {
                     >
                       <Check className={cn("h-4 w-4")} />
                     </div>
-                    {/* {option.icon && (
+                    {option.icon && (
                       <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                    )} */}
+                    )}
                     <span>{option.label}</span>
                     {/* {facets?.get(option.value) && (
                       <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
@@ -92,7 +82,7 @@ export const SelectConfiguration = (props: {
                 )
               })}
             </CommandGroup>
-            {searchParams.size > 0 && (
+            {selected && selected.length > 0 && (
               <>
                 <CommandSeparator />
                 <CommandGroup>
@@ -107,11 +97,6 @@ export const SelectConfiguration = (props: {
             )}
           </CommandList>
         </Command>
-        {props.key_name in searchParams && (
-          <Button onClick={clear} size="sm" color="error">
-            Deshabilitar
-          </Button>
-        )}
       </div>
     </TooltipContentBase>
   );

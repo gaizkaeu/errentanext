@@ -84,10 +84,12 @@ export default async function RootLayout({
         <OrganizationTitle org={org} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 mt-5">
-        <SideNav sections={links} />
+      <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-10 mt-5">
+        <div className="md:col-span-1 lg:col-span-2 xl:col-span-2 w-full">
+          <SideNav sections={links} />
+        </div>
 
-        <div className="col-span-3 max-md:mt-3 xl:col-span-4">
+        <div className="md:col-span-5 max-md:mt-3 lg:col-span-8 xl:col-span-8">
           {children}
         </div>
       </div>

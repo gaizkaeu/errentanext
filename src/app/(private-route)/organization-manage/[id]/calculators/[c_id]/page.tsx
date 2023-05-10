@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { id: string, c_id: string } 
   return calculator ? (
     <>
       <Link href={`/organization-manage/${calculator.attributes.organization_id}/calculators`}>
-        <p className="text-sm text-gray-500 hover:text-gray-700">
+        <p className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-100">
           <ArrowLeftIcon className="h-4 w-4 inline-block" />
           <span className="ml-2">Volver</span>
         </p>

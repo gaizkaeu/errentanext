@@ -1,6 +1,6 @@
 export interface Tag {
   type: "tag";
-  id: number;
+  id: string;
   attributes: {
     name: string;
     emoji: string;
