@@ -12,15 +12,13 @@ export const CalculationManageCreateForm = (props: { calculator: CalculatorManag
     calcr_id: props.calculator.id,
     org_id: props.org_id
   })
-  const [mutation, { isLoading, isError, error }] = useCreateCalculationManageMutation();
+  const [mutation, { isLoading, isError, error, isSuccess }] = useCreateCalculationManageMutation();
 
   const onSubmit = (values: Partial<CalculationAttributes>, helpers: FormikHelpers<Partial<CalculationAttributes>>) => {
     mutation({
       calculator_id: props.calculator.id,
       org_id: props.org_id,
       ...values
-    }).then(() => {
-      helpers.resetForm()
     })
   }
 
@@ -29,6 +27,7 @@ export const CalculationManageCreateForm = (props: { calculator: CalculatorManag
     <Formik initialValues={{ train_with: true }} onSubmit={onSubmit}>
       <Form>
         {isError && <div className="text-red-500">ERROR</div>}
+        {isSuccess && <div className="text-green-500">SUCCESS</div>}
         <p className="text-lg leading-6 font-medium ">
           Añadir datos de entrenamiento
         </p>

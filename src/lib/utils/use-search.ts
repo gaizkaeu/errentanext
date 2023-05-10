@@ -8,14 +8,17 @@ interface Params {
   [key: string]: any;
 }
 
-const useSearch = (serverRedirect: boolean, defaultParams?: Params): [Params, (params: Params) => void] => {
+const useSearch = (serverRedirect: boolean, defaultParams?: Params, onNoInitialParams?: () => void): [Params, (params: Params) => void] => {
   const [searchParams, setSearchParams] = useState<Params>({});
   const s = useSearchParams();
   const r = useRouter();
 
   useEffect(() => {
-    if (s.toString() === '' && defaultParams) {
-      setRansackSearchParams(defaultParams);
+    if (s.toString() === '') {
+      setRansackSearchParams(defaultParams ?? {});
+      if (onNoInitialParams) {
+        onNoInitialParams();
+      }
       return;
     }
     setSearchParams(queryString.parse(s.toString(),  {arrayFormat: 'bracket'}));

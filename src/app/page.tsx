@@ -1,6 +1,6 @@
 import { HomeHero } from "@/components/homepage/home-hero";
 import { OrgHomepageSearch, OrganizationCard } from "@/components/organizations";
-import { TagList } from "@/components/tags";
+import { TagComponent } from "@/components/tags";
 import { Button } from "@/components/ui/button";
 import { Organization } from "@/store/types/Organization";
 import Link from "next/link";
@@ -18,14 +18,22 @@ const getOrgs = async (params?: string) => {
   return data;
 };
 
+const getSkills = async (params?: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/skills_tags");
+  const data = await res.json();
+  return data;
+};
+
 export default async function IndexPage({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
 
-  const orgs = await getOrgs(queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" }));
+  const orgsProm = await getOrgs(queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" }));
+  const skillsProm = await getSkills();
 
+  const [orgs, skills] = await Promise.all([orgsProm, skillsProm]);
 
   return (
     <>
@@ -43,7 +51,11 @@ export default async function IndexPage({
               <OrgHomepageSearch />
             </Suspense>
           </div>
-          <TagList />
+          <div className="flex gap-2 mt-2">
+            {skills && skills.data && skills.data.map((skill: any) => (
+              <TagComponent tag={skill.attributes.name} key={skill.id} />
+            ))}
+          </div>
           <br />
           <div className="grid grid-cols-1 space-y-2 justify-items-center">
             {orgs && orgs?.data.map((org: Organization) => (
@@ -53,7 +65,7 @@ export default async function IndexPage({
             ))}
           </div>
           <div className="flex w-full mt-5 justify-center gap-2">
-            <Link href="/organizations">
+            <Link href={`/organizations?${queryString.stringify(searchParams ?? {}, { arrayFormat: "bracket" })}`}>
               <Button>
                 Mostrar más
               </Button>

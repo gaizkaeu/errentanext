@@ -16,6 +16,14 @@ const getOrgs = async (params?: string) => {
   return data;
 };
 
+
+const getSkills = async (params?: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + "/api/v1/skills_tags");
+  const data = await res.json();
+  return data;
+};
+
+
 export const metadata: Metadata = {
   title: "BUSCADOR",
   description: "Encuentra tu asesoría de confianza.",
@@ -26,7 +34,11 @@ export default async function OrganizationIndexPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const orgs = await getOrgs(queryString.stringify(searchParams ?? {}));
+  const orgsProm = getOrgs(queryString.stringify(searchParams ?? {}));
+  const skillsProm = getSkills();
+
+  const [orgs, skills] = await Promise.all([orgsProm, skillsProm]);
+
 
   return (
     <div className="flex w-full sm:px-6 lg:px-8 mt-3 md:mt-12">
@@ -41,7 +53,7 @@ export default async function OrganizationIndexPage({
         </div>
         <div className="space-y-3">
           <Suspense>
-            <OrganizationExplore />
+            <OrganizationExplore skills={skills.data} />
           </Suspense>
           <div className="grid grid-cols-1 gap-4 px-4 max-w-xl mx-auto">
             {orgs && (
