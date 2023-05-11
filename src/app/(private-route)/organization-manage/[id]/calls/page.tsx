@@ -8,7 +8,7 @@ import { useGetCallsManageQuery } from "@/store/endpoints/calls";
 
 export default function Page({ params }: { params: { id: string } }) {
 
-  const [s, setS] = useSearch(false, { 'q[successful_in]': false }); 
+  const [s, setS] = useSearch(false, { 'q[successful_in]': [false] }); 
   const { data } = useGetCallsManageQuery({ org_id: params.id, filters: s })
 
   return (

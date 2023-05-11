@@ -52,6 +52,17 @@ const calculationsApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResponse<CalculatorManage>) =>
         response.data,
     }),
+    deleteCalculatorManage: build.mutation<
+      void,
+      { calculator_id: string; org_id: string, calculation_id: string }
+    >({
+      query: (id) => ({
+        url: `organization-manage/${id.org_id}/calculators/${id.calculator_id}/calculations/${id.calculation_id}`,
+        method: "delete",
+        body: id
+      }),
+      invalidatesTags: (result) => ["Calculation"],
+    }),
     trainCalculatorManage: build.mutation<
       CalculatorManage,
       { calculator_id: string; org_id: string }
@@ -74,7 +85,7 @@ const calculationsApi = api.injectEndpoints({
         method: "put",
         body: id,
       }),
-      invalidatesTags: (result) => ["CalculationManage"],
+      invalidatesTags: (result) => ["Calculation"],
       transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
         response.data,
     }),
@@ -87,7 +98,7 @@ const calculationsApi = api.injectEndpoints({
         method: "post",
         body: id,
       }),
-      invalidatesTags: (result) => ["CalculationManage"],
+      invalidatesTags: (result) => ["Calculation"],
       transformResponse: (response: BaseQueryResponse<CalculationManage>) =>
         response.data,
     }),
@@ -142,4 +153,5 @@ export const {
   useGetBulkCalculationQuery,
   useCreateBulkFromCalculationMutation,
   useGetCalculationManageQuery,
+  useDeleteCalculatorManageMutation,
 } = calculationsApi;

@@ -7,6 +7,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuSub,
@@ -14,7 +16,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { MoreHorizontal, Pen, Copy, Star, Tags, Trash } from "lucide-react"
+import { MoreHorizontal, Copy, Star, Tags, Trash } from "lucide-react"
+import { useDeleteCalculatorManageMutation, useUpdateCalculationManageMutation } from "@/store/endpoints/calculations"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -23,7 +26,14 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  // const task = taskSchema.parse(row.original)
+
+  const [remove] = useDeleteCalculatorManageMutation();
+  const [update] = useUpdateCalculationManageMutation();
+
+  const updateTrain = (value: string) => {
+    update({org_id: row.getValue("organization_id"), calcr_id: row.getValue("calculator_id"), calcn_id: row.getValue("id"), ...{train_with: value}})
+  }
+
 
   return (
     <DropdownMenu>
@@ -56,17 +66,18 @@ export function DataTableRowActions<TData>({
             Labels
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent className="p-0">
-            {/* <DropdownMenuRadioGroup value={task.label}>
-              {/* {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
+            <DropdownMenuRadioGroup onValueChange={updateTrain} value={"true"}>
+                <DropdownMenuRadioItem value={"true"}>
+                  Train
                 </DropdownMenuRadioItem>
-              ))} 
-            </DropdownMenuRadioGroup> */}
+                <DropdownMenuRadioItem value={"false"}>
+                  No train
+                </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => remove({org_id: row.getValue("organization_id"), calculator_id: row.getValue("calculator_id"), calculation_id: row.getValue("id")})}>
           <Trash className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>

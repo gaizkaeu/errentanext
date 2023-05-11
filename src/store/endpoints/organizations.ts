@@ -222,7 +222,7 @@ const organizationsApi = api.injectEndpoints({
         method: "get",
         params: id.filters,
       }),
-      providesTags: () => [{ type: "CalculationManage", id: "LIST" }],
+      providesTags: () => [{ type: "Calculation", id: "LIST" }],
       transformResponse: (response: BaseQueryResponseList<CalculationManage>) =>
         response.data,
     }),

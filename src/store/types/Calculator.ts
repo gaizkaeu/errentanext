@@ -35,6 +35,7 @@ export interface CalculationAttributes {
     classification: string;
   }
   organization: Organization,
+  organization_id: string;
   predicted_at: string;
   name: string;
   bulk_calculation_id: string;
