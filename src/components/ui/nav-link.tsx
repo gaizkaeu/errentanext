@@ -5,6 +5,7 @@ import { Button as ShadCNButton, ButtonProps, buttonVariants } from './button';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { usePathname } from "next/navigation";
+import { Section } from "./side-nav";
 
 
 
@@ -49,4 +50,26 @@ export const NavLink = ({ href, children, text, ...rest  }: { href: string, chil
       </Link>
     )
   }
+}
+
+export const ActiveBreadcrumb = (props: {sections: Section[]}) => {
+
+  const p = usePathname();
+
+  const activeSection = () => {
+    let active;
+    props.sections.forEach((section) => {
+      section.links.forEach((link) => {
+        if (link.href === p) {
+          active = `${section.title} / ${link.text}`;
+        }
+      })
+    })
+
+    return active;
+  }
+
+  return (
+    <span>{activeSection()}</span>
+  )
 }

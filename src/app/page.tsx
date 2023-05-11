@@ -51,7 +51,7 @@ export default async function IndexPage({
               <OrgHomepageSearch />
             </Suspense>
           </div>
-          <div className="flex gap-2 mt-2">
+          <div className="flex gap-2 mt-2 overflow-x-auto">
             {skills && skills.data && skills.data.map((skill: any) => (
               <TagComponent tag={skill.attributes.name} key={skill.id} />
             ))}

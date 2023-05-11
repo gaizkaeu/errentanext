@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { NavLink } from "@/components/ui/nav-link";
+import { ActiveBreadcrumb, NavLink } from "@/components/ui/nav-link";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
-interface Section {
+export interface Section {
   title: string,
   links: Link[]
 }
@@ -24,13 +25,16 @@ const SideNav = (props: { sections: Section[] }) => {
 }
 
 const SideNavMobile = (props: { sections: Section[] }) => {
+
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="md:hidden"
+          variant={"ghost"}
+          className="text-sm text-gray-500 md:hidden"
         >
-          <span className="font-bold">Menu</span>
+          <ActiveBreadcrumb sections={props.sections} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent

@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <>
       <div className="md:flex gap-1">
-        <div className="bg-slate-50 rounded-lg px-3">
+        <div className="bg-slate-50 dark:bg-midnight-700 rounded-lg px-3">
           <SideNav sections={links} />
         </div>
 
