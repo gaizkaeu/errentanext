@@ -39,7 +39,7 @@ export default async function IndexPage({
     <>
       <div className="grid grid-cols-1 justify-items-center">
         <HomeHero />
-        <div className="w-full px-2 lg:p-12 max-w-7xl">
+        <div className="w-full px-2 lg:p-8 max-w-7xl">
           <div className="flex items-center gap-2">
             <h2 className="text-2xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
               Explorar

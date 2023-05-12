@@ -34,7 +34,7 @@ export const Data = ({ calculator }: { calculator: CalculatorManage }) => {
   return (
     <div>
       {data && (
-        <DataTable columns={columns} data={data}>
+        <DataTable columns={columns} data={data.data}>
           <SearchBar searchParams={s} setSearchParams={setS}>
             <MultipleSelectFilter key_name="q[train_with_in]" title="Entrenamiento" keys={[{label: 'Si', value: 'true'}, {label: 'No', value: 'false'}]} />
           </SearchBar>

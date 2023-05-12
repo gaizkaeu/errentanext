@@ -2,8 +2,10 @@
 
 import { useAuth } from "@/components/providers/authProvider";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { BuildingOfficeIcon, UserGroupIcon, UserIcon } from "@heroicons/react/24/outline";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { AdjustmentsHorizontalIcon, ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { ChevronsUpDown, User } from "lucide-react";
 import Link from "next/link";
 
 const AuthenticationStatusNav = () => {
@@ -14,50 +16,50 @@ const AuthenticationStatusNav = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
+          variant="ghost"
           size="sm"
+          role="combobox"
+          aria-label="Select a team"
+          className="w-[200px] justify-between"
         >
-          <span className="sr-only">My account</span>
-          <UserIcon className="h-6 w-6" />
-          <div className="ml-2">
-            <p className="text-md font-semibold">{currentUser?.attributes.first_name}</p>
-          </div>
+          <Avatar className="mr-2 h-5 w-5 rounded-lg">
+            <AvatarImage
+              className="rounded-full"
+              src={`https://avatar.vercel.sh/${currentUser?.attributes.first_name}.png`}
+              alt={currentUser?.attributes.first_name}
+            />
+            <AvatarFallback>SC</AvatarFallback>
+          </Avatar>
+          {currentUser?.attributes.first_name} {currentUser?.attributes.last_name}
+          <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="center"
-        sideOffset={24}
-        alignOffset={4}
-      >
-        <DropdownMenuItem>
-          <p className="text-xl">{currentUser?.attributes.first_name} {currentUser?.attributes.last_name}</p>
-        </DropdownMenuItem>
-        <Link href="/dashboard">
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
           <DropdownMenuItem>
-            <div className="flex items-center">
-              <div className="w-10 h-10 flex rounded-full bg-slate-100 dark:bg-slate-900 text-center ">
-                <UserGroupIcon className="m-auto h-8" />
-              </div>
-              <div className="flex-1 ml-2">
-                <p className="text-lg font-semibold">Mi <span className="font-light">perfil</span>.</p>
-              </div>
-            </div>
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-        </Link>
-        <Link href="/organization-manage">
-          <DropdownMenuItem>
-            <div className="flex items-center">
-              <div className="w-10 h-10 flex rounded-full bg-slate-100 dark:bg-slate-900 text-center ">
-                <BuildingOfficeIcon className="m-auto h-8" />
-              </div>
-              <div className="flex-1 ml-2">
-                <p className="text-lg font-semibold">Mis <span className="font-light">asesorías</span>.</p>
-              </div>
-            </div>
-          </DropdownMenuItem>
-        </Link>
-        <DropdownMenuItem onClick={logout}>
-          <p className="text-lg font-semibold">Cerrar <span className="font-light">sesión</span>.</p>
-        </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuGroup>
+          <Link href="/organization-manage">
+            <DropdownMenuItem>
+              <AdjustmentsHorizontalIcon className="mr-2 h-4 w-4" />
+              <span>Mis asesorías</span>
+              <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+        </DropdownMenuGroup>
+        <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <ArrowLeftCircleIcon className="mr-2 h-4 w-4" />
+              <span>Cerrar sesión</span>
+              <DropdownMenuShortcut>⇧⌘O</DropdownMenuShortcut>
+            </DropdownMenuItem>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (

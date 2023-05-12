@@ -65,6 +65,10 @@ export default async function RootLayout({
       {
         text: "Llamadas",
         href: `/organization-manage/${params.id}/calls`,
+      },
+      {
+        text: "Estadísticas",
+        href: `/organization-manage/${params.id}/stats`,
       }
     ]
   },

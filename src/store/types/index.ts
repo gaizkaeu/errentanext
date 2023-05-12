@@ -1,6 +1,16 @@
 export interface BaseQueryResponseList<T> {
   data: T[];
+  meta: Pagination;
 }
+
+export interface Pagination {
+  count?: number;
+  page: number;
+  items: number;
+  pages?: number;
+  last?: number;
+}
+
 
 export interface BaseQueryResponse<T> {
   data: T;

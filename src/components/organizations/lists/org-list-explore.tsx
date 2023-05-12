@@ -63,9 +63,6 @@ export const OrganizationList = (props: { orgs: Organization[], place?: string }
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      <Link href={"/organizations/onboarding"} className="text-md lg:text-xl underline">
-        Quiero que <span className="font-bold">mi asesoría</span> aparezca aquí.
-      </Link>
       {props.orgs.map((org: Organization) => (
         <Link onClick={() => ahoy.track("org_click", { place: props.place ?? "org_list" , org_id: org.id })} href={`/organizations/${org.id}`} key={org.id} className="w-full">
           <OrganizationCard org={org} />

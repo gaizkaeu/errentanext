@@ -214,7 +214,7 @@ const organizationsApi = api.injectEndpoints({
         response.data,
     }),
     getOrganizationCalculatorsCalculations: build.query<
-      CalculationManage[],
+    BaseQueryResponseList<CalculationManage>,
       { id: string; calcr_id: string; filters: Record<string, string> }
     >({
       query: (id) => ({
@@ -223,8 +223,6 @@ const organizationsApi = api.injectEndpoints({
         params: id.filters,
       }),
       providesTags: () => [{ type: "Calculation", id: "LIST" }],
-      transformResponse: (response: BaseQueryResponseList<CalculationManage>) =>
-        response.data,
     }),
     getOrganizationMemberships: build.query<
       OrganizationMembership[],
