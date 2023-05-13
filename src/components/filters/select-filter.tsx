@@ -19,7 +19,12 @@ export const SelectFilter = (props: {
 }) => {
   const { searchParams, setSearchParams } = useContext(SearchContext);
 
-  const setSelected = (value: string) => {
+  const setSelected = (value: string | undefined) => {
+    if (value === undefined) {
+      const { [props.key_name]: _, ...rest } = searchParams;
+      setSearchParams(rest);
+      return;
+    }
     setSearchParams({[props.key_name]: value });
   };
 
@@ -35,14 +40,11 @@ export const SelectConfiguration = (props: {
   key_name: string;
   keys: Key[];
   selected: string | undefined;
-  setSelected: (value: string) => void;
+  setSelected: (value: string | undefined) => void;
 }) => {
 
   const { selected, setSelected } = props;
 
-  useEffect(() => {
-    console.log(selected)
-  }, [selected])
 
   return (
     <TooltipContentBase title={props.title}>
@@ -90,7 +92,7 @@ export const SelectConfiguration = (props: {
                 <CommandSeparator />
                 <CommandGroup>
                   <CommandItem
-                    onSelect={() => {}}
+                    onSelect={() => setSelected(undefined)}
                     className="justify-center text-center"
                   >
                     Clear filters

@@ -17,6 +17,8 @@ export const MultipleSelectFilter = (props: {
     setSearchParams({ ...searchParams, [props.key_name]: value });
   };
 
+
+
   return (
     <BaseTooltip title={props.title} active={props.key_name in searchParams} selectedValues={props.key_name in searchParams ? props.keys.filter((d) => searchParams[props.key_name]?.includes(d.value)).map((d) => d.label) : []}>
       <SelectConfiguration {...props} selected={searchParams[props.key_name] as string[] | undefined} setSelected={setSelected} />
@@ -33,10 +35,6 @@ export const SelectConfiguration = (props: {
 }) => {
 
   const { selected, setSelected } = props;
-
-  useEffect(() => {
-    console.log(selected)
-  }, [selected])
 
   return (
     <TooltipContentBase title={props.title}>
@@ -87,7 +85,7 @@ export const SelectConfiguration = (props: {
                 <CommandSeparator />
                 <CommandGroup>
                   <CommandItem
-                    onSelect={() => {}}
+                    onSelect={() => {setSelected([])}}
                     className="justify-center text-center"
                   >
                     Clear filters

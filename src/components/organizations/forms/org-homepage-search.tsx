@@ -5,19 +5,25 @@ import Popover from '@/components/ui/popover-card';
 import { useSearch } from '@/lib/utils';
 import { useState } from 'react';
 
-export const OrgHomepageSearch = () => {
+export const OrgHomepageSearch = (props: {children?: JSX.Element}) => {
 
   const locateIp = () => {
-    fetch("https://api.ipgeolocation.io/ipgeo?apiKey=3b0a7d4a0d7d4ce18632bbfa46321c99").then((res) => res.json()).then((data) => {
-      setSearchParams({ 'q[coordinates_extra]': data.city, 'q[coordinates]': data.latitude + ',' + data.longitude })
-    });
+    if (!('no_geoip' in searchParams)) {
+      fetch("https://api.ipgeolocation.io/ipgeo?apiKey=3b0a7d4a0d7d4ce18632bbfa46321c99").then((res) => res.json()).then((data) => {
+        setSearchParams({ 'q[coordinates_extra]': data.city, 'q[coordinates]': data.latitude + ',' + data.longitude })
+      });
+    }
   }
 
   const [focused, setFocused] = useState(true);
   const [searchParams, setSearchParams] = useSearch(true, {}, locateIp);
 
-  const setSelected = (value: string, extra: string) => {
-    setSearchParams({ ...searchParams, 'q[coordinates]': value, 'q[coordinates_extra]': extra});
+  const setSelected = (value: string | undefined, extra: string | undefined) => {
+    if (!value) {
+      setSearchParams({ ...searchParams, 'no_geoip': true, 'q[coordinates]': value, 'q[coordinates_extra]': extra });
+    } else {
+      setSearchParams({ ...searchParams, 'q[coordinates]': value, 'q[coordinates_extra]': extra});
+    }
   };
 
 
@@ -35,6 +41,7 @@ export const OrgHomepageSearch = () => {
             {searchParams['q[coordinates_extra]'] || '¿Dónde?'}
           </button>
         </Popover>
+        {props.children ?? <></>}
       </SearchBar>
     </div>
 

@@ -14,7 +14,7 @@ export const LocationFilter = (props: {
 }) => {
   const { searchParams, setSearchParams } = useContext(SearchContext);
 
-  const setSelected = (value: string, extra: string) => {
+  const setSelected = (value: string | undefined, extra: string | undefined) => {
     setSearchParams({ ...searchParams, [props.key_name]: value, [props.key_extra]: extra });
   };
 
@@ -30,7 +30,7 @@ export const LocationConfiguration = (props: {
   key_name: string;
   selected: string | undefined;
   extra: string | undefined;
-  setSelected: (value: string, extra: string) => void;
+  setSelected: (value: string | undefined, extra: string | undefined) => void;
 }) => {
 
   const { selected, setSelected, extra } = props;
@@ -54,7 +54,9 @@ export const LocationConfiguration = (props: {
   } = usePlacesAutocomplete({
     callbackName: "YOUR_CALLBACK_NAME",
     requestOptions: {
-      /* Define search scope here */
+      language: "es",
+      types: ["(cities)"],
+      componentRestrictions: { country: "es" },
     },
     debounce: 300,
     defaultValue: extra,
@@ -106,6 +108,7 @@ export const LocationConfiguration = (props: {
         <Input
           value={value}
           onChange={handleInput}
+          autoFocus={true}
           disabled={!ready}
           placeholder="¿Dónde buscas una asesoría?"
         />
@@ -113,6 +116,9 @@ export const LocationConfiguration = (props: {
         <div className='grid grid-cols-1 space-y-1'>
           {status === "OK" && renderSuggestions()}
         </div>
+        <Button variant="ghost" size="sm" className="w-full" onClick={() => setSelected(undefined, undefined)}>
+          Quitar filtro
+        </Button>
       </div>
     </TooltipContentBase>
   );

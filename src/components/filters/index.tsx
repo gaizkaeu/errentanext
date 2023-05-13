@@ -1,6 +1,6 @@
 "use client";
-import { PlusCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { createContext, useState } from "react";
+import { XCircleIcon } from "@heroicons/react/24/outline";
+import { createContext, useContext, useState } from "react";
 import Popover from "../ui/popover-card";
 import { Button } from "../ui/button";
 import { PlusCircle } from "lucide-react";
@@ -35,15 +35,25 @@ export const SearchBar = (props: {
 
   return (
     <SearchContext.Provider value={{ searchParams, setSearchParams }}>
-      <div className="flex items-center">
-        <div className="flex-1 flex flex-row overflow-x-auto overflow-y-hidden gap-y-2 space-x-1">{props.children}</div>
-        <Button variant="ghost" onClick={() => setSearchParams({})}>
-          <XCircleIcon className="w-6 h-6 text-gray-400" />
-        </Button>
-      </div>
+      {props.children}
     </SearchContext.Provider>
   );
 };
+
+export const SearchBarContainer = (props: { children: JSX.Element[] | JSX.Element }) => {
+
+  const { setSearchParams } = useContext(SearchContext);
+
+  return (
+    <div className="flex items-center">
+      <div className="flex-1 flex flex-row overflow-x-auto overflow-y-hidden gap-y-2 space-x-1">{props.children}</div>
+      <Button variant="ghost" onClick={() => setSearchParams({})}>
+        <XCircleIcon className="w-6 h-6 text-gray-400" />
+      </Button>
+    </div>
+  )
+}
+
 
 export const BaseTooltip = (props: {
   children: JSX.Element;
