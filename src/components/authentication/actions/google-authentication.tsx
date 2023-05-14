@@ -36,6 +36,7 @@ export const GoogleCallback = () => {
 
   useEffect(() => {
     callbackMutation(window.location.search).unwrap().then(() => {
+      if (s) {
       const state = s.get('state');
       if (state && localStorage.getItem(state)) {
         r.replace(localStorage.getItem(state) ?? '/dashboard');
@@ -43,6 +44,7 @@ export const GoogleCallback = () => {
       } else {
         r.replace('/dashboard');
       }
+    }
     });
   }, [])
 

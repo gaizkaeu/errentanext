@@ -64,7 +64,7 @@ const PrivateRoute = (
   };
 
   const mfa_required_action = () => {
-    if (p.includes('/account/mfa')) return;
+    if (p && p.includes('/account/mfa')) return;
     r.push('/account/mfa?from=' + encodeURIComponent(p ?? ''))
   };
 

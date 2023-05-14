@@ -17,7 +17,7 @@ export const OrganizationJoinComponent = () => {
   return (
     <div className="bg-slate-50 dark:bg-midnight-700 rounded-lg p-3">
       <p className="text-xl font-bold">Unirse a una <span className="font-light">asesoría</span>.</p>
-      <Formik onSubmit={() => {}} initialValues={{code: s.get('code')}}>
+      <Formik onSubmit={() => {}} initialValues={{code: s?.get('code')}}>
         <Form>
           <Label htmlFor="code">Código de la asesoría</Label>
           <InputField name="code" />

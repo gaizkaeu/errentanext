@@ -2,16 +2,15 @@
 import { GoogleMap } from "@/components/map"
 import { Organization } from "@/store/types/Organization"
 import { OrganizationMarker } from "../map"
-import { useRouter, useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useKeepSearchParams } from "@/lib/utils";
 import { debounce } from "lodash";
 
 export const MapComponent = (props: { orgs: Organization[] }) => {
 
-  const s = useSearchParams();
+  const s = useSearchParams() as ReadonlyURLSearchParams;
   const g = useKeepSearchParams();
-  const r = useRouter();
 
   const didMount = useRef(false);
 

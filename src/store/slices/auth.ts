@@ -8,6 +8,7 @@ const initialState: AuthState = {
   status: true,
   status_mfa: "no-mfa",
   error: undefined,
+  token: undefined,
   error_code: undefined,
   user: undefined,
 };
@@ -26,11 +27,13 @@ const authSlice = createSlice({
         userAccountsApi.endpoints.loginAccount.matchFulfilled,
         (state, { payload }) => {
           if (
-            payload.success &&
-            payload.success === "You have been logged in"
+            payload.success === "You have been logged in" &&
+             payload.token !== null
           ) {
             state.status = true;
+            state.token = payload.token;
           }
+          console.log("token", payload.token);
         }
       )
       .addMatcher(authenticationApi.endpoints.getMFAuthMethods.matchFulfilled, (state) => {
@@ -74,6 +77,9 @@ const authSlice = createSlice({
         (state, { payload }) => {
           state.user = payload;
           state.status = true;
+          if (payload.token) {
+            state.token = payload.token;
+          }
         }
       );
   },

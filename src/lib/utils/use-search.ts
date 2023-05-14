@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, ReadonlyURLSearchParams } from 'next/navigation';
 
 
 interface Params {
@@ -10,7 +10,7 @@ interface Params {
 
 const useSearch = (serverRedirect: boolean, defaultParams?: Params, onNoInitialParams?: () => void): [Params, (params: Params) => void] => {
   const [searchParams, setSearchParams] = useState<Params>({});
-  const s = useSearchParams();
+  const s = useSearchParams() as ReadonlyURLSearchParams;
   const r = useRouter();
 
   useEffect(() => {

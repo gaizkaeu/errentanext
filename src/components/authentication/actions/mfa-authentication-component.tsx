@@ -8,6 +8,7 @@ export const MFAAuthForm = () => {
     const s = useSearchParams();
   
     const onSuccess = () => {
+      if (s) {
       const from = s.get('from');
   
       if (from) {
@@ -15,6 +16,7 @@ export const MFAAuthForm = () => {
       } else {
         r.push('/dashboard');
       }
+    }
     }
   
     return (

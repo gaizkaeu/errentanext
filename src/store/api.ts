@@ -3,6 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import queryString from "query-string";
 import { Organization } from "./types/Organization";
 import { BaseQueryResponseList } from "./types";
+import { RootState } from "./store";
 
 export const api = createApi({
   reducerPath: "api",
@@ -17,6 +18,14 @@ export const api = createApi({
     paramsSerializer(params) {
       return queryString.stringify(params, { arrayFormat: "bracket" });
     },
+    prepareHeaders(headers, {getState}) {
+      const token = (getState() as RootState).auth.token
+      if (token) {
+        headers.set("Authorization", token);
+      }
+      return headers;
+    },
+
   }),
   tagTypes: [
     "Organization",

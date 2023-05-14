@@ -21,6 +21,7 @@ export type MFAStatuses =
 
 export interface AuthState {
   status: AuthStatuses;
+  token: string | undefined;
   status_mfa: MFAStatuses;
   error: string | undefined;
   error_code: number | undefined;

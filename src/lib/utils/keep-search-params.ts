@@ -1,9 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 export function useKeepSearchParams() {
-  const s = useSearchParams();
+  const s = useSearchParams() as ReadonlyURLSearchParams;
 
   const url = (params_keep: { [key: string]: string | number | undefined }) => {
     const n = new URLSearchParams(s.toString());

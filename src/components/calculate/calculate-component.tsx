@@ -14,13 +14,15 @@ export const CalculateComponent = (props: { calculator: Calculator, org_id: stri
   const [mutation] = useCreateCalculationMutation();
 
   const onSubmit = (values: any) => {
-    if (s['q_id'] === (props.calculator.attributes.questions.length - 1).toString()) {
-      mutation(values).unwrap().then((data) => {
-        console.log(data);
-        r.push(`/calculations/${data.id}`)
-      })
-    } else {
-      r.push(`/organizations/${props.org_id}/calculate/${props.calculator.id}/${parseInt(s['q_id']) + 1}`);
+    if (s) {
+      if (s['q_id'] === (props.calculator.attributes.questions.length - 1).toString()) {
+        mutation(values).unwrap().then((data) => {
+          console.log(data);
+          r.push(`/calculations/${data.id}`)
+        })
+      } else {
+        r.push(`/organizations/${props.org_id}/calculate/${props.calculator.id}/${parseInt(s['q_id'] as string) + 1}`);
+      }
     }
   }
 

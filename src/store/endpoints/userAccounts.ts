@@ -1,3 +1,4 @@
+import { headers } from "next/dist/client/components/headers";
 import { api } from "../api";
 import { BaseQueryResponse, BaseQueryResponseList } from "../types";
 import {
@@ -9,12 +10,13 @@ import {
 
 export const userAccountsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    loginAccount: build.mutation<{ success: string }, SessionCreationData>({
+    loginAccount: build.mutation<{ success: string, token: string | null | undefined }, SessionCreationData>({
       query: (data) => ({
         url: "auth/login",
         method: "post",
         body: data,
       }),
+      transformResponse: (apiresponse: {success: string}, meta) => ({success: apiresponse.success, token: meta?.response?.headers.get("Authorization")}),
       invalidatesTags: () => ["AUTHENTICATED_USER"],
     }),
     logOutAccount: build.mutation<void, void>({
@@ -33,9 +35,9 @@ export const userAccountsApi = api.injectEndpoints({
       }),
       invalidatesTags: () => ["AUTHENTICATED_USER"],
     }),
-    getCurrentUser: build.query<IUser, void>({
+    getCurrentUser: build.query<IUser & {token: string | null | undefined}, void>({
       query: () => ({ url: "accounts/me", method: "get" }),
-      transformResponse: (response: BaseQueryResponse<IUser>) => response.data,
+      transformResponse: (response: BaseQueryResponse<IUser>, meta) => ({token: meta?.response?.headers.get("Authorization"), ...response.data}),
       providesTags: (_result, _error, _id) => ["AUTHENTICATED_USER"],
     }),
     getStripeCustomerPortal: build.query<{ url: string }, void>({

@@ -9,12 +9,14 @@ export const SignInComponent = () => {
   const s = useSearchParams();
 
   const afterLogin = () => {
+    if (s) {
     const from = s.get('from');
 
     if (from) {
       r.push(decodeURIComponent(from));
     } else {
       r.push('/dashboard');
+    }
     }
   }
 
